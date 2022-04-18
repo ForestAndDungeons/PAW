@@ -1,0 +1,32 @@
+-- "" para los nombres de los Objetos , () para componentes de los objetos, 'tipo de objeto'
+
+Orden para GameObjects
+______________________
+
+	EmptyGameObject 'Prefab' "NombreDelObjetoPadre" (BoxCollider,RigidBody,Scripts)
+		-EmptyGameObject "Model"(Model)
+			-EmptyGameObject "Mesh" (MeshFilter,MeshRenderer)
+		
+		
+	Ejemplo:
+	Character
+		-Model
+			-Mesh
+		-Weapon (Prefab del objeto de abajo)
+		
+		
+	Weapon 
+		-Model
+			-Mesh
+		
+	
+	
+	
+	
+	
+Scripts Descriptions
+__________________________
+
+--Recibe parametro int para el daño  y lo utiliza el enemigo "Rata" para atacar
+void TeAtacoEnLaGeta()
+
