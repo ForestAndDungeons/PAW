@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundSensor : MonoBehaviour
+public class GroundSensor
 {
-    [SerializeField] LayerMask GroundLayer;
-    [SerializeField] float radius = 0.1f;
+    float _radius;
+    public bool _isGrounded;
+    LayerMask _groundLayer;
+    Transform _transform;
 
-    public bool IsGrounded;
-
-    void FixedUpdate()
+    public GroundSensor(float radius, LayerMask groundLayer, Transform transform)
     {
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, radius, GroundLayer);
+        _radius = radius;
+        _groundLayer = groundLayer;
+        _transform = transform;
+    }
+
+//Update artificial
+    public void GroundSensorUpdate()
+    {
+        Collider[] colliders = Physics.OverlapSphere(this._transform.position, _radius, _groundLayer);
 
         if (colliders.Length > 0)
         {
-            IsGrounded = true;
+            _isGrounded = true;
         }
         else
         {
-            IsGrounded = false;
+            _isGrounded = false;
         }
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(this.transform.position, radius);
     }
 }

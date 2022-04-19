@@ -19,17 +19,20 @@ public class PlayerController : MonoBehaviour
     {
         speed = 5;
         jumpForce = 5;
+
+        //Rigidbody = GetComponent<Rigidbody>();
+        //groundSensor = parent_Components.GetComponentInChildren<GroundSensor>();
     }
 
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Jump"))
+        /*if (Input.GetButtonDown("Jump"))
         {
             if (groundSensor.IsGrounded)
             {
                 myRigidBody.AddForce(transform.up * jumpForce);
             }
-        }
+        }*/
 
         myAnimator.SetFloat("vertical", Input.GetAxis("Vertical"));
         myAnimator.SetFloat("horizontal", Input.GetAxis("Horizontal"));

@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 77068538}
   - component: {fileID: 77068537}
   - component: {fileID: 77068536}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -434,7 +434,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6287615584618623555, guid: c781f3f0217c10d438aa2ec46dc26467, type: 3}
       propertyPath: m_Name
-      value: Character
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6430177536215028900, guid: c781f3f0217c10d438aa2ec46dc26467, type: 3}
       propertyPath: m_RootOrder
