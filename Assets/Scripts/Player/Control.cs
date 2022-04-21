@@ -8,33 +8,45 @@ public class Control
 
     Transform _transform;
 
+    string _verticalAxis;
+    string _horizontalAxis;
+
+    bool _player2;
+
 //Isometric variables.
     Vector3 _input;
     float _turnSpeed = 360;
 
 //Setter
-    public Control(Movement movement, Transform transform)
+    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, bool player2)
     {
         _movement = movement;
         _transform = transform;
+        _verticalAxis = verticalAxis;
+        _horizontalAxis = horizontalAxis;
+        _player2 = player2;
+
     }
 
 //Update artificial, se llama en el Update de Player.
     public void MovementUpdate(bool isGrounded)
     {
-        var verticalInput = Input.GetAxis("Vertical");
-        var horizontalInput = Input.GetAxis("Horizontal");
+        var verticalInput = Input.GetAxis(_verticalAxis);
+        var horizontalInput = Input.GetAxis(_horizontalAxis);
 
         if (verticalInput != 0 && isGrounded || horizontalInput != 0 && isGrounded)
             _movement.Move(verticalInput, horizontalInput);
         
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && !_player2)
+            _movement.Jump();
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && _player2)
             _movement.Jump();
     }
 
     public void IsometricMovement(bool isGrounded)
     {
-        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        _input = new Vector3(Input.GetAxisRaw(_horizontalAxis), 0, Input.GetAxisRaw(_verticalAxis));
         _movement.IsometricMove(_input);
 
         if(_input != Vector3.zero)
@@ -48,8 +60,11 @@ public class Control
 
             _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _turnSpeed * Time.deltaTime);
         }
-        
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+
+        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && !_player2)
+            _movement.Jump();
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && _player2)
             _movement.Jump();
     }
 }

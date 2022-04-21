@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PartialEnemy : MonoBehaviour
 {
-    [SerializeField]private Transform _target;
+    [SerializeField] private Transform _target;
     public float speed = 0.2f;
     public Rigidbody rb;
 
