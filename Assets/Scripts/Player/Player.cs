@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] bool player2;
 
 //Variables para Movement.
     [SerializeField] float speed;
@@ -24,7 +25,12 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _movement = new Movement(speed, forceJump, myRigidBody, transform);
-        _control = new Control(_movement, transform);
+        
+        if (!player2)
+            _control = new Control(_movement, transform, "Vertical", "Horizontal", player2);
+        else
+            _control = new Control(_movement, transform, "Vertical2", "Horizontal2", player2);
+            
         _groundSensor = new GroundSensor(radius, groundLayer, transform);
     }
 
