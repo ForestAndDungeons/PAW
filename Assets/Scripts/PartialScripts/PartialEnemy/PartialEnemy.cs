@@ -7,29 +7,33 @@ public class PartialEnemy : MonoBehaviour
     [SerializeField] private Transform _target;
     public float speed = 0.2f;
     public Rigidbody rb;
+    
 
-    void Start()
+
+    void OnTriggerStay(Collider player)
     {
-        if (_target == null)
+        if (player.tag == "Player")
         {
-            if (GameObject.FindWithTag("Player") != null)
+            if (_target == null)
             {
-                _target = GameObject.FindWithTag("Player").GetComponent<Transform>();
+                _target = player.transform;
+            }
+            
+            if (_target)
+            {
+                FollowPlayer();
             }
         }
     }
 
-    void OnTriggerStay(Collider player)
+    private void OnTriggerExit(Collider other)
     {
-        if (_target)
-        {
-            FollowPlayer();
-        }
+        _target = null;
     }
 
     void FollowPlayer()
     {
-        Vector3 pos = Vector3.MoveTowards(transform.position, _target.position, speed * Time.deltaTime);
+        Vector3 pos = Vector3.MoveTowards(transform.position , _target.position, speed * Time.deltaTime);
         rb.MovePosition(pos);
         transform.LookAt(_target);
     }
