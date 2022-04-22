@@ -11,11 +11,45 @@ public class MenuManager : MonoBehaviour
     [SerializeField] TMP_Text _volumeText = null;
     [SerializeField] Slider _volumeSlider = null;
 
+    [Header("Pause Settings")]
+    public static bool isPause = false;
+    public GameObject pauseMenuUI;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPause)
+                Resume();
+            else
+                Pause();
+        }
+    }
+
     public void StartButton()
     {
         SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1.0f;
     }
 
+    public void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1.0f;
+        isPause = false;
+    }
+
+    public void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        isPause = true;
+    }
+
+    public void MenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void ExitButton()
     {
