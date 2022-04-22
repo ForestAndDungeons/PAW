@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
     [Header("Volume Settings")]
-    [SerializeField] Text _volumeText = null;
+    [SerializeField] TMP_Text _volumeText = null;
     [SerializeField] Slider _volumeSlider = null;
 
     public void StartButton()
