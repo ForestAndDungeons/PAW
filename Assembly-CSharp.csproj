@@ -53,13 +53,16 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\PartialScripts\PartialEnemy\PartialEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Control.cs" />
     <Compile Include="Assets\Scripts\CharacterBase.cs" />
-    <Compile Include="Assets\Scripts\PartialScripts\PartialEnemy\PartialFollowSensor.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyTriggers.cs" />
     <Compile Include="Assets\Scripts\Player\GroundSensor.cs" />
   </ItemGroup>
   <ItemGroup>
