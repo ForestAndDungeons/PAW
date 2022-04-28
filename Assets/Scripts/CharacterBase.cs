@@ -2,33 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterBase : MonoBehaviour
+public abstract class CharacterBase : MonoBehaviour
 {
-    [SerializeField] string _name;
-    [SerializeField] int _maxHealth;
-    [SerializeField] int _currentHealth;
-    [SerializeField] int _attackPower;
+    protected string _name;
+    protected int _maxHealth;
+    protected int _currentHealth;
+    protected int _attackPower;
+    protected int _armor;
 
-    public CharacterBase(string name, int maxHealth, int currentHealth, int attackPower)
+    public int currentHealthGetter()
     {
-        _name = name;
-        _maxHealth = maxHealth;
-        _currentHealth = currentHealth;
-        _attackPower = attackPower;
+        return _currentHealth;
     }
 
-    public void Start()
-    {
-        _currentHealth = _maxHealth;
-    }
+    public abstract void onDamage(int damage);
 
-    public void onDamage()
-    {
-        _currentHealth -= _attackPower;
-
-        if (_currentHealth <= 0)
-            Destroy(this.gameObject);
-    }
+    public abstract void onAttack(Collision other);
 
     public void onHeal(int health)
     {
@@ -38,10 +27,5 @@ public class CharacterBase : MonoBehaviour
         {
             _currentHealth = _maxHealth;
         }
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        onDamage();
     }
 }

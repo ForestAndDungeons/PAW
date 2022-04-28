@@ -6,22 +6,30 @@ public class Player : MonoBehaviour
 {
     [SerializeField] bool player2;
 
-//Variables para Movement.
+    //Variables para Movement.
     [SerializeField] float speed;
     [SerializeField] float forceJump;
     [SerializeField] Rigidbody myRigidBody;
 
-//Variables para GroundSensor.
+    //Variables para GroundSensor.
     [SerializeField] float radius = 0.1f;
-    [SerializeField] bool isGrounded;
+    [SerializeField] bool _isGrounded;
     [SerializeField] LayerMask groundLayer;
 
-//Clases.
+    //Variables para PlayerBase.
+    [SerializeField] string _name;
+    [SerializeField] int _maxHealth;
+    [SerializeField] int _currentHealth;
+    [SerializeField] int _attackPower;
+    [SerializeField] int _armor;
+
+    //Variables de Clases.
     Control _control;
     Movement _movement;
     GroundSensor _groundSensor;
+    [HideInInspector] public PlayerBase _playerBase;
 
-//Instancia las clases y le pasa los parametros.
+    //Instancia las clases y le pasa los parametros.
     private void Start()
     {
         _movement = new Movement(speed, forceJump, myRigidBody, transform);
@@ -32,16 +40,23 @@ public class Player : MonoBehaviour
             _control = new Control(_movement, transform, "Vertical2", "Horizontal2", player2);
             
         _groundSensor = new GroundSensor(radius, groundLayer, transform);
+
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor);
+
     }
 
-//Llama al metodo de Update artificial.
+    //Llama a metodos de Artificial Updates.
     void Update()
     {
-        isGrounded = _groundSensor._isGrounded;
+        //Mantiene actualizado los datos de las variables.
+        _isGrounded = _groundSensor.isGroundedGetter();
+        _currentHealth = _playerBase.currentHealthGetter();
 
         _groundSensor.GroundSensorUpdate();
-        //_control.MovementUpdate(isGrounded);
 
-        _control.IsometricMovement(isGrounded);
+        _control.IsometricMovement(_isGrounded);
+
+        //Alternativa de movimiento.
+        //_control.MovementUpdate(isGrounded);
     }
 }

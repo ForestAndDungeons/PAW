@@ -10,7 +10,7 @@ public class Movement
     Rigidbody _myRigidBody;
     Transform _transform;
 
-//Contructor; Player instancia esta clase y le pasa los parametros.
+    //Contructor; Player instancia esta clase y le pasa los parametros.
     public Movement(float speed, float forceJump, Rigidbody myRigidBody, Transform transform)
     {
         _speed = speed;
@@ -19,7 +19,7 @@ public class Movement
         _transform = transform;
     }
 
-//La clase Control llama a estos metodos y pasa los parametros de Input.
+    //La clase Control llama a estos metodos y pasa los parametros de Input.
     public void Move(float verticalInput, float horizontalInput)
     {
         var direction = (_transform.forward * verticalInput) + (_transform.right * horizontalInput);

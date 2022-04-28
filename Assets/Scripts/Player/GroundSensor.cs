@@ -5,10 +5,11 @@ using UnityEngine;
 public class GroundSensor
 {
     float _radius;
-    public bool _isGrounded;
+    bool _isGrounded;
     LayerMask _groundLayer;
     Transform _transform;
 
+    //Contructor; Player instancia esta clase y le pasa los parametros.
     public GroundSensor(float radius, LayerMask groundLayer, Transform transform)
     {
         _radius = radius;
@@ -16,9 +17,15 @@ public class GroundSensor
         _transform = transform;
     }
 
-//Update artificial
+    public bool isGroundedGetter()
+    {
+        return _isGrounded;
+    }
+
+    //Update artificial
     public void GroundSensorUpdate()
     {
+        //Crea una esfera como trigger y guarda colliders que la toquen o esten adentro.
         Collider[] colliders = Physics.OverlapSphere(this._transform.position, _radius, _groundLayer);
 
         if (colliders.Length > 0)
