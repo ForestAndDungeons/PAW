@@ -15,16 +15,14 @@ public class EnemyBase : CharacterBase
 
     public override void onDamage(int damage)
     {
-        _currentHealth -= damage - _armor;
-
-        if (_currentHealth <= 0)
-            Destroy(this.gameObject);
+        if (_currentHealth > 0)
+            _currentHealth -= damage - _armor;
     }
 
     public override void onAttack(Collision other)
     {
         if (other != null)
-        other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
+            other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
     }
 
     public override void HealthUp(int healing)

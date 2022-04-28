@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     EnemyMovement _EnemyMove;
     EnemyTriggers _EnemyTriggers;
     EnemyAttack _enemyAttack;
-    EnemyBase _enemyBase;
+    [HideInInspector] public EnemyBase _enemyBase;
 
     void Start()
     {
@@ -57,13 +57,17 @@ public class Enemy : MonoBehaviour
         _EnemyTriggers.OnTriggerExitUpdate(other.transform);
     }
 
-    public void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
-        _enemyBase.onAttack(other);
+        if (other != null)
+            _enemyBase.onAttack(other);
     }
 
     void Update()
     {
         _currentHealth = _enemyBase.currentHealthGetter();
+
+        if (_currentHealth <= 0)
+            this.gameObject.SetActive(false);
     }
 }
