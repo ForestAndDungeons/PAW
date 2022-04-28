@@ -17,24 +17,19 @@ public class GroundSensor
         _transform = transform;
     }
 
-    public bool isGroundedGetter()
-    {
-        return _isGrounded;
-    }
-
     //Update artificial
-    public void GroundSensorUpdate()
+    public bool GroundSensorUpdate()
     {
         //Crea una esfera como trigger y guarda colliders que la toquen o esten adentro.
         Collider[] colliders = Physics.OverlapSphere(this._transform.position, _radius, _groundLayer);
 
         if (colliders.Length > 0)
         {
-            _isGrounded = true;
+            return _isGrounded = true;
         }
         else
         {
-            _isGrounded = false;
+            return _isGrounded = false;
         }
     }
 }

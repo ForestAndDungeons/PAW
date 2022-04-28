@@ -36,4 +36,9 @@ public class Movement
     {
         _myRigidBody.MovePosition(_transform.position + (_transform.forward * input.magnitude)* _speed * Time.deltaTime);
     }
+
+    public void Attack()
+    {
+
+    }
 }
