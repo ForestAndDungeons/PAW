@@ -11,17 +11,26 @@ public class Enemy : MonoBehaviour
     [SerializeField] List<Transform> _colliders = new List<Transform>();
 
     [Header("Variables Attack")]
-   /* [SerializeField] Collider _followCollider;
-    [SerializeField] Collider _AttkCollider;*/
+    /* [SerializeField] Collider _followCollider;
+     [SerializeField] Collider _AttkCollider;*/
+
+    //Variables para _enemyBase
+    [SerializeField] string _name;
+    [SerializeField] int _maxHealth;
+    [SerializeField] int _currentHealth;
+    [SerializeField] int _attackPower;
+    [SerializeField] int _armor;
 
     EnemyMovement _EnemyMove;
     EnemyTriggers _EnemyTriggers;
     EnemyAttack _enemyAttack;
+    EnemyBase _enemyBase;
 
     void Start()
     {
         _EnemyMove = new EnemyMovement(_speed, _rb, transform,_distanceBrake);
         _EnemyTriggers = new EnemyTriggers(_EnemyMove,_colliders);
+        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor);
        // _enemyAttack = new EnemyAttack(_AttkCollider);
     }
 
@@ -48,8 +57,13 @@ public class Enemy : MonoBehaviour
         _EnemyTriggers.OnTriggerExitUpdate(other.transform);
     }
 
+    public void OnCollisionEnter(Collision other)
+    {
+        _enemyBase.onAttack(other);
+    }
+
     void Update()
     {
-        
+        _currentHealth = _enemyBase.currentHealthGetter();
     }
 }

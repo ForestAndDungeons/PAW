@@ -14,7 +14,7 @@ public class EnemyAttack
     
     public void AttackPlayer()
     {
-        _chrBase.onDamage();
+        //_chrBase.onDamage();
     }
 
 }

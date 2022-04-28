@@ -13,11 +13,11 @@ public class Control
 
     bool _player2;
 
-//Isometric variables.
+    //Isometric variables.
     Vector3 _input;
     float _turnSpeed = 360;
 
-//Setter
+    //Contructor; Player instancia esta clase y le pasa los parametros.
     public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, bool player2)
     {
         _movement = movement;
