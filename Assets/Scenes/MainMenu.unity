@@ -2401,7 +2401,7 @@ GameObject:
   - component: {fileID: 946301497}
   - component: {fileID: 946301496}
   m_Layer: 5
-  m_Name: Coming Soon
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2446,8 +2446,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Player 1\nMove with Arrows\nJump with Right Ctrl\n\nPlayer 2 \nMove with
-    WASD\nJump with Left Ctrl"
+  m_text: "Player 1\nMove with Arrows\nJump with Right Ctrl\nAttack with Right Shift\n\nPlayer
+    2 \nMove with WASD\nJump with Left Ctrl\nAttack with Left Shift"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4986,7 +4986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1689585065
 RectTransform:
   m_ObjectHideFlags: 0
