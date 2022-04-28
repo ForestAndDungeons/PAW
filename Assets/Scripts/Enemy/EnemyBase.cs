@@ -23,6 +23,12 @@ public class EnemyBase : CharacterBase
 
     public override void onAttack(Collision other)
     {
+        if (other != null)
         other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
+    }
+
+    public override void HealthUp(int healing)
+    {
+        
     }
 }

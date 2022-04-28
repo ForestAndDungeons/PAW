@@ -66,6 +66,9 @@
     <Compile Include="Assets\Scripts\Player\GroundSensor.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
+    <Compile Include="Assets\Scripts\PickUp\PickUp.cs" />
+    <Compile Include="Assets\Scripts\PickUp\ArmorUp.cs" />
+    <Compile Include="Assets\Scripts\PickUp\HealthUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

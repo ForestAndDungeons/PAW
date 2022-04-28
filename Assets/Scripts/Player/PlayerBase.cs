@@ -15,14 +15,29 @@ public class PlayerBase : CharacterBase
 
     public override void onDamage(int damage)
     {
-        _currentHealth -= damage - _armor;
-
-        if (_currentHealth <= 0)
+        if (_currentHealth > 0)
+            _currentHealth -= damage - _armor;
+        else if (_currentHealth <= 0)
             this.gameObject.SetActive(false);
+        //No funciona el else, why?
     }
 
     public override void onAttack(Collision other)
     {
 
+    }
+
+    public override void HealthUp(int add)
+    {
+        _currentHealth += add;
+
+        if (_currentHealth >= _maxHealth)
+        {
+            _currentHealth = _maxHealth;
+        }
+    }
+    public void ArmorUp(int add)
+    {
+        _armor += add;
     }
 }
