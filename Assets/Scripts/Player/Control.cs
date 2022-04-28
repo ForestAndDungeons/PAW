@@ -82,7 +82,10 @@ public class Control
         if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && _player2)
             _movement.Jump();
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.RightShift) && !_player2)
+            _animationController.onAttack();
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _player2)
             _animationController.onAttack();
     }
 }
