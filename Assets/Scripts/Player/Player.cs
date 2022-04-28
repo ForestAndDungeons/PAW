@@ -46,11 +46,14 @@ public class Player : MonoBehaviour
     }
 
     //Llama a metodos de Artificial Updates.
-    void Update()
+    public void Update()
     {
-        //Mantiene actualizado los datos de las variables.
+        //Mantiene actualizado los datos de las variables para verlos en Inspector y pasarlos como parametros.
         _isGrounded = _groundSensor.isGroundedGetter();
         _currentHealth = _playerBase.currentHealthGetter();
+
+        if(_currentHealth <= 0)
+            this.gameObject.SetActive(false);
 
         _groundSensor.GroundSensorUpdate();
 
@@ -58,5 +61,13 @@ public class Player : MonoBehaviour
 
         //Alternativa de movimiento.
         //_control.MovementUpdate(isGrounded);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        var pickUp = other.GetComponent<PickUp>();
+
+        if (pickUp != null)
+            pickUp.Pick(_playerBase);
     }
 }

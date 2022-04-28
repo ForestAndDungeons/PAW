@@ -19,13 +19,5 @@ public abstract class CharacterBase : MonoBehaviour
 
     public abstract void onAttack(Collision other);
 
-    public void onHeal(int health)
-    {
-        _currentHealth += health;
-
-        if (_currentHealth >= _maxHealth)
-        {
-            _currentHealth = _maxHealth;
-        }
-    }
+    public abstract void HealthUp(int healing);
 }
