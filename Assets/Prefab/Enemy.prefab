@@ -248,6 +248,7 @@ MonoBehaviour:
   _enemyAnim: {fileID: 68243729}
   _enemyAudioSource: {fileID: 5333464094955744086}
   _enemyAClip: []
+  _EnemyTriggers: {fileID: 0}
 --- !u!95 &68243729
 Animator:
   serializedVersion: 3

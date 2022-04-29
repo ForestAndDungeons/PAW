@@ -27,7 +27,6 @@ public class PlayerBase : CharacterBase
     public override void HealthUp(int add)
     {
         _currentHealth += add;
-        Debug.Log("Healing");
 
         if (_currentHealth >= _maxHealth)
         {
