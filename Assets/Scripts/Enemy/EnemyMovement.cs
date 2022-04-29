@@ -9,6 +9,7 @@ public class EnemyMovement
     Transform _transform;
     float _distanceBrake;
 
+
     public EnemyMovement(float _sp, Rigidbody rigidbody,Transform trasform, float _dB)
     {
         _speed = _sp;
@@ -20,11 +21,13 @@ public class EnemyMovement
     public void FollowPlayer(Transform _target)
     {   
         if (_target != null) {
-            if (Vector3.Distance(_target.position,_transform.position) > _distanceBrake) {
+
+            if (Vector3.Distance(_transform.position , _target.position) > _distanceBrake) {
                 Vector3 pos = Vector3.MoveTowards(_transform.position, _target.position, _speed * Time.deltaTime);
                 _rb.MovePosition(pos);
             }
-            _transform.LookAt(_target);
+            
+             _transform.LookAt(_target);
         }
     }
 

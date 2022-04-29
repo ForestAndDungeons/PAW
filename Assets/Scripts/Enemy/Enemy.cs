@@ -10,28 +10,28 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _distanceBrake;
     [SerializeField] List<Transform> _colliders = new List<Transform>();
 
-    [Header("Variables Attack")]
-    /* [SerializeField] Collider _followCollider;
-     [SerializeField] Collider _AttkCollider;*/
+    [Header("Animator Controller")]
+    [SerializeField] Animator _enemyAnim;
 
-    //Variables para _enemyBase
+    [Header("Variables EnemyBase")]
     [SerializeField] string _name;
     [SerializeField] int _maxHealth;
     [SerializeField] int _currentHealth;
     [SerializeField] int _attackPower;
     [SerializeField] int _armor;
 
-    EnemyMovement _EnemyMove;
-    EnemyTriggers _EnemyTriggers;
-    EnemyAttack _enemyAttack;
+    EnemyMovement           _EnemyMove;
+    EnemyTriggers           _EnemyTriggers;
+    EnemyAnimatorController _enemyAnimController;
     [HideInInspector] public EnemyBase _enemyBase;
 
     void Start()
     {
-        _EnemyMove = new EnemyMovement(_speed, _rb, transform,_distanceBrake);
+        _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
+        _EnemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake);
         _EnemyTriggers = new EnemyTriggers(_EnemyMove,_colliders);
         _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor);
-       // _enemyAttack = new EnemyAttack(_AttkCollider);
+        _name = this.gameObject.name;
     }
 
     public List<Transform> GetColliders() { return _colliders; }
@@ -40,28 +40,23 @@ public class Enemy : MonoBehaviour
         _EnemyTriggers.OnTriggerStayUpdate(other.transform, transform);
     }
 
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (_AttkCollider)
-        {
-            Debug.Log("Entre al trigger de _AttkCollider ");
-        }
-        else if (_followCollider)
-        {
-            Debug.Log("Entre al trigger de _followCollider");
-        }
-    }*/
 
     private void OnTriggerExit(Collider other)
     {
         _EnemyTriggers.OnTriggerExitUpdate(other.transform);
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void EnemyFinishBite()
     {
-        if (other != null)
-            _enemyBase.onAttack(other);
+        _enemyAnim.SetBool("IsBite", false);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        _enemyAnimController.OnEnemyBite();
+    }
+
+
 
     void Update()
     {
