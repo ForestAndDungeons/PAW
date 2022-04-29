@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -251,6 +251,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 916138271208542674, guid: 12bbc0c66910eb54a927b7449003bbd8, type: 3}
   m_PrefabInstance: {fileID: 17049446}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &17534222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5681553483042043377, guid: fc8705e5a412f08429f5958b8d799db6, type: 3}
+  m_PrefabInstance: {fileID: 7985049674337135842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &17534223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17534222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991ab2c4de91e354b878ade11f09e35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healing: 5
 --- !u!1001 &18239309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -731,6 +749,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1215219404079335209, guid: 822e0199c6888204f812c865570b547e, type: 3}
   m_PrefabInstance: {fileID: 50505297}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &53572622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6917219220677694889, guid: 2bc947b82b46f6049ac4b62fa2aa4d79, type: 3}
+  m_PrefabInstance: {fileID: 1898922709419274405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &53572623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53572622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd20a752be81783418ccf56157f497bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armor: 1
 --- !u!1 &59482363
 GameObject:
   m_ObjectHideFlags: 0
@@ -3089,6 +3125,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 897254310671098940, guid: 39806ac738a75534ca7577e07fad8f0c, type: 3}
   m_PrefabInstance: {fileID: 293260602}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &293668524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5681553483042043377, guid: fc8705e5a412f08429f5958b8d799db6, type: 3}
+  m_PrefabInstance: {fileID: 245310305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &293668525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293668524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991ab2c4de91e354b878ade11f09e35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healing: 5
 --- !u!1 &305902175
 GameObject:
   m_ObjectHideFlags: 0
@@ -9550,6 +9604,10 @@ PrefabInstance:
     - target: {fileID: 897254310671098937, guid: 39806ac738a75534ca7577e07fad8f0c, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 897254310671098937, guid: 39806ac738a75534ca7577e07fad8f0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 897254310671098940, guid: 39806ac738a75534ca7577e07fad8f0c, type: 3}
       propertyPath: m_RootOrder

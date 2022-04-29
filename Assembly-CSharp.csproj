@@ -55,22 +55,25 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PickUp\HealthUp.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\PartialScripts\PartialEnemy\PartialEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\Scripts\Player\AnimationController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Control.cs" />
     <Compile Include="Assets\Scripts\PickUp\PickUp.cs" />
-    <Compile Include="Assets\Scripts\CharacterBase.cs" />
+    <Compile Include="Assets\Scripts\Heredity\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyTriggers.cs" />
     <Compile Include="Assets\Scripts\Player\GroundSensor.cs" />
     <Compile Include="Assets\Scripts\PickUp\ArmorUp.cs" />
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyBite.cs" />
+    <Compile Include="Assets\Scripts\CameraScript\SmoothCamera.cs" />
+    <Compile Include="Assets\Scripts\Heredity\SoudsManager.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemySoundsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
