@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Variables EnemyBase")]
+    [SerializeField] string _name;
+    [SerializeField] int _maxHealth;
+    [SerializeField] int _currentHealth;
+    [SerializeField] int _attackPower;
+    [SerializeField] int _armor;
+
     [Header("Variables Move")]
     [SerializeField] float _speed;
     [SerializeField] Rigidbody _rb;
@@ -13,23 +20,22 @@ public class Enemy : MonoBehaviour
     [Header("Animator Controller")]
     [SerializeField] Animator _enemyAnim;
 
-    [Header("Variables EnemyBase")]
-    [SerializeField] string _name;
-    [SerializeField] int _maxHealth;
-    [SerializeField] int _currentHealth;
-    [SerializeField] int _attackPower;
-    [SerializeField] int _armor;
+    [Header("Sounds Manager")]
+    [SerializeField] AudioSource _enemyAudioSource;
+    [SerializeField] AudioClip[] _enemyAClip;
 
-    EnemyMovement           _EnemyMove;
+    EnemyMovement           _enemyMove;
     EnemyTriggers           _EnemyTriggers;
     EnemyAnimatorController _enemyAnimController;
+    EnemySoundsManager      _enemySoundsManager;
     [HideInInspector] public EnemyBase _enemyBase;
 
     void Start()
     {
+        _enemySoundsManager = new EnemySoundsManager(_enemyAudioSource,_enemyAClip);
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
-        _EnemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake);
-        _EnemyTriggers = new EnemyTriggers(_EnemyMove,_colliders);
+        _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake);
+        _EnemyTriggers = new EnemyTriggers(_enemyMove,_colliders);
         _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor);
         _name = this.gameObject.name;
     }
@@ -55,8 +61,6 @@ public class Enemy : MonoBehaviour
     {
         _enemyAnimController.OnEnemyBite();
     }
-
-
 
     void Update()
     {
