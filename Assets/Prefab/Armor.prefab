@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5858323033465408275}
   - component: {fileID: 5858323033465408272}
   - component: {fileID: 5858323033465408273}
-  - component: {fileID: 5858323033465408278}
+  - component: {fileID: 2194623833104247349}
   - component: {fileID: 5858323033465408279}
   m_Layer: 13
   m_Name: Armor
@@ -83,7 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5858323033465408278
+--- !u!65 &2194623833104247349
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,11 +91,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5858323033465408276}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.08544329, y: 0.022158062, z: 0.10538628}
+  m_Center: {x: 0, y: -0.0000000013969842, z: -0.0000000018626456}
 --- !u!114 &5858323033465408279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armor: 1
+  _aSource: {fileID: 0}
+  _aClip: []
