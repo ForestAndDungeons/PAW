@@ -6,13 +6,19 @@ public abstract class SoundsManager
 {
      protected AudioSource _aSource;
      protected AudioClip[] _aClip;
-    public abstract void playOnCollision();
+
+    public abstract void playOnCollision(AudioClip _aClip);
 
     public virtual void playOnDeath() { 
     
     }
 
     public virtual void playOnAttack()
+    {
+
+    }
+
+    public virtual void playOnDead()
     {
 
     }

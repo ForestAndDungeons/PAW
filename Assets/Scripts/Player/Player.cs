@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     [SerializeField] int _attackPower;
     [SerializeField] int _armor;
 
+    [Header("Sounds Manager")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _aClip;
+
     //Variable para AnimationController.
     [SerializeField] Animator _myAnimator;
 
@@ -33,12 +37,15 @@ public class Player : MonoBehaviour
     Control _control;
     Movement _movement;
     GroundSensor _groundSensor;
+    PlayerSoundManager _playerSoundManager;
     AnimationController _animationController;
     [HideInInspector] public PlayerBase _playerBase;
 
     //Instancia las clases y le pasa los parametros.
     private void Start()
     {
+        _playerSoundManager = new PlayerSoundManager(_audioSource,_aClip);
+
         _movement = new Movement(speed, forceJump, myRigidBody, transform);
 
         _animationController = new AnimationController(_myAnimator);
@@ -50,7 +57,7 @@ public class Player : MonoBehaviour
             
         _groundSensor = new GroundSensor(radius, groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _aClip);
     }
 
     //Llama a metodos de Artificial Updates.
@@ -77,6 +84,10 @@ public class Player : MonoBehaviour
             pickUp.Pick(_playerBase);
     }
 
+    public void SoundAttack()
+    {
+        _playerSoundManager.playOnAttack();
+    }
     public void EndAttack()
     {
         _myAnimator.SetBool("onAttack", false);

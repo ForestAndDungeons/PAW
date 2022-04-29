@@ -11,6 +11,7 @@ public class EnemyBite :MonoBehaviour
         if (player != null)
             Debug.Log("Execute Bite damage");
             player.gameObject.GetComponent<Player>()._playerBase.onDamage(_bitePower);
+
     }
 }
 

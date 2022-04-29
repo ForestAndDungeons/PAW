@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Funciona pero al tener que cambiar el metodo de ataque se tiene que modificar
         _enemyAnimController.OnEnemyBite();
     }
 
@@ -66,7 +67,15 @@ public class Enemy : MonoBehaviour
     {
         _currentHealth = _enemyBase.currentHealthGetter();
 
-        if (_currentHealth <= 0)
-            this.gameObject.SetActive(false);
+        if (_currentHealth <= 0) {
+            Debug.Log("a");
+            _enemySoundsManager.playOnDead();
+            Destroy(this.gameObject, 1f);
+        }
+    }
+
+    public void PartialSoundAttack()
+    {
+        _enemySoundsManager.playOnAttack();
     }
 }
