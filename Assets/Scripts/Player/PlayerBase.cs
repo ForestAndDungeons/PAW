@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class PlayerBase : CharacterBase
 {
-    public PlayerBase(string name, int maxHealth, int attackPower, int armor)
+    PlayerSoundManager _playerSoundMan;
+    AudioClip[] _aClip;
+    public PlayerBase(string name, int maxHealth, int attackPower, int armor, PlayerSoundManager pSM, AudioClip[] aClip )
     {
         _name = name;
         _maxHealth = maxHealth;
         _currentHealth = maxHealth;
         _attackPower = attackPower;
         _armor = armor;
+        _playerSoundMan = pSM;
+        _aClip = aClip;
     }
 
     public override void onDamage(int damage)
     {
         if (_currentHealth > 0)
+        {
             _currentHealth -= damage - _armor;
+            _playerSoundMan.playOnCollision(_aClip[0]);
+        }
     }
 
     public override void onAttack(Collision other)

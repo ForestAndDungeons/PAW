@@ -5,4 +5,6 @@ using UnityEngine;
 public abstract class PickUp : MonoBehaviour
 {
     public abstract void Pick(PlayerBase playerBase);
+
+    public abstract void PickUpSound(PickUpSound pickUpSound);
 }

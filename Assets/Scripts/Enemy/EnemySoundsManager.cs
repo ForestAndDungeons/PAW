@@ -9,17 +9,22 @@ public class EnemySoundsManager : SoundsManager
         _aSource = audSourse;
         _aClip = audClip;
     }
-    public override void playOnCollision()
-    {
 
+    public override void playOnCollision(AudioClip aClipCol)
+    {
+       //_aSource.PlayOneShot(_aClip[0]);
     }
+
 
     public override void playOnAttack()
     {
-        //Ejecuto sonido Ataque
+        //_aSource.PlayOneShot(_aClip[1]);
     }
 
-
+    public override void playOnDead()
+    {
+        _aSource.PlayOneShot(_aClip[0]);
+    }
 
 
 }
