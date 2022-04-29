@@ -45,10 +45,10 @@ public class Control
         if (_verticalInput != 0 && isGrounded || _horizontalInput != 0 && isGrounded)
             _movement.Move(_verticalInput, _horizontalInput);
         
-        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && !_player2)
+        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && _player2)
             _movement.Jump();
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && _player2)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && !_player2)
             _movement.Jump();
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -76,16 +76,16 @@ public class Control
             _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _turnSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && !_player2)
+        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && _player2)
             _movement.Jump();
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && _player2)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && !_player2)
             _movement.Jump();
 
-        if (Input.GetKeyDown(KeyCode.RightShift) && !_player2)
+        if (Input.GetKeyDown(KeyCode.RightShift) && _player2)
             _animationController.onAttack();
         
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _player2)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !_player2)
             _animationController.onAttack();
     }
 }
