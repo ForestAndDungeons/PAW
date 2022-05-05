@@ -10,7 +10,7 @@ public class EnemySoundsManager : SoundsManager
         _aClip = audClip;
     }
 
-    public override void playOnCollision(AudioClip aClipCol)
+    public override void playOnCollision(AudioSource aSource,AudioClip aClipCol)
     {
        //_aSource.PlayOneShot(_aClip[0]);
     }
