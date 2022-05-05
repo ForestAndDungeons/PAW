@@ -27,6 +27,6 @@ public class EnemyBase : CharacterBase
 
     public override void HealthUp(int healing)
     {
-        
+        //Sistema preparado para futuro feature
     }
 }

@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
             
         _groundSensor = new GroundSensor(radius, groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _aClip);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _aClip , _audioSource);
     }
 
     //Llama a metodos de Artificial Updates.

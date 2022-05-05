@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class HealthUp : PickUp
 {
+    [Header("Variable Heal")]
     [SerializeField] int healing;
+    [Header("Audio")]
     [SerializeField] AudioSource _aSource;
-    [SerializeField] AudioClip[]   _aClip;
-    public override void Pick(PlayerBase playerBase)
+    [SerializeField] AudioClip[] _aClip;
+
+    private void Start()
     {
-        playerBase.HealthUp(healing);
-        Destroy(gameObject);
+        pickSoundManager = new PickUpSound();
     }
 
-    public override void PickUpSound(PickUpSound pickUpSound)
+    public override void Pick(PlayerBase playerBase)
     {
-        pickUpSound.playOnCollision(_aClip[0]);
+        Debug.Log("pickeo pickup");
+        pickSoundManager.playOnCollision(_aSource, _aClip[0]);
+        playerBase.HealthUp(healing);
+        Destroy(gameObject,1f);
     }
+
 }
