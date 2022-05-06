@@ -6,6 +6,7 @@ public class Control
 {
     //Class.
     Movement _movement;
+    PlayerSoundManager _playerSoundManager;
 
     Transform _transform;
 
@@ -16,46 +17,30 @@ public class Control
     public float _verticalInput;
     public float _horizontalInput;
 
-    //If it's the player2.
-    bool _player2;
+    KeyCode _keyJump;
+    KeyCode _keyAttack;
 
     //Isometric variables.
     Vector3 _input;
-    float _turnSpeed = 360;
+    float _turnSpeed;
 
     AnimationController _animationController;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, bool player2, AnimationController animationController)
+    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, PlayerSoundManager playerSoundManager)
     {
         _movement = movement;
         _transform = transform;
         _verticalAxis = verticalAxis;
         _horizontalAxis = horizontalAxis;
-        _player2 = player2;
         _animationController = animationController;
+        _turnSpeed = turnSpeed;
+        _keyJump = keyJump;
+        _keyAttack = keyAttack;
+        _playerSoundManager = playerSoundManager;
     }
 
     //Update artificial, se llama en el Update de Player.
-    public void MovementUpdate(bool isGrounded)
-    {
-        _verticalInput = Input.GetAxis(_verticalAxis);
-        _horizontalInput = Input.GetAxis(_horizontalAxis);
-
-        if (_verticalInput != 0 && isGrounded || _horizontalInput != 0 && isGrounded)
-            _movement.Move(_verticalInput, _horizontalInput);
-        
-        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && _player2)
-            _movement.Jump();
-
-        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && !_player2)
-            _movement.Jump();
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            _animationController.onAttack();
-            
-    }
-
     public void IsometricMovement(bool isGrounded)
     {
         _input = new Vector3(Input.GetAxisRaw(_horizontalAxis), 0, Input.GetAxisRaw(_verticalAxis));
@@ -76,16 +61,13 @@ public class Control
             _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _turnSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded && _player2)
+        if (Input.GetKeyDown(_keyJump) && isGrounded)
             _movement.Jump();
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && !_player2)
-            _movement.Jump();
-
-        if (Input.GetKeyDown(KeyCode.RightShift) && _player2)
+        if (Input.GetKeyDown(_keyAttack))
+        {
             _animationController.onAttack();
-        
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !_player2)
-            _animationController.onAttack();
+            _playerSoundManager.playOnAttack();
+        }
     }
 }

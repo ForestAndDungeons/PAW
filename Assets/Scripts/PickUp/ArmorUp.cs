@@ -7,18 +7,19 @@ public class ArmorUp : PickUp
     [Header("Valor Armor")]
     [SerializeField] int armor;
     [Header("Audio")]
-    [SerializeField] AudioSource _aSource;
-    [SerializeField] AudioClip[] _aClip;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _audioClip;
 
     private void Start()
     {
-        pickSoundManager = new PickUpSound();
+        //pickSoundManager = new PickUpSound();
+        _pickUpSound = new PickUpSound(_audioSource, _audioClip);
+
     }
     public override void Pick(PlayerBase playerBase)
     {
-        pickSoundManager.playOnCollision(_aSource, _aClip[0]);
+        _pickUpSound.playOnCollision(_audioSource, _audioClip[0]);
         playerBase.ArmorUp(armor);
         Destroy(gameObject, 1f);
     }
-
 }

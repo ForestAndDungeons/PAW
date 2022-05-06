@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PickUp : MonoBehaviour
 {
-    protected PickUpSound pickSoundManager;
+    protected PickUpSound _pickUpSound;
     public abstract void Pick(PlayerBase playerBase);
 
 }
