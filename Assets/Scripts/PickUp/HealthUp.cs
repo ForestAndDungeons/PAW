@@ -7,20 +7,18 @@ public class HealthUp : PickUp
     [Header("Variable Heal")]
     [SerializeField] int healing;
     [Header("Audio")]
-    [SerializeField] AudioSource _aSource;
-    [SerializeField] AudioClip[] _aClip;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _audioClip;
 
     private void Start()
     {
-        pickSoundManager = new PickUpSound();
+        _pickUpSound = new PickUpSound(_audioSource, _audioClip);
     }
 
     public override void Pick(PlayerBase playerBase)
     {
-        Debug.Log("pickeo pickup");
-        pickSoundManager.playOnCollision(_aSource, _aClip[0]);
+        _pickUpSound.playOnCollision(_audioSource, _audioClip[0]);
         playerBase.HealthUp(healing);
         Destroy(gameObject,1f);
     }
-
 }

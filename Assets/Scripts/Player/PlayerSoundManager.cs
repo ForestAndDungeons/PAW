@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class PlayerSoundManager : SoundsManager
 {
-    public PlayerSoundManager(AudioSource audSourse, AudioClip[] audClip)
+    public PlayerSoundManager(AudioSource audioSourse, AudioClip[] audioClip)
     {
-        _aSource = audSourse;
-        _aClip = audClip;
+        _audioSource = audioSourse;
+        _audioClip = audioClip;
     }
     
-    public override void playOnCollision(AudioSource aSource,AudioClip _aClipCol)
+    public override void playOnCollision(AudioSource audioSource, AudioClip _audioClipCol)
     {
-        _aSource.PlayOneShot(_aClipCol);
+        _audioSource.PlayOneShot(_audioClipCol);
     }
-
 
     public override void playOnAttack()
     {
-        _aSource.PlayOneShot(_aClip[1]);
+        _audioSource.PlayOneShot(_audioClip[1]);
     }
 
-    public override void playOnDead()
+    public override void playOnHit()
+    {
+        _audioSource.PlayOneShot(_audioClip[2]);
+    }
+
+    public override void playOnDeath()
     {
         //_aSource.PlayOneShot(_aClip[3]);
     }

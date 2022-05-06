@@ -69,8 +69,8 @@ public class Enemy : MonoBehaviour
 
         if (_currentHealth <= 0) {
             Debug.Log("a");
-            _enemySoundsManager.playOnDead();
-            Destroy(this.gameObject, 0.3f);
+            _enemySoundsManager.playOnDeath();
+            Destroy(this.gameObject, 1f);
         }
     }
 

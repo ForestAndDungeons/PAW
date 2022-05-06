@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PickUpSound : SoundsManager
 {
-    public override void playOnCollision(AudioSource aSource,AudioClip _aClip)
+    public PickUpSound(AudioSource audioSource, AudioClip[] audioClip)
+    {
+        _audioSource = audioSource;
+        _audioClip = audioClip;
+    }
+    public override void playOnCollision(AudioSource audioSource, AudioClip _audioClip)
     {
         Debug.Log("Ejecuto sonido PickUp");
-        aSource.PlayOneShot(_aClip);
+        audioSource.PlayOneShot(_audioClip);
     }
 }

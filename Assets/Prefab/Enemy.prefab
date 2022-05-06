@@ -248,7 +248,7 @@ MonoBehaviour:
   _enemyAnim: {fileID: 68243729}
   _enemyAudioSource: {fileID: 5333464094955744086}
   _enemyAClip:
-  - {fileID: 8300000, guid: 1b03bf2947e85064684eb8f8d0b17731, type: 3}
+  - {fileID: 8300000, guid: 5737d2fe1ec5d264591936cafef05194, type: 3}
   - {fileID: 8300000, guid: 9ec719ea4c2006a4e969fd1bede95f95, type: 3}
 --- !u!95 &68243729
 Animator:
@@ -281,7 +281,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.45
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

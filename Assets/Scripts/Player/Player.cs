@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] bool player2;
+    //[SerializeField] bool player2;
 
-    //Variables para Movement.
+    //Movement Variables.
     [Header("Movement Variables")]
     [SerializeField] float speed;
     [SerializeField] float forceJump;
+    [SerializeField] float _turnSpeed;
     [SerializeField] Rigidbody myRigidBody;
 
-    //Variables para GroundSensor.
+    //Control Variables.
+    [Header("Control Variables")]
+    [SerializeField] string _verticalAxis;
+    [SerializeField] string _horizontalAxis;
+    [SerializeField] KeyCode _keyJump;
+    [SerializeField] KeyCode _keyAttack;
+
+    //GroundSensor Variables.
     [Header("GroundSensor Variables")]
-    [SerializeField] float radius = 0.1f;
+    [SerializeField] float radius;
     [SerializeField] bool _isGrounded;
     [SerializeField] LayerMask groundLayer;
 
-    //Variables para PlayerBase.
+    //PlayerBase Variables.
     [Header("PlayerBase Variables")]
     [SerializeField] string _name;
     [SerializeField] int _maxHealth;
@@ -30,10 +38,10 @@ public class Player : MonoBehaviour
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip[] _aClip;
 
-    //Variable para AnimationController.
+    //AnimationController Variable.
     [SerializeField] Animator _myAnimator;
 
-    //Variables de Clases.
+    //Clases Variables.
     Control _control;
     Movement _movement;
     GroundSensor _groundSensor;
@@ -50,10 +58,7 @@ public class Player : MonoBehaviour
 
         _animationController = new AnimationController(_myAnimator);
 
-        if (!player2)
-            _control = new Control(_movement, transform, "Vertical", "Horizontal", player2, _animationController);
-        else
-            _control = new Control(_movement, transform, "Vertical2", "Horizontal2", player2, _animationController);
+        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _playerSoundManager);
             
         _groundSensor = new GroundSensor(radius, groundLayer, transform);
 
@@ -88,6 +93,12 @@ public class Player : MonoBehaviour
     {
         _playerSoundManager.playOnAttack();
     }
+
+    public void SoundHit()
+    {
+        _playerSoundManager.playOnHit();
+    }
+
     public void EndAttack()
     {
         _myAnimator.SetBool("onAttack", false);
