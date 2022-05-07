@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8606823674500430717}
   - component: {fileID: 5806657031399395255}
   - component: {fileID: -8812221244296990367}
+  - component: {fileID: 8937574912779566786}
   m_Layer: 7
   m_Name: tile_pared4_model
   m_TagString: Untagged
@@ -93,5 +94,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.111935, y: 4.590772, z: 0.73422426}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.91505575, y: 4.590772, z: 0.73422426}
+  m_Center: {x: -2.0658534, y: 0, z: 0}
+--- !u!65 &8937574912779566786
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446434963567832674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.92450345, y: 5.661953, z: 0.9055433}
+  m_Center: {x: 2.073442, y: 0, z: 0}
