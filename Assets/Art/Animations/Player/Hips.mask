@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hips
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Bear
+    m_Weight: 1
+  - m_Path: Bear_
+    m_Weight: 1
+  - m_Path: Bear_HeadGizmo
+    m_Weight: 0
+  - m_Path: Bear_LCollarboneGizmo
+    m_Weight: 0
+  - m_Path: Bear_LIKTarget
+    m_Weight: 0
+  - m_Path: Bear_LPlatform
+    m_Weight: 1
+  - m_Path: Bear_Pelvis
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_Bone_Mallet
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_LThigh
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_LThigh/Bear_LCalf
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_LThigh/Bear_LCalf/Bear_LFoot
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_LThigh/Bear_LCalf/Bear_LFoot/Bear_LDigit11
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_LUpVectorNode
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_RThigh
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_RThigh/Bear_RCalf
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_RThigh/Bear_RCalf/Bear_RFoot
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_RThigh/Bear_RCalf/Bear_RFoot/Bear_RDigit11
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_RUpVectorNode
+    m_Weight: 1
+  - m_Path: Bear_Pelvis/Bear_Spine1
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_LCollarbone
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_LCollarbone/Bear_LUpperarm
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_LCollarbone/Bear_LUpperarm/Bear_LForearm
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_LCollarbone/Bear_LUpperarm/Bear_LForearm/Bear_LPalm
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_LCollarbone/Bear_LUpperarm/Bear_LForearm/Bear_LPalm/Bear_LDigit11
+      1
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_LCollarbone/Bear_LUpperarm/Bear_LForearm/Bear_LPalm/Bear_LDigit11
+      1/Bear_LDigit12
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_Neck1
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_Neck1/Bear_Neck2
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_Neck1/Bear_Neck2/Bear_Head
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_RCollarbone
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_RCollarbone/Bear_RUpperarm
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_RCollarbone/Bear_RUpperarm/Bear_RForearm
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_RCollarbone/Bear_RUpperarm/Bear_RForearm/Bear_RPalm
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_RCollarbone/Bear_RUpperarm/Bear_RForearm/Bear_RPalm/Bear_RDigit11
+      1
+    m_Weight: 0
+  - m_Path: Bear_Pelvis/Bear_Spine1/Bear_Spine2/Bear_Spine3/Bear_Spine4/Bear_Ribcage/Bear_RCollarbone/Bear_RUpperarm/Bear_RForearm/Bear_RPalm/Bear_RDigit11
+      1/Bear_RDigit12
+    m_Weight: 0
+  - m_Path: Bear_PelvisGizmo
+    m_Weight: 1
+  - m_Path: Bear_RCollarboneGizmo
+    m_Weight: 0
+  - m_Path: Bear_RibcageGizmo
+    m_Weight: 0
+  - m_Path: Bear_RIKTarget
+    m_Weight: 0
+  - m_Path: Bear_RPlatform
+    m_Weight: 1
+  - m_Path: Mallet
+    m_Weight: 0
