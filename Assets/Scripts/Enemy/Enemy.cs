@@ -6,10 +6,10 @@ public class Enemy : MonoBehaviour
 {
     [Header("Variables EnemyBase")]
     [SerializeField] string _name;
-    [SerializeField] int _maxHealth;
-    [SerializeField] int _currentHealth;
-    [SerializeField] int _attackPower;
-    [SerializeField] int _armor;
+    [SerializeField] float _maxHealth;
+    [SerializeField] float _currentHealth;
+    [SerializeField] float _attackPower;
+    [SerializeField] float _armor;
 
     [Header("Variables Move")]
     [SerializeField] float _speed;
@@ -24,18 +24,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioSource _enemyAudioSource;
     [SerializeField] AudioClip[] _enemyAClip;
 
-    EnemyMovement           _enemyMove;
-    EnemyTriggers           _EnemyTriggers;
+    EnemyMovement _enemyMove;
+    EnemyTriggers _EnemyTriggers;
     EnemyAnimatorController _enemyAnimController;
-    EnemySoundsManager      _enemySoundsManager;
+    EnemySoundsManager _enemySoundsManager;
     [HideInInspector] public EnemyBase _enemyBase;
 
     void Start()
     {
-        _enemySoundsManager = new EnemySoundsManager(_enemyAudioSource,_enemyAClip);
+        _enemySoundsManager = new EnemySoundsManager(_enemyAudioSource, _enemyAClip);
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
         _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake);
-        _EnemyTriggers = new EnemyTriggers(_enemyMove,_colliders);
+        _EnemyTriggers = new EnemyTriggers(_enemyMove, _colliders);
         _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor);
         _name = this.gameObject.name;
     }
@@ -67,7 +67,8 @@ public class Enemy : MonoBehaviour
     {
         _currentHealth = _enemyBase.currentHealthGetter();
 
-        if (_currentHealth <= 0) {
+        if (_currentHealth <= 0)
+        {
             Debug.Log("a");
             _enemySoundsManager.playOnDeath();
             Destroy(this.gameObject, 1f);

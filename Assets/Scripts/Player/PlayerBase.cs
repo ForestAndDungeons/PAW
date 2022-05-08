@@ -7,7 +7,8 @@ public class PlayerBase : CharacterBase
     PlayerSoundManager _playerSoundMan;
     AudioSource _aSource;
     AudioClip[] _aClip;
-    public PlayerBase(string name, int maxHealth, int attackPower, int armor, PlayerSoundManager pSM, AudioClip[] aClip, AudioSource aSource)
+    Player _player;
+    public PlayerBase(string name, float maxHealth, float attackPower, float armor, PlayerSoundManager pSM, AudioClip[] aClip, AudioSource aSource)
     {
         _name = name;
         _maxHealth = maxHealth;
@@ -19,21 +20,29 @@ public class PlayerBase : CharacterBase
         _aSource = aSource;
     }
 
-    public override void onDamage(int damage)
+    public override void onDamage(float damage)
     {
         if (_currentHealth > 0)
         {
             _currentHealth -= damage - _armor;
             _playerSoundMan.playOnCollision(_aSource,_aClip[0]);
         }
+        else if (_currentHealth <= 0)
+        {
+            //_playerSoundsManager.playOnDeath();
+            _player.DisableThisObject();
+        }
     }
+
+    //public override void onAttackCollision(Collision other){}
+    //public override void onAttackTrigger(Collider other){}
 
     public override void onAttack(Collision other)
     {
-
+        
     }
 
-    public override void HealthUp(int add)
+    public override void HealthUp(float add)
     {
         _currentHealth += add;
 
@@ -42,8 +51,13 @@ public class PlayerBase : CharacterBase
             _currentHealth = _maxHealth;
         }
     }
-    public void ArmorUp(int add)
+    public void ArmorUp(float add)
     {
         _armor += add;
+    }
+
+    public void AttackUp(float add)
+    {
+        _attackPower += add;
     }
 }

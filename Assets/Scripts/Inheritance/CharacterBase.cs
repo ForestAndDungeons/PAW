@@ -5,19 +5,38 @@ using UnityEngine;
 public abstract class CharacterBase
 {
     protected string _name;
-    protected int _maxHealth;
-    protected int _currentHealth;
-    protected int _attackPower;
-    protected int _armor;
+    protected float _maxHealth;
+    protected float _currentHealth;
+    protected float _attackPower;
+    protected float _armor;
 
-    public int currentHealthGetter()
+    public float maxHealthGetter()
+    {
+        return _maxHealth;
+    }
+
+    public float currentHealthGetter()
     {
         return _currentHealth;
     }
 
-    public abstract void onDamage(int damage);
+    public float attackPowerGetter()
+    {
+        return _attackPower;
+    }
+
+    public float armorGetter()
+    {
+        return _armor;
+    }
+
+    public abstract void onDamage(float damage);
 
     public abstract void onAttack(Collision other);
 
-    public abstract void HealthUp(int healing);
+    //public abstract void onAttackCollision(Collision other);
+
+    //public abstract void onAttackTrigger(Collider other);
+
+    public abstract void HealthUp(float healing);
 }

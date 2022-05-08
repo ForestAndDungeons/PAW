@@ -75,10 +75,13 @@
     <Compile Include="Assets\Scripts\Player\GroundSensor.cs" />
     <Compile Include="Assets\Scripts\PickUp\PickUpSound.cs" />
     <Compile Include="Assets\Scripts\PickUp\ArmorUp.cs" />
+    <Compile Include="Assets\Scripts\Inheritance\MonoMethods.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBite.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
+    <Compile Include="Assets\Scripts\PickUp\AttackUp.cs" />
+    <Compile Include="Assets\Scripts\Player\UIPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

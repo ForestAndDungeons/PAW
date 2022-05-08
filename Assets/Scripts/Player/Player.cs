@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -29,14 +30,20 @@ public class Player : MonoBehaviour
     //PlayerBase Variables.
     [Header("PlayerBase Variables")]
     [SerializeField] string _name;
-    [SerializeField] int _maxHealth;
-    [SerializeField] int _currentHealth;
-    [SerializeField] int _attackPower;
-    [SerializeField] int _armor;
+    [SerializeField] float _maxHealth;
+    [SerializeField] float _currentHealth;
+    [SerializeField] float _attackPower;
+    [SerializeField] float _armor;
 
+    //PlayerSoundManager Variables.
     [Header("Sounds Manager")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip[] _aClip;
+
+    //UIPlayer Variables.
+    [Header("UI Player")]
+    [SerializeField] Image[] _hearts;
+    [SerializeField] Sprite[] _spriteHeart;
 
     //AnimationController Variable.
     [SerializeField] Animator _myAnimator;
@@ -48,6 +55,7 @@ public class Player : MonoBehaviour
     PlayerSoundManager _playerSoundManager;
     AnimationController _animationController;
     [HideInInspector] public PlayerBase _playerBase;
+    UIPlayer _uiPlayer;
 
     //Instancia las clases y le pasa los parametros.
     private void Start()
@@ -63,21 +71,29 @@ public class Player : MonoBehaviour
         _groundSensor = new GroundSensor(radius, groundLayer, transform);
 
         _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _aClip , _audioSource);
+
+        _uiPlayer = new UIPlayer(_hearts, _spriteHeart);
     }
 
     //Llama a metodos de Artificial Updates.
-    public void Update()
+    private void Update()
     {
         //Mantiene actualizado los datos de las variables para verlos en Inspector y pasarlos como parametros.
         _currentHealth = _playerBase.currentHealthGetter();
+        _attackPower = _playerBase.attackPowerGetter();
+        _armor = _playerBase.armorGetter();
         _isGrounded = _groundSensor.GroundSensorUpdate();
-        
 
         _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
 
+        _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
+
         if (_currentHealth <= 0)
             this.gameObject.SetActive(false);
+    }
 
+    private void FixedUpdate()
+    {
         _control.IsometricMovement(_isGrounded);
     }
 
@@ -102,5 +118,10 @@ public class Player : MonoBehaviour
     public void EndAttack()
     {
         _myAnimator.SetBool("onAttack", false);
+    }
+
+    public void DisableThisObject()
+    {
+        this.gameObject.SetActive(false);
     }
 }

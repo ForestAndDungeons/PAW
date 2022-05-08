@@ -5,6 +5,18 @@ using UnityEngine;
 public abstract class PickUp : MonoBehaviour
 {
     protected PickUpSound _pickUpSound;
+    protected Renderer _renderer;
+    protected Collider _collider;
     public abstract void Pick(PlayerBase playerBase);
 
+    public void onPickUp()
+    {
+        _renderer = this.GetComponent<MeshRenderer>();
+        _collider = this.GetComponent<Collider>();
+
+        _renderer.enabled = false;
+        _collider.enabled = false;
+
+        Destroy(this.gameObject, 1f);
+    }
 }

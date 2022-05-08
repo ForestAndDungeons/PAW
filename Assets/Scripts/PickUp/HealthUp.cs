@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HealthUp : PickUp
 {
-    [Header("Variable Heal")]
-    [SerializeField] int healing;
+    [Header("Variables")]
+    [SerializeField] float _healing;
     [Header("Audio")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip[] _audioClip;
@@ -18,7 +18,7 @@ public class HealthUp : PickUp
     public override void Pick(PlayerBase playerBase)
     {
         _pickUpSound.playOnCollision(_audioSource, _audioClip[0]);
-        playerBase.HealthUp(healing);
-        Destroy(gameObject,1f);
+        playerBase.HealthUp(_healing);
+        onPickUp();
     }
 }

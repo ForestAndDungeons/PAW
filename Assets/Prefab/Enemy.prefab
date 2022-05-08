@@ -136,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897254310671098937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.68, y: 0.5, z: -11.96}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 897254310804701650}
@@ -222,7 +222,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &3140905884352331610
 MonoBehaviour:
@@ -237,19 +237,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Enemy
-  _maxHealth: 2
+  _maxHealth: 3
   _currentHealth: 0
-  _attackPower: 2
+  _attackPower: 3
   _armor: 0
   _speed: 1
   _rb: {fileID: 897254310671098936}
-  _distanceBrake: 5
+  _distanceBrake: 2
   _colliders: []
   _enemyAnim: {fileID: 68243729}
   _enemyAudioSource: {fileID: 5333464094955744086}
   _enemyAClip:
   - {fileID: 8300000, guid: 5737d2fe1ec5d264591936cafef05194, type: 3}
   - {fileID: 8300000, guid: 9ec719ea4c2006a4e969fd1bede95f95, type: 3}
+  _enemy: {fileID: 3140905884352331610}
 --- !u!95 &68243729
 Animator:
   serializedVersion: 3
@@ -839,4 +840,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc7ef4c7eb635c4fadf132a29e981f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bitePower: 1
