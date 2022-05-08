@@ -17,7 +17,7 @@ public class EnemySoundsManager : SoundsManager
 
     public override void playOnAttack()
     {
-        //_aSource.PlayOneShot(_aClip[1]);
+        _audioSource.PlayOneShot(_audioClip[1]);
     }
 
     public override void playOnDeath()

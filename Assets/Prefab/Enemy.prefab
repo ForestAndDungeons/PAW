@@ -239,11 +239,12 @@ MonoBehaviour:
   _name: Enemy
   _maxHealth: 3
   _currentHealth: 0
-  _attackPower: 3
+  _attackPower: 1
   _armor: 0
   _speed: 1
   _rb: {fileID: 897254310671098936}
   _distanceBrake: 2
+  _distanceAttack: 5
   _colliders: []
   _enemyAnim: {fileID: 68243729}
   _enemyAudioSource: {fileID: 5333464094955744086}
