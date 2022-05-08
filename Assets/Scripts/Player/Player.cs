@@ -52,10 +52,12 @@ public class Player : MonoBehaviour
     Control _control;
     Movement _movement;
     GroundSensor _groundSensor;
-    PlayerSoundManager _playerSoundManager;
-    AnimationController _animationController;
+    [HideInInspector] public PlayerSoundManager _playerSoundManager;
+    [HideInInspector] public AnimationController _animationController;
     [HideInInspector] public PlayerBase _playerBase;
     UIPlayer _uiPlayer;
+
+    public Weapon weapon;
 
     //Instancia las clases y le pasa los parametros.
     private void Start()
