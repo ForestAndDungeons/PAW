@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _speed;
     [SerializeField] Rigidbody _rb;
     [SerializeField] float _distanceBrake;
-    [SerializeField] float _distanceAttack;
     [SerializeField] List<Transform> _colliders = new List<Transform>();
 
     [Header("Animator Controller")]
@@ -36,7 +35,7 @@ public class Enemy : MonoBehaviour
     {
         _enemySoundsManager = new EnemySoundsManager(_enemyAudioSource, _enemyAClip);
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
-        _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake,_distanceAttack ,_enemyAnimController);
+        _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake);
         _EnemyTriggers = new EnemyTriggers(_enemyMove, _colliders);
         _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, _enemySoundsManager, _enemy);
         _name = this.gameObject.name;
@@ -58,6 +57,12 @@ public class Enemy : MonoBehaviour
     public void EnemyFinishBite()
     {
         _enemyAnim.SetBool("IsBite", false);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Funciona pero al tener que cambiar el metodo de ataque se tiene que modificar
+        _enemyAnimController.OnEnemyBite();
     }
 
     void Update()
