@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     [HideInInspector] public PlayerBase _playerBase;
     UIPlayer _uiPlayer;
 
+
     public Weapon weapon;
 
     //Instancia las clases y le pasa los parametros.
