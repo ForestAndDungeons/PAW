@@ -5,12 +5,14 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     float _attackPower;
+    Collider _myCollider;
 
     Player _player;
 
     private void Start()
     {
         _player = this.gameObject.GetComponentInParent<Player>();
+        _myCollider = GetComponent<Collider>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -20,5 +22,15 @@ public class Weapon : MonoBehaviour
         if (other != null)
             other.gameObject.GetComponent<Enemy>()._enemyBase.onDamage(_attackPower);
         _player.SoundHit();
+    }
+
+    public void activateCollider()
+    {
+        _myCollider.enabled = true;
+    }
+
+    public void deactivateCollider()
+    {
+        _myCollider.enabled = false;
     }
 }
