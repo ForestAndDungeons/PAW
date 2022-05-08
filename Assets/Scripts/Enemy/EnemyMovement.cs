@@ -8,26 +8,34 @@ public class EnemyMovement
     Rigidbody _rb;
     Transform _transform;
     float _distanceBrake;
+    float _distanceAttack;
+    EnemyAnimatorController _enemyAnimController;
 
 
-    public EnemyMovement(float _sp, Rigidbody rigidbody, Transform trasform, float _dB)
+    public EnemyMovement(float _sp, Rigidbody rigidbody, Transform trasform, float _dB,float distanceAttack, EnemyAnimatorController enemyAnimController)
     {
         _speed = _sp;
         _rb = rigidbody;
         _transform = trasform;
         _distanceBrake = _dB;
+        _distanceAttack = distanceAttack;
+        _enemyAnimController = enemyAnimController;
     }
 
     public void FollowPlayer(Transform _target)
     {
         if (_target != null)
         {
-
             if (Vector3.Distance(_transform.position, _target.position) > _distanceBrake)
             {
                 Vector3 pos = Vector3.MoveTowards(_transform.position, _target.position, _speed * Time.deltaTime);
                 _rb.MovePosition(pos);
             }
+            else if (Vector3.Distance(_transform.position, _target.position) <= _distanceAttack)
+            {
+                _enemyAnimController.OnEnemyBite();
+            }
+
             _transform.LookAt(_target);
         }
     }
