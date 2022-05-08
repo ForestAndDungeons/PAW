@@ -45,7 +45,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        _EnemyTriggers.OnTriggerStayUpdate(other.transform, transform);
+        var enemyTarget = other.transform.GetChild(0);
+        _EnemyTriggers.OnTriggerStayUpdate(enemyTarget);
     }
 
     private void OnTriggerExit(Collider other)
