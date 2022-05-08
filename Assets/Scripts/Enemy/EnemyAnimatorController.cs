@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyAnimatorController
 {
     Animator _enemyAnim;
-    public EnemyAnimatorController(Animator enemyAnim){
+    public EnemyAnimatorController(Animator enemyAnim)
+    {
         _enemyAnim = enemyAnim;
     }
 

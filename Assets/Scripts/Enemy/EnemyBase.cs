@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : CharacterBase
 {
-    public EnemyBase(string name, int maxHealth, int attackPower, int armor)
+    public EnemyBase(string name, float maxHealth, float attackPower, float armor)
     {
         _name = name;
         _maxHealth = maxHealth;
@@ -13,7 +13,7 @@ public class EnemyBase : CharacterBase
         _armor = armor;
     }
 
-    public override void onDamage(int damage)
+    public override void onDamage(float damage)
     {
         if (_currentHealth > 0)
             _currentHealth -= damage - _armor;
@@ -25,7 +25,7 @@ public class EnemyBase : CharacterBase
             other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
     }
 
-    public override void HealthUp(int healing)
+    public override void HealthUp(float healing)
     {
         //Sistema preparado para futuro feature
     }
