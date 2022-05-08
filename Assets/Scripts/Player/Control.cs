@@ -67,6 +67,7 @@ public class Control
         if (Input.GetKeyDown(_keyAttack))
         {
             _animationController.onAttack();
+            _playerSoundManager.playOnAttack();
         }
     }
 }
