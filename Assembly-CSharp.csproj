@@ -66,7 +66,6 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
-    <Compile Include="Assets\Scripts\Player\AnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Player\Control.cs" />
     <Compile Include="Assets\Scripts\PickUp\PickUp.cs" />
     <Compile Include="Assets\Scripts\Inheritance\CharacterBase.cs" />
@@ -83,6 +82,7 @@
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBite.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
+    <Compile Include="Assets\Scripts\Player\AnimationEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
