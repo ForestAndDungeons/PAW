@@ -71,7 +71,7 @@
     <Compile Include="Assets\Scripts\Inheritance\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyTriggers.cs" />
-    <Compile Include="Assets\Scripts\CameraScript\SmoothCamera.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Player\GroundSensor.cs" />
     <Compile Include="Assets\Scripts\PickUp\PickUpSound.cs" />
     <Compile Include="Assets\Scripts\PickUp\ArmorUp.cs" />

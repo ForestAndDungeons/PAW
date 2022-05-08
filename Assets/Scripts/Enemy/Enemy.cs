@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
     EnemyAnimatorController _enemyAnimController;
     EnemySoundsManager _enemySoundsManager;
     [HideInInspector] public EnemyBase _enemyBase;
+    public Enemy _enemy;
 
     void Start()
     {
@@ -36,16 +37,16 @@ public class Enemy : MonoBehaviour
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
         _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake);
         _EnemyTriggers = new EnemyTriggers(_enemyMove, _colliders);
-        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor);
+        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, _enemySoundsManager, _enemy);
         _name = this.gameObject.name;
     }
 
-    public List<Transform> GetColliders() { return _colliders; }
+    public List<Transform> GetColliders() {return _colliders;}
+
     private void OnTriggerStay(Collider other)
     {
         _EnemyTriggers.OnTriggerStayUpdate(other.transform, transform);
     }
-
 
     private void OnTriggerExit(Collider other)
     {
@@ -66,17 +67,14 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         _currentHealth = _enemyBase.currentHealthGetter();
-
-        if (_currentHealth <= 0)
-        {
-            Debug.Log("a");
-            _enemySoundsManager.playOnDeath();
-            Destroy(this.gameObject, 1f);
-        }
     }
 
     public void PartialSoundAttack()
     {
         _enemySoundsManager.playOnAttack();
+    }
+    public void DestroyThisObject()
+    {
+        Destroy(this.gameObject, 1f);
     }
 }

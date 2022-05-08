@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmoothCamera : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     
     [SerializeField] Transform _targetP1;
     [SerializeField] Transform _targetP2;
-    Transform _actualTarget;
-    Vector3 _offset;
+    [SerializeField] Player pj;
     [SerializeField] float _smoothSpeed;
+
+    Transform _actualTarget;
+    
+    Vector3 _offset;
     Vector3 _CurrentVelocity = Vector3.zero;
 
     private void Awake()
@@ -22,12 +25,11 @@ public class SmoothCamera : MonoBehaviour
     {
         Vector3 targetPos = _actualTarget.position + _offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _CurrentVelocity, _smoothSpeed * Time.deltaTime);
-
     }
 
     private void Update()
     {
-        if (!_targetP1)
+        if (!pj.isActiveAndEnabled)
         {
             _actualTarget = _targetP2;
         }
