@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     [Header("Sounds Manager")]
     [SerializeField] AudioSource _enemyAudioSource;
     [SerializeField] AudioClip[] _enemyAClip;
+    public Transform enemyTarget;
 
     EnemyMovement _enemyMove;
     EnemyTriggers _EnemyTriggers;
@@ -46,8 +47,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        var enemyTarget = other.transform.GetChild(0);
-        _EnemyTriggers.OnTriggerStayUpdate(enemyTarget);
+        if (other != null)
+        {
+            _EnemyTriggers.OnTriggerStayUpdate(enemyTarget);
+        }
     }
 
     private void OnTriggerExit(Collider other)
