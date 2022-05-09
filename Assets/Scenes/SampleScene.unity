@@ -7692,6 +7692,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8074152751592958678, guid: 92d5e26c6041f3b47ab2a36a25304ee2, type: 3}
   m_PrefabInstance: {fileID: 464707856}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &469081294 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1533992553162524346, guid: b318f46c929bf2448b3215bc59f85a26, type: 3}
+  m_PrefabInstance: {fileID: 3206865866404995584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &476192000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13855,6 +13860,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3140905884352331610, guid: 39806ac738a75534ca7577e07fad8f0c, type: 3}
+      propertyPath: enemyTarget
+      value: 
+      objectReference: {fileID: 469081294}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39806ac738a75534ca7577e07fad8f0c, type: 3}
 --- !u!4 &887209641 stripped
