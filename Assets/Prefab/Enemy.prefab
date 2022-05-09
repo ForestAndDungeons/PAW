@@ -244,13 +244,14 @@ MonoBehaviour:
   _speed: 1
   _rb: {fileID: 897254310671098936}
   _distanceBrake: 2
-  _distanceAttack: 5
+  _distanceAttack: 3
   _colliders: []
   _enemyAnim: {fileID: 68243729}
   _enemyAudioSource: {fileID: 5333464094955744086}
   _enemyAClip:
   - {fileID: 8300000, guid: 5737d2fe1ec5d264591936cafef05194, type: 3}
   - {fileID: 8300000, guid: 9ec719ea4c2006a4e969fd1bede95f95, type: 3}
+  enemyTarget: {fileID: 0}
   _enemy: {fileID: 3140905884352331610}
 --- !u!95 &68243729
 Animator:
@@ -827,8 +828,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.7899971, y: 1, z: 1.365509}
-  m_Center: {x: 0.0061130524, y: 0, z: 0.18275452}
+  m_Size: {x: 2.283823, y: 4.8310065, z: 2.651618}
+  m_Center: {x: 0.117417336, y: 0.027640462, z: 0.825809}
 --- !u!114 &7270262061713921802
 MonoBehaviour:
   m_ObjectHideFlags: 0
