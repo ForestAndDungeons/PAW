@@ -251,6 +251,7 @@ MonoBehaviour:
   _enemyAClip:
   - {fileID: 8300000, guid: 5737d2fe1ec5d264591936cafef05194, type: 3}
   - {fileID: 8300000, guid: 9ec719ea4c2006a4e969fd1bede95f95, type: 3}
+  enemyTarget: {fileID: 0}
   _enemy: {fileID: 3140905884352331610}
 --- !u!95 &68243729
 Animator:
