@@ -24,7 +24,7 @@ AvatarMask:
   - m_Path: Bear_LPlatform
     m_Weight: 1
   - m_Path: Bear_Pelvis
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bear_Pelvis/Bear_Bone_Mallet
     m_Weight: 0
   - m_Path: Bear_Pelvis/Bear_LThigh
@@ -92,7 +92,7 @@ AvatarMask:
       1/Bear_RDigit12
     m_Weight: 0
   - m_Path: Bear_PelvisGizmo
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Bear_RCollarboneGizmo
     m_Weight: 0
   - m_Path: Bear_RibcageGizmo
