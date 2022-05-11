@@ -9,10 +9,10 @@ public class Player : MonoBehaviour
 
     //Movement Variables.
     [Header("Movement Variables")]
-    [SerializeField] float speed;
-    [SerializeField] float forceJump;
+    [SerializeField] float _speed;
+    [SerializeField] float _forceJump;
     [SerializeField] float _turnSpeed;
-    [SerializeField] Rigidbody myRigidBody;
+    [SerializeField] Rigidbody _myRigidBody;
 
     //Control Variables.
     [Header("Control Variables")]
@@ -23,9 +23,9 @@ public class Player : MonoBehaviour
 
     //GroundSensor Variables.
     [Header("GroundSensor Variables")]
-    [SerializeField] float radius;
+    [SerializeField] float _radius;
     [SerializeField] bool _isGrounded;
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask _groundLayer;
 
     //PlayerBase Variables.
     [Header("PlayerBase Variables")]
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     //PlayerSoundManager Variables.
     [Header("Sounds Manager")]
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip[] _aClip;
+    [SerializeField] AudioClip[] _audioClip;
 
     //UIPlayer Variables.
     [Header("UI Player")]
@@ -53,28 +53,27 @@ public class Player : MonoBehaviour
     Control _control;
     Movement _movement;
     GroundSensor _groundSensor;
+    UIPlayer _uiPlayer;
     [HideInInspector] public PlayerSoundManager _playerSoundManager;
     [HideInInspector] public AnimationController _animationController;
     [HideInInspector] public PlayerBase _playerBase;
-    UIPlayer _uiPlayer;
-
 
     public Weapon weapon;
 
     //Instancia las clases y le pasa los parametros.
     private void Start()
     {
-        _playerSoundManager = new PlayerSoundManager(_audioSource,_aClip);
+        _playerSoundManager = new PlayerSoundManager(_audioSource,_audioClip);
 
-        _movement = new Movement(speed, forceJump, myRigidBody, transform);
+        _movement = new Movement(_speed, _forceJump, _myRigidBody, transform);
 
         _animationController = new AnimationController(_myAnimator);
 
         _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _playerSoundManager);
             
-        _groundSensor = new GroundSensor(radius, groundLayer, transform);
+        _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _aClip , _audioSource, _particleSystem);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleSystem);
 
         _uiPlayer = new UIPlayer(_hearts, _spriteHeart);
     }
