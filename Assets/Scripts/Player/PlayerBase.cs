@@ -9,7 +9,9 @@ public class PlayerBase : CharacterBase
     AudioSource _audioSource;
     AudioClip[] _audioClip;
     Player _player;
-    public PlayerBase(string name, float maxHealth, float attackPower, float armor, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource)
+    ParticleSystem _particleSystem;
+
+    public PlayerBase(string name, float maxHealth, float attackPower, float armor, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem)
     {
         _name = name;
         _maxHealth = maxHealth;
@@ -19,6 +21,7 @@ public class PlayerBase : CharacterBase
         _playerSoundMan = playerSoundManager;
         _audioClip = audioClip;
         _audioSource = audioSource;
+        _particleSystem = particleSystem;
     }
 
     public override void onDamage(float damage)
@@ -27,6 +30,8 @@ public class PlayerBase : CharacterBase
         {
             _currentHealth -= damage - _armor;
             _playerSoundMan.playOnCollision(_audioSource,_audioClip[0]);
+            _particleSystem.Play();
+
         }
         else if (_currentHealth <= 0)
         {

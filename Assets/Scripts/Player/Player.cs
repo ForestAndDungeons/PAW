@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField] float _currentHealth;
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
+    [SerializeField] ParticleSystem _particleSystem;
 
     //PlayerSoundManager Variables.
     [Header("Sounds Manager")]
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
             
         _groundSensor = new GroundSensor(radius, groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _aClip , _audioSource);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _aClip , _audioSource, _particleSystem);
 
         _uiPlayer = new UIPlayer(_hearts, _spriteHeart);
     }
