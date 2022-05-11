@@ -31,12 +31,28 @@ public class EnemyMovement
                 Vector3 pos = Vector3.MoveTowards(_transform.position, _target.position, _speed * Time.deltaTime);
                 _rb.MovePosition(pos);
             }
-            else if (Vector3.Distance(_transform.position, _target.position) <= _distanceAttack)
+            /*else if (Vector3.Distance(_transform.position, _target.position) <= _distanceAttack)
             {
                 _enemyAnimController.OnEnemyBite();
-            }
+            }*/
 
             _transform.LookAt(_target);
+        }
+    }
+
+    public void AttackPlayer(Transform _target)
+    {
+        if (_target !=null)
+        {
+            if (Vector3.Distance(_transform.position, _target.position) <= _distanceAttack)
+            {
+                Debug.Log("Ataco");
+                _enemyAnimController.OnEnemyBite();
+            }
+            else
+            {
+                _enemyAnimController.OnEnemyFinishBite();
+            }
         }
     }
 

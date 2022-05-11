@@ -11,7 +11,13 @@ public class EnemyBite : MonoBehaviour
         _attackPower = this.gameObject.GetComponentInParent<Enemy>()._enemyBase.attackPowerGetter();
 
         if (player != null)
+        {
             Debug.Log("Execute Bite damage");
-        player.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
+            var _player = player.gameObject.GetComponent<Player>();
+            if (_player != null)
+            {
+                _player._playerBase.onDamage(_attackPower);
+            }
+        }
     }
 }
