@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerBase : CharacterBase
 {
-    PlayerSoundManager _playerSoundMan;
     AudioSource _audioSource;
     AudioClip[] _audioClip;
+
     Player _player;
+    PlayerSoundManager _playerSoundManager;
     ParticleSystem _particleSystem;
 
     public PlayerBase(string name, float maxHealth, float attackPower, float armor, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem)
@@ -18,7 +19,7 @@ public class PlayerBase : CharacterBase
         _currentHealth = maxHealth;
         _attackPower = attackPower;
         _armor = armor;
-        _playerSoundMan = playerSoundManager;
+        _playerSoundManager = playerSoundManager;
         _audioClip = audioClip;
         _audioSource = audioSource;
         _particleSystem = particleSystem;
@@ -29,7 +30,7 @@ public class PlayerBase : CharacterBase
         if (_currentHealth > 0)
         {
             _currentHealth -= damage - _armor;
-            _playerSoundMan.playOnCollision(_audioSource,_audioClip[0]);
+            _playerSoundManager.playOnCollision(_audioSource,_audioClip[0]);
             _particleSystem.Play();
 
         }
@@ -40,9 +41,6 @@ public class PlayerBase : CharacterBase
         }
     }
     public override void onAttack(Collision other){}
-
-    //public override void onAttackCollision(Collision other){}
-    //public override void onAttackTrigger(Collider other){}
 
     public override void HealthUp(float add)
     {
