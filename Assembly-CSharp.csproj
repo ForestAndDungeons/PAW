@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Player\AnimationController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Trap\SpikeTrap.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Player\AnimationEvent.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\MenuScripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyTriggers.cs" />
     <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Trap\SpikeTrapHit.cs" />
     <Compile Include="Assets\Scripts\Player\GroundSensor.cs" />
     <Compile Include="Assets\Scripts\Player\UIPlayer.cs" />
     <Compile Include="Assets\Scripts\PickUp\PickUpSound.cs" />
@@ -83,8 +85,6 @@
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBite.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
-    <Compile Include="Assets\Scripts\Trap\SpikeTrap.cs" />
-    <Compile Include="Assets\Scripts\Trap\SpikeTrapHit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
