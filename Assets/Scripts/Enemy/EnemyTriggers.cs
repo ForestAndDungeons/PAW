@@ -20,9 +20,9 @@ public class EnemyTriggers
     {
         /* if (!_col.Contains(_targets.transform))
          {
-             _col.Add(_targets.transform);
-         } */
+             _col.Add(_targets.transform);} */
         if (_targets != null)
+         
         {
             _target = _targets;
             _isRange = true;
@@ -34,8 +34,8 @@ public class EnemyTriggers
     { 
         if (_isRange)
         {
-           _movement.AttackPlayer(_target);
            _movement.FollowPlayer(_target);
+           _movement.AttackPlayer(_target);
         }
     }
 
