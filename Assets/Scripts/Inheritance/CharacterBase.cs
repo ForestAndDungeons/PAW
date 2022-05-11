@@ -34,9 +34,5 @@ public abstract class CharacterBase
 
     public abstract void onAttack(Collision other);
 
-    //public abstract void onAttackCollision(Collision other);
-
-    //public abstract void onAttackTrigger(Collider other);
-
     public abstract void HealthUp(float healing);
 }
