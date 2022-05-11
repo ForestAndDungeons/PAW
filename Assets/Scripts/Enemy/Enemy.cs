@@ -44,29 +44,37 @@ public class Enemy : MonoBehaviour
     }
 
     public List<Transform> GetColliders() {return _colliders;}
+    void Update()
+    {
+        _currentHealth = _enemyBase.currentHealthGetter();
+        _EnemyTriggers.EnemyFixUpdate();
+    }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other != null)
+        {
+            _EnemyTriggers.OnTriggerEnterUpdate(enemyTarget);
+        }
+    }
+    /*private void OnTriggerStay(Collider other)
     {
         if (other != null)
         {
             _EnemyTriggers.OnTriggerStayUpdate(enemyTarget);
         }
-    }
+    }*/
 
     private void OnTriggerExit(Collider other)
     {
         _EnemyTriggers.OnTriggerExitUpdate(other.transform);
     }
 
-    public void EnemyFinishBite()
+   /* public void EnemyFinishBite()
     {
         _enemyAnim.SetBool("IsBite", false);
-    }
+    }*/
 
-    void Update()
-    {
-        _currentHealth = _enemyBase.currentHealthGetter();
-    }
 
     public void PartialSoundAttack()
     {

@@ -20,8 +20,15 @@ public class Weapon : MonoBehaviour
         _attackPower = _player._playerBase.attackPowerGetter();
 
         if (other != null)
-            other.gameObject.GetComponent<Enemy>()._enemyBase.onDamage(_attackPower);
-        _player.SoundHit();
+        {
+            var enemy = other.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy._enemyBase.onDamage(_attackPower);
+            }
+
+            _player.SoundHit();
+        }
     }
 
     public void activateCollider()

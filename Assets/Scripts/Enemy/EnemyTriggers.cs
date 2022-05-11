@@ -6,26 +6,61 @@ public class EnemyTriggers
 {
     EnemyMovement _movement;
     List<Transform> _col;
+    bool _isRange;
+    Transform _target;
 
     public EnemyTriggers(EnemyMovement _enemyMove, List<Transform> _coll)
     {
-
         _movement = _enemyMove;
         _col = _coll;
     }
 
-    public void OnTriggerStayUpdate(Transform _targets)
+
+    public void OnTriggerEnterUpdate(Transform _targets)
+    {
+        /* if (!_col.Contains(_targets.transform))
+         {
+             _col.Add(_targets.transform);
+         } */
+        if (_targets != null)
+        {
+            _target = _targets;
+            _isRange = true;
+        }
+
+    }
+
+    public void EnemyFixUpdate()
+    { 
+        if (_isRange)
+        {
+           _movement.AttackPlayer(_target);
+           _movement.FollowPlayer(_target);
+        }
+    }
+
+    public void OnTriggerExitUpdate(Transform _target)
+    {
+        _col.Remove(_target.transform);
+        _isRange = false;
+    }
+    /*
+     * --Codigo de prueba faltan cosas.
+     * public void OnTriggerStayUpdate(Transform _targets)
     {
         if (!_col.Contains(_targets.transform))
         {
             _col.Add(_targets.transform);
         }
 
-        _movement.FollowPlayer(_col[0]);
-    }
+        if (!_col.Contains(null))
+        {
+            _isRange = true;
+        }
+        else
+        {
+            _isRange = false;
+        }
 
-    public void OnTriggerExitUpdate(Transform _target)
-    {
-        _col.Remove(_target.transform);
-    }
+    }*/
 }

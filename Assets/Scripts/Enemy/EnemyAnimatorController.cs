@@ -14,4 +14,9 @@ public class EnemyAnimatorController
     {
         _enemyAnim.SetBool("IsBite", true);
     }
+
+    public void OnEnemyFinishBite()
+    {
+        _enemyAnim.SetBool("IsBite", false);
+    }
 }
