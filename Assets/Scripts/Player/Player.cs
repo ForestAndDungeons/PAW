@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     //[SerializeField] bool player2;
+    Renderer _renderer;
+    Collider _collider;
 
     //Movement Variables.
     [Header("Movement Variables")]
@@ -53,7 +55,7 @@ public class Player : MonoBehaviour
     Control _control;
     Movement _movement;
     GroundSensor _groundSensor;
-    UIPlayer _uiPlayer;
+    [HideInInspector] public UIPlayer _uiPlayer;
     [HideInInspector] public PlayerSoundManager _playerSoundManager;
     [HideInInspector] public AnimationController _animationController;
     [HideInInspector] public PlayerBase _playerBase;
@@ -63,6 +65,9 @@ public class Player : MonoBehaviour
     //Instancia las clases y le pasa los parametros.
     private void Start()
     {
+        _renderer = this.GetComponent<MeshRenderer>();
+        _collider = this.GetComponent<Collider>();
+
         _playerSoundManager = new PlayerSoundManager(_audioSource,_audioClip);
 
         _movement = new Movement(_speed, _forceJump, _myRigidBody, transform);
@@ -73,9 +78,12 @@ public class Player : MonoBehaviour
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleSystem);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleSystem, this);
 
         _uiPlayer = new UIPlayer(_hearts, _spriteHeart);
+        
+        _currentHealth = _playerBase.currentHealthGetter();
+        _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
     }
 
     //Llama a metodos de Artificial Updates.
@@ -86,13 +94,7 @@ public class Player : MonoBehaviour
         _attackPower = _playerBase.attackPowerGetter();
         _armor = _playerBase.armorGetter();
         _isGrounded = _groundSensor.GroundSensorUpdate();
-
         _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
-
-        _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
-
-        if (_currentHealth <= 0)
-            this.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -125,6 +127,7 @@ public class Player : MonoBehaviour
 
     public void DisableThisObject()
     {
+        //Add coroutine.
         this.gameObject.SetActive(false);
     }
 }
