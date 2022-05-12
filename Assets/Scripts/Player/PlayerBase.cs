@@ -53,6 +53,8 @@ public class PlayerBase : CharacterBase
         {
             _currentHealth = _maxHealth;
         }
+
+        _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
     }
     public void ArmorUp(float add)
     {
