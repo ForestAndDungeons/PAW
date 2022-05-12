@@ -25,7 +25,7 @@ public class SpikeTrap : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         _trapAnim.SetTrigger("TrapTriggered");
-    }
+    } 
 
     //Estos metodos los activa eventos en la animacion
     void SpikeTremble()
@@ -43,5 +43,6 @@ public class SpikeTrap : MonoBehaviour
     void SpikeRetract()
     {
         _hitbox.enabled = false;
+        _trapAnim.ResetTrigger("TrapTriggered");
     }
 }

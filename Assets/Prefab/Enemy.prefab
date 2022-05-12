@@ -241,7 +241,7 @@ MonoBehaviour:
   _currentHealth: 0
   _attackPower: 1
   _armor: 0
-  _speed: 1
+  _speed: 3
   _rb: {fileID: 897254310671098936}
   _distanceBrake: 2
   _distanceAttack: 3

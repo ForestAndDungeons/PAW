@@ -27,6 +27,6 @@ public class PlayerSoundManager : SoundsManager
 
     public override void playOnDeath()
     {
-        //_aSource.PlayOneShot(_aClip[3]);
+        _audioSource.PlayOneShot(_audioClip[3]);
     }
 }
