@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleSystem, this);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleSystem, this, _animationController);
 
         _uiPlayer = new UIPlayer(_hearts, _spriteHeart);
         

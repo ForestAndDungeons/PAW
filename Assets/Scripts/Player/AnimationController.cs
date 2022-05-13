@@ -21,6 +21,11 @@ public class AnimationController
         _myAnimator.SetBool("onAttack", false);
     }
 
+    public void onHit()
+    {
+        _myAnimator.SetTrigger("onHit");
+    }
+
     public void InputUpdate(float verticalInput, float horizontalInput)
     {
         _myAnimator.SetFloat("Vertical", verticalInput);
