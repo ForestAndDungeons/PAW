@@ -42,6 +42,7 @@ public class PlayerBase : CharacterBase
         if (_currentHealth <= 0)
         {
             _playerSoundManager.playOnDeath();
+            _animationController.onDeath();
             _player.DisableThisObject();
         }
     }

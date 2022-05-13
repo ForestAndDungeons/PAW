@@ -23,11 +23,12 @@ public class Control
     //Isometric variables.
     Vector3 _input;
     float _turnSpeed;
+    bool _isDead;
 
     AnimationController _animationController;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, PlayerSoundManager playerSoundManager)
+    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, PlayerSoundManager playerSoundManager, bool isDead)
     {
         _movement = movement;
         _transform = transform;
@@ -38,18 +39,28 @@ public class Control
         _keyJump = keyJump;
         _keyAttack = keyAttack;
         _playerSoundManager = playerSoundManager;
+        _isDead = isDead;
+    }
+
+    public void isDeadSetter(bool isDead)
+    {
+        _isDead = isDead;
     }
 
     //Update artificial, se llama en el Update de Player.
-    public void IsometricMovement(bool isGrounded)
+    public void IsometricMovement(bool isGrounded, bool isDead)
     {
         _input = new Vector3(Input.GetAxisRaw(_horizontalAxis), 0, Input.GetAxisRaw(_verticalAxis));
-        _movement.IsometricMove(_input);
+        
+        if (!isDead)
+        {
+            _movement.IsometricMove(_input);
+        }
 
         _verticalInput = Input.GetAxis(_verticalAxis);
         _horizontalInput = Input.GetAxis(_horizontalAxis);
 
-        if (_input != Vector3.zero)
+        if (_input != Vector3.zero && !isDead)
         {
             //Matriz offset con un angulo de 45 grados para que los ejes cartesianos coincidan con la camara isometrica.
             var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,45,0));
@@ -61,10 +72,10 @@ public class Control
             _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _turnSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(_keyJump) && isGrounded)
+        if (Input.GetKeyDown(_keyJump) && isGrounded && !isDead)
             _movement.Jump();
 
-        if (Input.GetKeyDown(_keyAttack))
+        if (Input.GetKeyDown(_keyAttack) && !isDead)
         {
             _animationController.onAttack();
         }
