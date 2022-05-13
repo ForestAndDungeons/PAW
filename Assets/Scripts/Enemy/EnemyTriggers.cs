@@ -34,8 +34,8 @@ public class EnemyTriggers
     { 
         if (_isRange)
         {
-           _movement.FollowPlayer(_target);
-           _movement.AttackPlayer(_target);
+           //_movement.FollowPlayer(_target);
+          // _movement.AttackPlayer(_target);
         }
     }
 

@@ -12,16 +12,28 @@ public class EnemySoundsManager : SoundsManager
 
     public override void playOnCollision(AudioSource audioSource, AudioClip audioClipCol)
     {
-        //_aSource.PlayOneShot(_aClip[0]);
+        _audioSource.PlayOneShot(_audioClip[0]);
     }
 
+    //Viento del arma
     public override void playOnAttack()
     {
         _audioSource.PlayOneShot(_audioClip[1]);
     }
 
+    public override void playOnHit() {
+    //Cuando acertar el golpe
+        _audioSource.PlayOneShot(_audioClip[2]);
+    }
+
+    // cuando moris
     public override void playOnDeath()
     {
-        _audioSource.PlayOneShot(_audioClip[0]);
+        _audioSource.PlayOneShot(_audioClip[3]);
     }
+
+
+
+
+
 }
