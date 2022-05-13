@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PickUp\HealthUp.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySoundsManager.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSoundManager.cs" />
