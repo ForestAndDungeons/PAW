@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     //[SerializeField] bool player2;
     Renderer _renderer;
     Collider _collider;
+    [SerializeField] PauseManager _pauseManager;
+    [SerializeField] GameObject _resumeButton;
 
     //Movement Variables.
     [Header("Movement Variables")]
@@ -127,13 +129,20 @@ public class Player : MonoBehaviour
         _myAnimator.SetBool("onAttack", false);
     }
 
+    public IEnumerator WaitForDeath()
+    {
+        yield return new WaitForSeconds(4f);
+        _pauseManager.TogglePermanentPause();
+        _resumeButton.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+
     public void DisableThisObject()
     {
         _isDead = true;
         _control.isDeadSetter(_isDead);
-        Destroy(this.gameObject, 4f);
+        _collider.enabled = false;
 
-        //Add coroutine.
-        //this.gameObject.(false);
+        StartCoroutine(WaitForDeath());
     }
 }

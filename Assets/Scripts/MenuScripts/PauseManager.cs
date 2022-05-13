@@ -10,6 +10,18 @@ public class PauseManager : MonoBehaviour
     [SerializeField] KeyCode _pauseKey;
     [SerializeField] GameObject[] _players;
 
+    void Awake()
+    {
+        _isPaused = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(_pauseKey) && _players != null)
+        {
+            TogglePause();
+        }
+    }
     public void TogglePause()
     {
         _isPaused = !_isPaused;
@@ -26,16 +38,13 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    void Awake()
+    public void TogglePermanentPause()
     {
-        _isPaused = false;
-    }
+        _isPaused = true;
+        //TEMPORAL
+        _pauseKey = KeyCode.L;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(_pauseKey) && _players != null)
-        {
-            TogglePause();
-        }
+        Time.timeScale = 0f;
+        _pauseMenuUI.SetActive(true);
     }
 }

@@ -7,9 +7,11 @@ using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] string levelToReload;
+
     [Header("Volume Settings")]
-    [SerializeField] TMP_Text _volumeText = null;
-    [SerializeField] Slider _volumeSlider = null;
+    [SerializeField] TMP_Text _volumeText;
+    [SerializeField] Slider _volumeSlider;
 
     private void Start()
     {
@@ -44,7 +46,7 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(levelToReload);
     }
     public void QuitGame()
     {
