@@ -10,13 +10,37 @@ public class EnemyAnimatorController
         _enemyAnim = enemyAnim;
     }
 
-    public void OnEnemyBite()
+    public void OnAttack()
     {
-        _enemyAnim.SetBool("IsBite", true);
+        _enemyAnim.SetBool("IsAttack", true);
     }
 
-    public void OnEnemyFinishBite()
+    public void OnIdle()
     {
-        _enemyAnim.SetBool("IsBite", false);
+        _enemyAnim.SetFloat("IsWalk", 0);
     }
+
+    public void OnWalking()
+    {
+        _enemyAnim.SetFloat("IsWalk", 1);
+    }
+    public void OnAttackEnd()
+    {
+        _enemyAnim.SetBool("IsAttack", false);
+    }
+
+    public void OnHit()
+    {
+        _enemyAnim.SetBool("IsHit", true);
+    }
+    public void OnHitEnd()
+    {
+        _enemyAnim.SetBool("IsHit", false);
+    }
+
+    public void OnDeath()
+    {
+        _enemyAnim.SetBool("IsDeath", true);
+    }
+
 }

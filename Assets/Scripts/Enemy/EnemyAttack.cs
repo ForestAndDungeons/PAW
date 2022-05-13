@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBite : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
     float _attackPower;
+    Collider _enemyCollider;
+
+    Enemy _enemy;
+
+    private void Start()
+    {
+        _enemy = this.gameObject.GetComponentInParent<Enemy>();
+        _enemyCollider = this.GetComponent<Collider>();
+    }
 
     public void OnTriggerEnter(Collider player)
     {
@@ -17,7 +26,18 @@ public class EnemyBite : MonoBehaviour
             if (_player != null)
             {
                 _player._playerBase.onDamage(_attackPower);
+                
             }
         }
+    }
+
+    public void ActivateCollider()
+    {
+        _enemyCollider.enabled = true;
+    }
+
+    public void DeactivateCollider()
+    {
+        _enemyCollider.enabled = false;
     }
 }
