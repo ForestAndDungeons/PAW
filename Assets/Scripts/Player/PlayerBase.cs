@@ -11,8 +11,9 @@ public class PlayerBase : CharacterBase
     Player _player;
     PlayerSoundManager _playerSoundManager;
     ParticleSystem _particleSystem;
+    AnimationController _animationController;
 
-    public PlayerBase(string name, float maxHealth, float attackPower, float armor, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player)
+    public PlayerBase(string name, float maxHealth, float attackPower, float armor, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
     {
         _name = name;
         _maxHealth = maxHealth;
@@ -24,6 +25,7 @@ public class PlayerBase : CharacterBase
         _audioSource = audioSource;
         _particleSystem = particleSystem;
         _player = player;
+        _animationController = animationController;
     }
 
     public override void onDamage(float damage)
@@ -31,14 +33,16 @@ public class PlayerBase : CharacterBase
         if (_currentHealth > 0)
         {
             _currentHealth -= damage - _armor;
+            _animationController.onHit();
             _playerSoundManager.playOnCollision(_audioSource,_audioClip[0]);
             _particleSystem.Play();
             _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
-
         }
+
         if (_currentHealth <= 0)
         {
             _playerSoundManager.playOnDeath();
+            _animationController.onDeath();
             _player.DisableThisObject();
         }
     }
@@ -53,6 +57,8 @@ public class PlayerBase : CharacterBase
         {
             _currentHealth = _maxHealth;
         }
+
+        _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
     }
     public void ArmorUp(float add)
     {

@@ -11,55 +11,48 @@ public class MenuManager : MonoBehaviour
     [SerializeField] TMP_Text _volumeText = null;
     [SerializeField] Slider _volumeSlider = null;
 
-    [Header("Pause Settings")]
-    public static bool isPause = false;
-    public GameObject pauseMenuUI;
-
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        Time.timeScale = 1f;
+    }
+
+    public void LoadLevelFromSave(string sceneToLoad)
+    {
+        if (Time.timeScale == 0f)
         {
-            if (isPause)
-                Resume();
-            else
-                Pause();
+            Time.timeScale = 1f;
         }
+
+        //sceneToLoad = PlayerPrefs.GetString(SaveData.CURRENT_LEVEL_KEY, sceneToLoad);
+        SceneManager.LoadScene(sceneToLoad);
     }
 
-    public void StartButton()
+    public void LoadLevel(string sceneToLoad)
     {
-        SceneManager.LoadScene("SampleScene");
-        Time.timeScale = 1.0f;
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
+
+        SceneManager.LoadScene(sceneToLoad);
     }
 
-    public void Resume()
+    public void ReloadScene()
     {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1.0f;
-        isPause = false;
-    }
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
 
-    public void Pause()
-    {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isPause = true;
+        SceneManager.LoadScene("Game");
     }
-
-    public void MenuButton()
+    public void QuitGame()
     {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void ExitButton()
-    {
-        Debug.Log("Sali del Juego");
-        Application.Quit(); 
+        Application.Quit();
     }
 
     public void SetVolume(float volume)
     {
         _volumeText.text = volume.ToString("0.0");
     }
-
 }
