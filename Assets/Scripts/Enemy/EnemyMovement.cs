@@ -11,7 +11,6 @@ public class EnemyMovement
     float _distanceAttack;
     EnemyAnimatorController _enemyAnimController;
 
-
     public EnemyMovement(float _sp, Rigidbody rigidbody, Transform trasform, float _dB,float distanceAttack, EnemyAnimatorController enemyAnimController)
     {
         _speed = _sp;
@@ -31,29 +30,12 @@ public class EnemyMovement
                 Vector3 pos = Vector3.MoveTowards(_transform.position, _target.position, _speed * Time.deltaTime);
                 _rb.MovePosition(pos);
             }
-            /*else if (Vector3.Distance(_transform.position, _target.position) <= _distanceAttack)
-            {
-                _enemyAnimController.OnEnemyBite();
-            }*/
-
             _transform.LookAt(_target);
         }
     }
 
-    public void AttackPlayer(Transform _target)
-    {
-        if (_target !=null)
-        {
-            if (Vector3.Distance(_transform.position, _target.position) <= _distanceAttack)
-            {
-                Debug.Log("Ataco");
-                _enemyAnimController.OnEnemyBite();
-            }
-            else
-            {
-                _enemyAnimController.OnEnemyFinishBite();
-            }
-        }
-    }
+    public float DistanceBrakeGetter() { return _distanceBrake; }
+
+    public Transform MyTransformGetter() { return _transform; }
 
 }
