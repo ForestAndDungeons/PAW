@@ -26,9 +26,10 @@ public class Control
     bool _isDead;
 
     AnimationController _animationController;
+    ParticleSystem _particleWalk;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, PlayerSoundManager playerSoundManager, bool isDead)
+    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, PlayerSoundManager playerSoundManager, bool isDead, ParticleSystem particleWalk)
     {
         _movement = movement;
         _transform = transform;
@@ -40,6 +41,7 @@ public class Control
         _keyAttack = keyAttack;
         _playerSoundManager = playerSoundManager;
         _isDead = isDead;
+        _particleWalk = particleWalk;
     }
 
     public void isDeadSetter(bool isDead)
@@ -48,25 +50,20 @@ public class Control
     }
 
     //Update artificial, se llama en el Update de Player.
-    public void IsometricMovement(bool isGrounded, bool isDead)
+    
+    public void Movements(bool isGrounded, bool isDead)
     {
-        _input = new Vector3(Input.GetAxisRaw(_horizontalAxis), 0, Input.GetAxisRaw(_verticalAxis));
-        
-        if (!isDead)
-        {
-            _movement.IsometricMove(_input);
-        }
-
+        _input = new Vector3 (Input.GetAxisRaw(_horizontalAxis), 0, Input.GetAxisRaw(_verticalAxis)).normalized;
         _verticalInput = Input.GetAxis(_verticalAxis);
         _horizontalInput = Input.GetAxis(_horizontalAxis);
 
         if (_input != Vector3.zero && !isDead)
         {
             //Matriz offset con un angulo de 45 grados para que los ejes cartesianos coincidan con la camara isometrica.
-            var matrix = Matrix4x4.Rotate(Quaternion.Euler(0,45,0));
+            var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
             var skewedInput = matrix.MultiplyPoint3x4(_input);
-            
-            var relative = (_transform.position + skewedInput) -_transform.position;
+
+            var relative = (_transform.position + skewedInput) - _transform.position;
             var rot = Quaternion.LookRotation(relative, Vector3.up);
 
             _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _turnSpeed * Time.deltaTime);
@@ -78,6 +75,18 @@ public class Control
         if (Input.GetKeyDown(_keyAttack) && !isDead)
         {
             _animationController.onAttack();
+        }
+
+        if(_verticalInput > 0 || _horizontalInput > 0)
+        {
+            _particleWalk.Play();
+        }
+    }
+    public void IsometricMovement(bool isDead)
+    {
+        if (!isDead)
+        {
+            _movement.IsometricMove(_input);
         }
     }
 }

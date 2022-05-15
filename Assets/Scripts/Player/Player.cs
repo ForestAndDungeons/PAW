@@ -39,7 +39,8 @@ public class Player : MonoBehaviour
     [SerializeField] float _currentHealth;
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
-    [SerializeField] ParticleSystem _particleSystem;
+    [SerializeField] ParticleSystem _particleOnDamage;
+    [SerializeField] ParticleSystem _particleWalk;
 
     //PlayerSoundManager Variables.
     [Header("Sounds Manager")]
@@ -78,11 +79,11 @@ public class Player : MonoBehaviour
 
         _animationController = new AnimationController(_myAnimator);
 
-        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _playerSoundManager, _isDead);
+        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _playerSoundManager, _isDead, _particleWalk);
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleSystem, this, _animationController);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleOnDamage, this, _animationController);
 
         _uiPlayer = new UIPlayer(_hearts, _spriteHeart);
 
@@ -99,11 +100,12 @@ public class Player : MonoBehaviour
         _armor = _playerBase.armorGetter();
         _isGrounded = _groundSensor.GroundSensorUpdate();
         _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
+        _control.Movements(_isGrounded, _isDead);
     }
 
     private void FixedUpdate()
     {
-        _control.IsometricMovement(_isGrounded, _isDead);
+        _control.IsometricMovement(_isDead);
     }
 
     public void OnTriggerEnter(Collider other)
