@@ -26,10 +26,9 @@ public class Control
     bool _isDead;
 
     AnimationController _animationController;
-    ParticleSystem _particleWalk;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, PlayerSoundManager playerSoundManager, bool isDead, ParticleSystem particleWalk)
+    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, PlayerSoundManager playerSoundManager, bool isDead)
     {
         _movement = movement;
         _transform = transform;
@@ -41,7 +40,6 @@ public class Control
         _keyAttack = keyAttack;
         _playerSoundManager = playerSoundManager;
         _isDead = isDead;
-        _particleWalk = particleWalk;
     }
 
     public void isDeadSetter(bool isDead)
@@ -75,11 +73,6 @@ public class Control
         if (Input.GetKeyDown(_keyAttack) && !isDead)
         {
             _animationController.onAttack();
-        }
-
-        if(_verticalInput > 0 || _horizontalInput > 0)
-        {
-            _particleWalk.Play();
         }
     }
     public void IsometricMovement(bool isDead)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8529867051375037006}
   - component: {fileID: 5874061338003930756}
   - component: {fileID: 5440571850550527895}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallHalf2_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

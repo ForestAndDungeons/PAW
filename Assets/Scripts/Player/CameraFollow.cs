@@ -20,18 +20,21 @@ public class CameraFollow : MonoBehaviour
         _actualTarget = _targetP1;
         _offset = transform.position - _actualTarget.position;
     }
+    private void Update()
+    {
+        if(pj.isActiveAndEnabled)
+        {
+            _actualTarget = _targetP1;
+        }
+        if (!pj.isActiveAndEnabled)
+        {
+            _actualTarget = _targetP2;
+        }
+    }
 
     private void LateUpdate()
     {
         Vector3 targetPos = _actualTarget.position + _offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _CurrentVelocity, _smoothSpeed * Time.deltaTime);
-    }
-
-    private void Update()
-    {
-        if (!pj.isActiveAndEnabled)
-        {
-            _actualTarget = _targetP2;
-        }
     }
 }

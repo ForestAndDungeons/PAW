@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    //[SerializeField] bool player2;
     Renderer _renderer;
     Collider _collider;
-    [SerializeField] PauseManager _pauseManager;
-    [SerializeField] GameObject _resumeButton;
+
+    //[SerializeField] bool player2;
+    [SerializeField] Player _otherPlayer;
+
 
     //Movement Variables.
     [Header("Movement Variables")]
@@ -53,7 +54,13 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite[] _spriteHeart;
 
     //AnimationController Variable.
+    [Header("Animation")]
     [SerializeField] Animator _myAnimator;
+
+    [Header("Pause")]
+    [SerializeField] PauseManager _pauseManager;
+    [SerializeField] GameObject _resumeButton;
+
 
     //Clases Variables.
     Control _control;
@@ -79,7 +86,7 @@ public class Player : MonoBehaviour
 
         _animationController = new AnimationController(_myAnimator);
 
-        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _playerSoundManager, _isDead, _particleWalk);
+        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _playerSoundManager, _isDead);
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
@@ -134,9 +141,13 @@ public class Player : MonoBehaviour
     public IEnumerator WaitForDeath()
     {
         yield return new WaitForSeconds(4f);
-        _pauseManager.TogglePermanentPause();
-        _resumeButton.SetActive(false);
         this.gameObject.SetActive(false);
+
+        if (_otherPlayer._isDead)
+        {
+            _pauseManager.TogglePermanentPause();
+            _resumeButton.SetActive(false);
+        }
     }
 
     public void DisableThisObject()

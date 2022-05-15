@@ -31,8 +31,22 @@ public class PlayerBase : CharacterBase
     public override void onDamage(float damage)
     {
         if (_currentHealth > 0)
-        {
-            _currentHealth -= damage - _armor;
+        {   
+            if (_armor > 0)
+            {
+                _armor -= damage;
+
+                if(_armor < 0)
+                {
+                    _currentHealth += _armor;
+                    _armor = 0;
+                }
+            }
+            else
+            {
+                _currentHealth -= damage;
+            }
+
             _animationController.onHit();
             _playerSoundManager.playOnCollision(_audioSource,_audioClip[0]);
             _particleSystem.Play();
