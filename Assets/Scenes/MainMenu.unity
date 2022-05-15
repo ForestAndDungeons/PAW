@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_text: 'Player 1
 
 
-    Attack Q
+    Attack G
 
     Movement'
   m_isRightToLeft: 0
@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_text: 'Player 2
 
 
-    Right Ctrl
+    Attack K
 
     Movement'
   m_isRightToLeft: 0
