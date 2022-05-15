@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimationEvent : MonoBehaviour
 {
     [SerializeField] Player _player;
+    [SerializeField] ParticleSystem _particleWalk;
 
     public void ANIM_Event(string param)
     {
@@ -20,9 +21,14 @@ public class AnimationEvent : MonoBehaviour
             _player.weapon.deactivateCollider();
         }
 
-        if (param == "animationEnd")
+        if (param == "attackAnimationEnd")
         {
             _player._animationController.onAttackEnd();
+        }
+
+        if (param == "isWalking")
+        {
+            _particleWalk.Play();
         }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5322380001030639775}
   - component: {fileID: 5322380001030639774}
   - component: {fileID: 5322380001030639761}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlackWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

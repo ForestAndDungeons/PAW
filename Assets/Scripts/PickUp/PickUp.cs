@@ -8,6 +8,7 @@ public abstract class PickUp : MonoBehaviour
     protected Renderer _renderer;
     protected Collider _collider;
     protected ParticleSystem _particleSystem;
+
     public abstract void Pick(PlayerBase playerBase);
 
     public void onPickUp()
