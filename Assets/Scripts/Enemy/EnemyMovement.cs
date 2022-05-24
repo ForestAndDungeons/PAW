@@ -7,22 +7,29 @@ public class EnemyMovement
     float _speed;
     Rigidbody _rb;
     Transform _transform;
+    float _knockbackForce;
     float _distanceBrake;
     float _distanceAttack;
+    float _knockbackTime;
+    float _knockbackCounter;
     EnemyAnimatorController _enemyAnimController;
 
-    public EnemyMovement(float _sp, Rigidbody rigidbody, Transform trasform, float _dB,float distanceAttack, EnemyAnimatorController enemyAnimController)
+    public EnemyMovement(float _sp, Rigidbody rigidbody, Transform trasform, float _dB,float distanceAttack, EnemyAnimatorController enemyAnimController, float knockbackForce, float knockbackTime, float knockbackCounter)
     {
         _speed = _sp;
         _rb = rigidbody;
         _transform = trasform;
+        _knockbackForce = knockbackForce;
         _distanceBrake = _dB;
         _distanceAttack = distanceAttack;
         _enemyAnimController = enemyAnimController;
+        _knockbackTime = knockbackTime;
+        _knockbackCounter = knockbackCounter;
     }
 
-    public void FollowPlayer(Transform _target)
+    public void FollowToPlayer(Transform _target)
     {
+
         if (_target != null)
         {
             if (Vector3.Distance(_transform.position, _target.position) > _distanceBrake)
@@ -34,8 +41,21 @@ public class EnemyMovement
         }
     }
 
+    public void OnKnockback(Transform target)
+    {
+        _knockbackCounter = _knockbackTime;
+        Vector3 hitDirection = target.position - _transform.position;
+        hitDirection = hitDirection.normalized;
+        _rb.MovePosition(hitDirection * _knockbackForce);
+        
+    }
+
     public float DistanceBrakeGetter() { return _distanceBrake; }
 
     public Transform MyTransformGetter() { return _transform; }
 
+    public float CurrentKnockbackCounterGetter()
+    {
+        return _knockbackCounter;
+    }
 }

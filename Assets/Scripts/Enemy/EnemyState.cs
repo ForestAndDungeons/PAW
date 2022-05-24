@@ -28,12 +28,12 @@ public class EnemyState
                     _enemyAnimController.OnIdle();
                 break;
             case State.persuit:
-                _enemyMovement.FollowPlayer(_target);
+                _enemyMovement.FollowToPlayer(_target);
                 _enemyAnimController.OnWalking();
                 if (Vector3.Distance(_transform.position, _target.position) <= _distanceBrake)
                 {
                     _isAttack = true;
-                    isAttack();
+                    isAttack();    
                 }
                 break;
             case State.attack:
@@ -48,9 +48,13 @@ public class EnemyState
                     }
                 }
                 break;
+           /* case State.onHit:
+                Vector3 hitDirection = _target.transform.position - _transform.position;
+                hitDirection = hitDirection.normalized;
+                _enemyMovement.OnKnockback(hitDirection);
+                break;*/
             case State.die:
-                    _enemyAnimController.OnDeath();
-
+                _enemyAnimController.OnDeath();
                 break;
             default:
                 Debug.Log("no entre a ningun state");
@@ -70,6 +74,10 @@ public class EnemyState
     {
         _currentState = State.attack;
     }
+    /*public void isOnHit()
+    {
+        _currentState = State.onHit;
+    }*/
     public void isDie()
     {
         _currentState = State.die;
