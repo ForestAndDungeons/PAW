@@ -150,6 +150,8 @@ MonoBehaviour:
   _particleSystem: {fileID: 1938268371}
   _speed: 3
   _rb: {fileID: 7372105791957241239}
+  _knockbackForce: 2
+  _knockbackTime: 0.1
   _distanceBrake: 2
   _distanceAttack: 5
   _colliders: []

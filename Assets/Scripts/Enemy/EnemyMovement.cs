@@ -46,7 +46,7 @@ public class EnemyMovement
         _knockbackCounter = _knockbackTime;
         Vector3 hitDirection = target.position - _transform.position;
         hitDirection = hitDirection.normalized;
-        _rb.MovePosition(hitDirection * _knockbackForce);
+        _rb.MovePosition(_transform.position - (hitDirection * _knockbackForce));
         
     }
 
