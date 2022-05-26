@@ -8,13 +8,18 @@ public class EnemyState
     EnemyAnimatorController _enemyAnimController;
     EnemyMovement _enemyMovement;
     List<Transform> _targets;
+    EnemySoundsManager _enemySoundsManager;
+    Enemy _enemy;
     bool _isAttack;
-    public EnemyState(State state, EnemyAnimatorController enemyAnimController,EnemyMovement enemyMovement,List<Transform> targets)
+    public bool isDead = false;
+    public EnemyState(State state, EnemyAnimatorController enemyAnimController,EnemyMovement enemyMovement,List<Transform> targets, EnemySoundsManager enemySoundsManager,Enemy enemy)
     {
         _currentState = state;
         _enemyAnimController = enemyAnimController;
         _enemyMovement = enemyMovement;
         _targets = targets;
+        _enemySoundsManager = enemySoundsManager;
+        _enemy = enemy;
     }
 
     public void StateUpdate()
@@ -35,21 +40,34 @@ public class EnemyState
                 }
                 break;
             case State.persuit:
-                if (_targets.Count > 0)
+                Debug.Log(isDead);
+                if (!isDead)
                 {
-                    _enemyMovement.FollowToPlayer(_targets[0]);
-                    _enemyAnimController.OnWalking();
-                    if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
+                    if (_targets.Count > 0)
                     {
-                        _isAttack = true;
-                        isAttack();    
+                        _enemyMovement.FollowToPlayer(_targets[0]);
+                        _enemyAnimController.OnWalking();
+                        if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
+                        {
+                            _isAttack = true;
+                            isAttack();    
+                        }
                     }
+                }
+                else
+                {
+                    Debug.Log("Entre al else del persuit");
+                    isDie();
                 }
                 break;
             case State.attack:
                 if (_isAttack)
                 {
                     _enemyAnimController.OnAttack();
+                    if (_targets.Count == 0)
+                    {
+                        isIdle();
+                    }
                     if (Vector3.Distance(_transform.position, _targets[0].position) >= _distanceBrake)
                     {
                         _enemyAnimController.OnAttackEnd();
@@ -59,6 +77,7 @@ public class EnemyState
                 }
                 break;
             case State.die:
+                _enemy.DestroyThisObject();
                 _enemyAnimController.OnDeath();
                 break;
             default:
