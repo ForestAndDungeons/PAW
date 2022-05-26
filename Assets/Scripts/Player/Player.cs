@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] string _horizontalAxis;
     [SerializeField] KeyCode _keyJump;
     [SerializeField] KeyCode _keyAttack;
+    [SerializeField] KeyCode _keySpecial;
     [SerializeField] bool _isDead;
 
     //GroundSensor Variables.
@@ -86,7 +87,7 @@ public class Player : MonoBehaviour
 
         _animationController = new AnimationController(_myAnimator);
 
-        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _playerSoundManager, _isDead);
+        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _keySpecial, _playerSoundManager, _isDead);
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
