@@ -5,7 +5,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     float _attackPower;
-    Collider _myCollider;
+    [SerializeField] Collider _myCollider;
+    [SerializeField] Collider _myCollider2;
     Player _player;
 
     [SerializeField] float _slowMotion;
@@ -14,7 +15,6 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         _player = this.gameObject.GetComponentInParent<Player>();
-        _myCollider = GetComponent<Collider>();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -48,9 +48,19 @@ public class Weapon : MonoBehaviour
         _myCollider.enabled = true;
     }
 
+    public void activateCollider2()
+    {
+        _myCollider2.enabled = true;
+    }
+
     public void deactivateCollider()
     {
         _myCollider.enabled = false;
+    }
+
+    public void deactivateCollider2()
+    {
+        _myCollider2.enabled = false;
     }
 
     public IEnumerator SlowMotion()
