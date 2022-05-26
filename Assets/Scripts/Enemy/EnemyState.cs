@@ -7,14 +7,14 @@ public class EnemyState
     State _currentState;
     EnemyAnimatorController _enemyAnimController;
     EnemyMovement _enemyMovement;
-    Transform _target;
+    List<Transform> _targets;
     bool _isAttack;
-    public EnemyState(State state, EnemyAnimatorController enemyAnimController,EnemyMovement enemyMovement,Transform target)
+    public EnemyState(State state, EnemyAnimatorController enemyAnimController,EnemyMovement enemyMovement,List<Transform> targets)
     {
         _currentState = state;
         _enemyAnimController = enemyAnimController;
         _enemyMovement = enemyMovement;
-        _target = target;
+        _targets = targets;
     }
 
     public void StateUpdate()
@@ -25,22 +25,32 @@ public class EnemyState
         switch (_currentState)
         {
             case State.idle:
+                if (_targets.Count == 0)
+                {
                     _enemyAnimController.OnIdle();
+                }
+                else
+                {
+                    isPersuit();
+                }
                 break;
             case State.persuit:
-                _enemyMovement.FollowPlayer(_target);
-                _enemyAnimController.OnWalking();
-                if (Vector3.Distance(_transform.position, _target.position) <= _distanceBrake)
+                if (_targets.Count > 0)
                 {
-                    _isAttack = true;
-                    isAttack();
+                    _enemyMovement.FollowToPlayer(_targets[0]);
+                    _enemyAnimController.OnWalking();
+                    if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
+                    {
+                        _isAttack = true;
+                        isAttack();    
+                    }
                 }
                 break;
             case State.attack:
                 if (_isAttack)
                 {
                     _enemyAnimController.OnAttack();
-                    if (Vector3.Distance(_transform.position, _target.position) >= _distanceBrake)
+                    if (Vector3.Distance(_transform.position, _targets[0].position) >= _distanceBrake)
                     {
                         _enemyAnimController.OnAttackEnd();
                         _isAttack = false;
@@ -49,8 +59,7 @@ public class EnemyState
                 }
                 break;
             case State.die:
-                    _enemyAnimController.OnDeath();
-
+                _enemyAnimController.OnDeath();
                 break;
             default:
                 Debug.Log("no entre a ningun state");

@@ -6,11 +6,13 @@ public class EnemyBase : CharacterBase
 {
     EnemySoundsManager _enemySoundsManager;
     Enemy _enemy;
+    EnemyMovement _enemyMove;
+    List<Transform> _targets;
     AudioSource _audioSource;
     AudioClip[] _audioClip;
     ParticleSystem _particleSystem;
 
-    public EnemyBase(string name, float maxHealth, float attackPower, float armor, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem)
+    public EnemyBase(string name, float maxHealth, float attackPower, float armor, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets)
     {
         _name = name;
         _maxHealth = maxHealth;
@@ -22,14 +24,18 @@ public class EnemyBase : CharacterBase
         _audioSource = audioSource;
         _audioClip = audioClip;
         _particleSystem = particleSystem;
+        _enemyMove = enemyMove;
+        _targets = targets;
     }
 
     public override void onDamage(float damage)
     {
         if (_currentHealth > 0) {
             _currentHealth -= damage - _armor;
+            _enemyMove.OnKnockback(_targets[0]);
             _enemySoundsManager.playOnCollision(_audioSource,_audioClip[0]);
             _particleSystem.Play();
+            
         }
         else if (_currentHealth <= 0)
         {
