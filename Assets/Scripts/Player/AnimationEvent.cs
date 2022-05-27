@@ -6,6 +6,7 @@ public class AnimationEvent : MonoBehaviour
 {
     [SerializeField] Player _player;
     [SerializeField] ParticleSystem _particleWalk;
+    [SerializeField] ParticleSystem _particleSpecial;
 
     public void ANIM_Event(string param)
     {
@@ -27,8 +28,9 @@ public class AnimationEvent : MonoBehaviour
 
         if (param == "specialStart")
         {
-            _player._playerSoundManager.playOnAttack();
+            _player._playerSoundManager.playOnSpecial();
             _player.weapon.activateCollider2();
+            _particleSpecial.Play();
         }
 
         if (param == "specialEnd")
