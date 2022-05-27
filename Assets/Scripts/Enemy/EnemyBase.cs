@@ -36,16 +36,19 @@ public class EnemyBase : CharacterBase
     {
         if (_currentHealth > 0) {
             _currentHealth -= damage - _armor;
-            _enemyMove.OnKnockback(_targets[0]);
-            _enemySoundsManager.playOnCollision(_audioSource,_audioClip[0]);
-            _particleSystem.Play();
+            if (_targets.Count > 0)
+            {
+                _enemyMove.OnKnockback(_targets[0]);
+                _enemySoundsManager.playOnCollision(_audioSource,_audioClip[0]);
+                _particleSystem.Play();
+            }
             
         }
         else if (_currentHealth <= 0)
         {
             _enemyState.isDead = true;
-            _roomEntity.EnemySum();
             _enemySoundsManager.playOnDeath();
+            _roomEntity.EnemySum();
         }
     }
 

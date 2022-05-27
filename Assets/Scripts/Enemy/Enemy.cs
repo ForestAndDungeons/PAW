@@ -90,8 +90,11 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        
-        _targets.Remove(other.transform);
+        var _isAttack = _enemyState.IsAttackGetter();
+        if (!_isAttack)
+        {
+            _targets.Remove(other.transform);
+        }
     }
 
     public void PartialSoundAttack()

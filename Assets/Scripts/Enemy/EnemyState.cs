@@ -106,4 +106,5 @@ public class EnemyState
         return _currentState;
     }
 
+    public bool IsAttackGetter() { return _isAttack; }
 }
