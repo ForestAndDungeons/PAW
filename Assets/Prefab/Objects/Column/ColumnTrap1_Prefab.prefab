@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 338309269}
   - component: {fileID: 338309268}
   - component: {fileID: 338309267}
+  - component: {fileID: 961891767}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4818,6 +4819,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5, y: 4, z: 10}
   m_Center: {x: 0, y: 0, z: 5.802237}
+--- !u!114 &961891767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338309264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef48bb4c728c0834fb73bc8761cb0f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 1
 --- !u!1 &549402636347951545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4839,7 +4853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &924379654374986499
 Transform:
   m_ObjectHideFlags: 0
@@ -4946,7 +4960,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
