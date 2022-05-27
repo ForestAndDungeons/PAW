@@ -11,8 +11,9 @@ public class EnemyBase : CharacterBase
     AudioSource _audioSource;
     AudioClip[] _audioClip;
     ParticleSystem _particleSystem;
+    EnemyState _enemyState;
 
-    public EnemyBase(string name, float maxHealth, float attackPower, float armor, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets)
+    public EnemyBase(string name, float maxHealth, float attackPower, float armor, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState)
     {
         _name = name;
         _maxHealth = maxHealth;
@@ -26,6 +27,7 @@ public class EnemyBase : CharacterBase
         _particleSystem = particleSystem;
         _enemyMove = enemyMove;
         _targets = targets;
+        _enemyState = enemyState;
     }
 
     public override void onDamage(float damage)
@@ -39,8 +41,8 @@ public class EnemyBase : CharacterBase
         }
         else if (_currentHealth <= 0)
         {
+            _enemyState.isDead = true;
             _enemySoundsManager.playOnDeath();
-            _enemy.DestroyThisObject();
         }
     }
 
