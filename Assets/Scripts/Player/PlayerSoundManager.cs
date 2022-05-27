@@ -20,6 +20,11 @@ public class PlayerSoundManager : SoundsManager
         _audioSource.PlayOneShot(_audioClip[1]);
     }
 
+    public void playOnSpecial()
+    {
+        _audioSource.PlayOneShot(_audioClip[4]);
+    }
+
     public override void playOnHit()
     {
         _audioSource.PlayOneShot(_audioClip[2]);
