@@ -42,16 +42,18 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EnemyBase _enemyBase;
     EnemyState _enemyState;
     public EnemyAttack enemyAttack;
+    public RoomEntity _roomEntity;
 
     
 
     void Start()
     {
+        
         enemySoundsManager = new EnemySoundsManager(_enemyAudioSource, _enemyAClip);
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
         _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake,_distanceAttack ,_enemyAnimController, _knockbackForce,_knockbackTime,_knockbackCounter);
         _enemyState = new EnemyState(_state,_enemyAnimController,_enemyMove,_targets,enemySoundsManager,this);
-        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState);
+        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState,_roomEntity);
         _name = this.gameObject.name;
     }
 
@@ -76,10 +78,13 @@ public class Enemy : MonoBehaviour
     {
         if (other!=null)
         {
-             if (!_targets.Contains(other.transform))
-             {
-                _targets.Add(other.transform);
-             }
+            if (other.gameObject.layer == 8)
+            {
+                 if (!_targets.Contains(other.transform))
+                 {
+                    _targets.Add(other.transform);
+                 }
+            }
             
         }
     }

@@ -40,7 +40,6 @@ public class EnemyState
                 }
                 break;
             case State.persuit:
-                Debug.Log(isDead);
                 if (!isDead)
                 {
                     if (_targets.Count > 0)
@@ -55,8 +54,7 @@ public class EnemyState
                     }
                 }
                 else
-                {
-                    Debug.Log("Entre al else del persuit");
+                {             
                     isDie();
                 }
                 break;

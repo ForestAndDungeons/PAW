@@ -150,7 +150,7 @@ MonoBehaviour:
   _particleSystem: {fileID: 1938268371}
   _speed: 3
   _rb: {fileID: 7372105791957241239}
-  _knockbackForce: 3
+  _knockbackForce: 4
   _knockbackTime: 0.1
   _distanceBrake: 2
   _distanceAttack: 5
@@ -163,6 +163,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 277a7922dde29a144bb52ce9ae87fc1a, type: 3}
   - {fileID: 8300000, guid: 30bf3c85ba4526e4cac47b32fbbf9a69, type: 3}
   enemyAttack: {fileID: 720206957}
+  _roomEntity: {fileID: 0}
 --- !u!82 &2321902975047959289
 AudioSource:
   m_ObjectHideFlags: 0
