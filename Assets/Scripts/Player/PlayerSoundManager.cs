@@ -18,11 +18,13 @@ public class PlayerSoundManager : SoundsManager
     public override void playOnAttack()
     {
         _audioSource.PlayOneShot(_audioClip[1]);
+        _audioSource.PlayOneShot(_audioClip[6]);
     }
 
     public void playOnSpecial()
     {
         _audioSource.PlayOneShot(_audioClip[4]);
+        _audioSource.PlayOneShot(_audioClip[5]);
     }
 
     public override void playOnHit()
