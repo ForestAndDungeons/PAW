@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &131429475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131429476}
+  m_Layer: 8
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131429476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131429475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1780426266939748092}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &570048953
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,7 +4864,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1780426266939748092}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1060613774
 MeshFilter:
@@ -4915,7 +4945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1780426266939748092}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2449380265084897824
 ParticleSystem:
@@ -9727,7 +9757,7 @@ Transform:
   m_Children:
   - {fileID: 3101760779185045106}
   m_Father: {fileID: 1780426266939748092}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1642640859970914331
 GameObject:
@@ -9760,6 +9790,7 @@ Transform:
   m_LocalPosition: {x: -8.29, y: 0.25, z: 15.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 131429476}
   - {fileID: 1533992553162524346}
   - {fileID: 3402154954048120204}
   - {fileID: 4295675298645390905}
@@ -9839,7 +9870,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a783ed849b0e07c479c5f3520c31c15b, type: 3}
   - {fileID: 8300000, guid: 194dcc2f4e814e449b79f4f8139183b9, type: 3}
   - {fileID: 8300000, guid: d5712a7a28f1bfb4b91003629513ece0, type: 3}
-  _hearts:
+  - {fileID: 8300000, guid: c36c0e32a33f90e449153a8d4f2017ff, type: 3}
+  - {fileID: 8300000, guid: bed2b100c20f379449b71078657410b2, type: 3}
+  _imageUIHearts:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -9849,6 +9882,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteHeart:
+  - {fileID: -7458413224762040988, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
+  - {fileID: -3884846035463382357, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
+  _imageUIArmor:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _spriteArmor:
   - {fileID: -7458413224762040988, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
   - {fileID: -3884846035463382357, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
   _myAnimator: {fileID: 3206865866334620274}
@@ -14783,7 +14828,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1780426266939748092}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6106198683455120086
 GameObject:
@@ -14815,7 +14860,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1780426266939748092}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1059151849458816428
 ParticleSystem:
@@ -19735,7 +19780,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.5, z: 1.5}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: -0.2, y: 0, z: 0}
 --- !u!65 &1692925601
 BoxCollider:
@@ -19748,7 +19793,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.4385413, y: 0.5693811, z: 0.6057389}
+  m_Size: {x: 1.5, y: 0.5, z: 0.5}
   m_Center: {x: -0.2, y: 0, z: 0}
 --- !u!114 &541518733
 MonoBehaviour:
