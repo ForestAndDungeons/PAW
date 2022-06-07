@@ -61,8 +61,10 @@
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\PauseManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemySoundsManager.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\MusicTransition.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSoundManager.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\MusicManager.cs" />
     <Compile Include="Assets\Scripts\Player\AnimationController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
@@ -78,7 +80,7 @@
     <Compile Include="Assets\Scripts\Inheritance\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\Inheritance\RoomEntity.cs" />
     <Compile Include="Assets\Scripts\PickUp\AttackUp.cs" />
-    <Compile Include="Assets\Scripts\MenuScripts\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\SceneTransition.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyTriggers.cs" />
     <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Trap\TrapSound.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
     <Compile Include="Assets\Scripts\Door\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\MenuOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -728,6 +731,12 @@
     </Reference>
     <Reference Include="Unity.SysrootPackage.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Transform _targetP2;
     [SerializeField] Player pj;
     [SerializeField] float _smoothSpeed;
-
+    
     Transform _actualTarget;
     
     Vector3 _offset;
@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Awake()
     {
-        _actualTarget = _targetP1;
+         _actualTarget = _targetP1;
         _offset = transform.position - _actualTarget.position;
     }
     private void Update()
@@ -29,12 +29,14 @@ public class CameraFollow : MonoBehaviour
         if (!pj.isActiveAndEnabled)
         {
             _actualTarget = _targetP2;
+            var vcam = GetComponent<Cinemachine.CinemachineVirtualCamera>();
+            vcam.Follow = _actualTarget;
         }
     }
 
     private void LateUpdate()
     {
-        Vector3 targetPos = _actualTarget.position + _offset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _CurrentVelocity, _smoothSpeed * Time.deltaTime);
+        /*Vector3 targetPos = _actualTarget.position + _offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _CurrentVelocity, _smoothSpeed * Time.deltaTime);*/
     }
 }

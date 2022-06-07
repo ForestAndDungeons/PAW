@@ -51,8 +51,10 @@ public class Player : MonoBehaviour
 
     //UIPlayer Variables.
     [Header("UI Player")]
-    [SerializeField] Image[] _hearts;
+    [SerializeField] Image[] _imageUIHearts;
     [SerializeField] Sprite[] _spriteHeart;
+    [SerializeField] Image[] _imageUIArmor;
+    [SerializeField] Sprite[] _spriteArmor;
 
     //AnimationController Variable.
     [Header("Animation")]
@@ -93,10 +95,10 @@ public class Player : MonoBehaviour
 
         _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleOnDamage, this, _animationController);
 
-        _uiPlayer = new UIPlayer(_hearts, _spriteHeart);
+        _uiPlayer = new UIPlayer(_imageUIHearts, _spriteHeart, _imageUIArmor, _spriteArmor);
 
         _currentHealth = _playerBase.currentHealthGetter();
-        _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
+        _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
     }
 
     //Llama a metodos de Artificial Updates.

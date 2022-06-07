@@ -50,7 +50,7 @@ public class PlayerBase : CharacterBase
             _animationController.onHit();
             _playerSoundManager.playOnCollision(_audioSource,_audioClip[0]);
             _particleSystem.Play();
-            _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
+            _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
         }
 
         if (_currentHealth <= 0)
@@ -72,11 +72,13 @@ public class PlayerBase : CharacterBase
             _currentHealth = _maxHealth;
         }
 
-        _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth);
+        _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
     }
     public void ArmorUp(float add)
     {
         _armor += add;
+
+        _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
     }
 
     public void AttackUp(float add)
