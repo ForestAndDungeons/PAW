@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Awake()
     {
-         _actualTarget = _targetP1;
+        _actualTarget = _targetP1;
         _offset = transform.position - _actualTarget.position;
     }
     private void Update()
