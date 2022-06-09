@@ -20,6 +20,7 @@ public class Control
     KeyCode _keyJump;
     KeyCode _keyAttack;
     KeyCode _keySpecial;
+    KeyCode _keyBlock;
 
     //Isometric variables.
     Vector3 _input;
@@ -29,7 +30,7 @@ public class Control
     AnimationController _animationController;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, KeyCode keySpecial, PlayerSoundManager playerSoundManager, bool isDead)
+    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, KeyCode keySpecial, KeyCode keyBlock, PlayerSoundManager playerSoundManager, bool isDead)
     {
         _movement = movement;
         _transform = transform;
@@ -40,6 +41,7 @@ public class Control
         _keyJump = keyJump;
         _keyAttack = keyAttack;
         _keySpecial = keySpecial;
+        _keyBlock = keyBlock;
         _playerSoundManager = playerSoundManager;
         _isDead = isDead;
     }
@@ -80,6 +82,11 @@ public class Control
         if (Input.GetKey(_keySpecial) && !isDead)
         {
             _animationController.onSpecial();
+        }
+
+        if (Input.GetKey(_keyBlock) && !isDead)
+        {
+            _animationController.onBlockStart();
         }
     }
     public void IsometricMovement(bool isDead)
