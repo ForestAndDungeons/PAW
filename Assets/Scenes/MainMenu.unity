@@ -3618,7 +3618,7 @@ MonoBehaviour:
   m_text: 'Player 1
 
 
-    Attack G
+    Attack F, Special G, Block C
 
     Movement'
   m_isRightToLeft: 0
@@ -3757,7 +3757,7 @@ MonoBehaviour:
   m_text: 'Player 2
 
 
-    Attack L
+    Attack L, Special K, Block M
 
     Movement'
   m_isRightToLeft: 0
