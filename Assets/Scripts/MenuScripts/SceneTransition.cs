@@ -8,7 +8,9 @@ using TMPro;
 public class SceneTransition : MonoBehaviour
 {
     string _sceneToLoad;
+    [SerializeField] float waitTime;
     [SerializeField] Animator transitionAnim;
+    [SerializeField] Animator musicAnim;
 
     private void Start()
     {
@@ -18,7 +20,8 @@ public class SceneTransition : MonoBehaviour
     IEnumerator Transition(string sceneToLoad)
     {
         transitionAnim.SetTrigger("End");
-        yield return new WaitForSeconds(1.5f);
+        musicAnim.SetTrigger("fadeOut");
+        yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(sceneToLoad);
     }
 
