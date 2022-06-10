@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8489178}
   - component: {fileID: 8489179}
   m_Layer: 17
-  m_Name: GameObject
+  m_Name: BlockCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.5, z: 2}
-  m_Center: {x: -4.183599e-16, y: 1.5909726e-17, z: 0.010682724}
+  m_Size: {x: 1.9999998, y: 1.0398297, z: 1.9999998}
+  m_Center: {x: -1.2098382e-11, y: 0.2699166, z: 0.010682748}
 --- !u!1 &131429475
 GameObject:
   m_ObjectHideFlags: 0
@@ -9906,6 +9906,7 @@ MonoBehaviour:
   _currentHealth: 0
   _attackPower: 1
   _armor: 0
+  _haveAKey: 0
   _particleOnDamage: {fileID: 2449380265084897824}
   _particleWalk: {fileID: 1059151849458816428}
   _audioSource: {fileID: 8736167761565555380}
@@ -9927,8 +9928,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteHeart:
-  - {fileID: -7458413224762040988, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
-  - {fileID: -3884846035463382357, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
+  - {fileID: 21300000, guid: 57389a256f95f0d49b722db10ac8c2f3, type: 3}
+  - {fileID: 21300000, guid: 87a32905b72df16498ac07872a90a7f1, type: 3}
   _imageUIArmor:
   - {fileID: 0}
   - {fileID: 0}
@@ -9939,8 +9940,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _spriteArmor:
-  - {fileID: -7458413224762040988, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
-  - {fileID: -3884846035463382357, guid: 9ef302caa013b9948a84f102cc4f44ee, type: 3}
+  - {fileID: 21300000, guid: 75c457219bfac4c4cbffc635911cc1ae, type: 3}
+  - {fileID: 21300000, guid: 87a32905b72df16498ac07872a90a7f1, type: 3}
   _myAnimator: {fileID: 3206865866334620274}
   _pauseManager: {fileID: 0}
   _resumeButton: {fileID: 0}

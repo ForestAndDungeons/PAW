@@ -84,7 +84,7 @@ public class Control
             _animationController.onSpecial();
         }
 
-        if (Input.GetKey(_keyBlock) && !isDead)
+        if (Input.GetKeyDown(_keyBlock) && !isDead)
         {
             _animationController.onBlockStart();
         }

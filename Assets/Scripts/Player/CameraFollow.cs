@@ -20,6 +20,7 @@ public class CameraFollow : MonoBehaviour
         _actualTarget = _targetP1;
         _offset = transform.position - _actualTarget.position;
     }
+
     private void Update()
     {
         if(pj.isActiveAndEnabled)
@@ -29,14 +30,14 @@ public class CameraFollow : MonoBehaviour
         if (!pj.isActiveAndEnabled)
         {
             _actualTarget = _targetP2;
-            var vcam = GetComponent<Cinemachine.CinemachineVirtualCamera>();
-            vcam.Follow = _actualTarget;
+            //var vcam = GetComponent<Cinemachine.CinemachineVirtualCamera>();
+            //vcam.Follow = _actualTarget;
         }
     }
 
     private void LateUpdate()
     {
-        /*Vector3 targetPos = _actualTarget.position + _offset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _CurrentVelocity, _smoothSpeed * Time.deltaTime);*/
+        Vector3 targetPos = _actualTarget.position + _offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _CurrentVelocity, _smoothSpeed * Time.deltaTime);
     }
 }
