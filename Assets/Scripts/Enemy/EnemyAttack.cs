@@ -21,12 +21,10 @@ public class EnemyAttack : MonoBehaviour
 
         if (player != null)
         {
-            Debug.Log("Execute Bite damage");
             var _player = player.gameObject.GetComponent<Player>();
             if (_player != null)
             {
                 _player._playerBase.onDamage(_attackPower);
-                
             }
         }
     }
