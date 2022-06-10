@@ -53,7 +53,7 @@ public class RoomEntity : MonoBehaviour
 
         if (pj)
         {
-            _playerList.Add(other.gameObject);
+            StartCoroutine(WaitForAddPlayer(other.gameObject));
         }
 
         if (enemy)
@@ -86,9 +86,10 @@ public class RoomEntity : MonoBehaviour
             int index = _enemyList.IndexOf(_enemyList[i]);
             if (enemyRandom == index)
             {
-                Debug.Log("El enemigo: "+_enemyList[i].name+ " en el index: " + index + " es el que tiene la llave");
-                Enemy enemyComp = _enemyList[i].GetComponent<Enemy>();
-                enemyComp.HasAKey = true;
+                Debug.Log("El enemigo: "+_enemyList[i].name+" es el que tiene la llave");
+                Enemy enemyWithKey = _enemyList[i].GetComponent<Enemy>();
+                enemyWithKey._enemyBase.EnemyWithKey(true);
+                
             }
         }
     }
@@ -98,5 +99,12 @@ public class RoomEntity : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         _randomEnemy = Random.Range(0, _enemyList.Count);
         EnemyWithKey(_randomEnemy);
+    }
+
+    IEnumerator WaitForAddPlayer(GameObject playerGO)
+    {
+        yield return new WaitForSeconds(1f);
+        //playerGO es Player GameObject
+        _playerList.Add(playerGO);
     }
 }

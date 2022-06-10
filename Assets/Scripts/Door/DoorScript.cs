@@ -38,11 +38,11 @@ public class DoorScript : MonoBehaviour
         {
             if (isSecretDoor)
             {
-                /*if(pj.haveAKey){
-                        openDoor();
-                        pj.haveAKey = false;
+                if(pj.HaveAKeyGetter()){
+                        OpenDoor();
+                        pj.HaveAKeySetter(false);
                     }
-                 */
+                 
                 Debug.Log("Esta puerta requiere de una llave para abrise");
             }
         }

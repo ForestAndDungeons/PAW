@@ -13,13 +13,14 @@ public class EnemyBase : CharacterBase
     ParticleSystem _particleSystem;
     EnemyState _enemyState;
 
-    public EnemyBase(string name, float maxHealth, float attackPower, float armor, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState)
+    public EnemyBase(string name, float maxHealth, float attackPower, float armor, bool haveAKey, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState)
     {
         _name = name;
         _maxHealth = maxHealth;
         _currentHealth = maxHealth;
         _attackPower = attackPower;
         _armor = armor;
+        _haveAKey = haveAKey;
         _enemySoundsManager = enemySoundsManager;
         _enemy = enemy;
         _audioSource = audioSource;
@@ -58,5 +59,10 @@ public class EnemyBase : CharacterBase
     public override void HealthUp(float healing)
     {
         //Sistema preparado para futuro feature
+    }
+   
+    public void EnemyWithKey(bool checker)
+    {
+        _haveAKey = checker;
     }
 }

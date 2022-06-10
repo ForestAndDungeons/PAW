@@ -18,7 +18,7 @@ public class KeyUp : PickUp
     public override void Pick(PlayerBase playerBase)
     {
         _pickUpSound.playOnCollision(_audioSource, _audioClip[0]);
-        //playerBase.KeyUp(_key);
+        playerBase.KeyUp(_key);
         onPickUp();
     }
 }

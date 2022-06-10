@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     [SerializeField] float _currentHealth;
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
+    [SerializeField] bool _haveAKey;
     [SerializeField] ParticleSystem _particleOnDamage;
     [SerializeField] ParticleSystem _particleWalk;
 
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _playerSoundManager , _audioClip , _audioSource, _particleOnDamage, this, _animationController);
+        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _haveAKey, _playerSoundManager , _audioClip , _audioSource, _particleOnDamage, this, _animationController);
 
         _uiPlayer = new UIPlayer(_imageUIHearts, _spriteHeart, _imageUIArmor, _spriteArmor);
 
@@ -109,6 +110,7 @@ public class Player : MonoBehaviour
         _currentHealth = _playerBase.currentHealthGetter();
         _attackPower = _playerBase.attackPowerGetter();
         _armor = _playerBase.armorGetter();
+        _haveAKey = _playerBase.keyGetter();
         _isGrounded = _groundSensor.GroundSensorUpdate();
         _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
         _control.Movements(_isGrounded, _isDead);
@@ -161,5 +163,15 @@ public class Player : MonoBehaviour
         _collider.enabled = false;
 
         StartCoroutine(WaitForDeath());
+    }
+
+    public bool HaveAKeyGetter()
+    {
+        return _haveAKey;
+    }
+
+    public void HaveAKeySetter(bool haveAKey)
+    {
+        _haveAKey = haveAKey;
     }
 }

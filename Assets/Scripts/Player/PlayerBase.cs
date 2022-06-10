@@ -13,13 +13,14 @@ public class PlayerBase : CharacterBase
     ParticleSystem _particleSystem;
     AnimationController _animationController;
 
-    public PlayerBase(string name, float maxHealth, float attackPower, float armor, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
+    public PlayerBase(string name, float maxHealth, float attackPower, float armor,bool haveKey ,PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
     {
         _name = name;
         _maxHealth = maxHealth;
         _currentHealth = maxHealth;
         _attackPower = attackPower;
         _armor = armor;
+        _haveAKey = haveKey;
         _playerSoundManager = playerSoundManager;
         _audioClip = audioClip;
         _audioSource = audioSource;
@@ -84,5 +85,10 @@ public class PlayerBase : CharacterBase
     public void AttackUp(float add)
     {
         _attackPower += add;
+    }
+
+    public void KeyUp(bool add)
+    {
+        _haveAKey = add;
     }
 }
