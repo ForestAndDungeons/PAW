@@ -37,7 +37,7 @@ public class EnemyMovement
                 Vector3 pos = Vector3.MoveTowards(_transform.position, _target.position, _speed * Time.deltaTime);
                 _rb.MovePosition(pos);
             }
-            _transform.LookAt(new Vector3(_target.position.x,0f,_target.position.z));
+            _transform.LookAt(new Vector3(_target.position.x,0.2f,_target.position.z));
         }
     }
 

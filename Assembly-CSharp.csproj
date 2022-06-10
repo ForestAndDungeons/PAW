@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PickUp\HealthUp.cs" />
@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\PickUp\PickUp.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimEvent.cs" />
     <Compile Include="Assets\Scripts\Inheritance\CharacterBase.cs" />
+    <Compile Include="Assets\Scripts\Inheritance\RoomEntity.cs" />
     <Compile Include="Assets\Scripts\PickUp\AttackUp.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\SceneTransition.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyTriggers.cs" />
@@ -92,6 +93,8 @@
     <Compile Include="Assets\Scripts\Inheritance\MonoMethods.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
+    <Compile Include="Assets\Scripts\PickUp\KeyUp.cs" />
+    <Compile Include="Assets\Scripts\Door\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
   </ItemGroup>
   <ItemGroup>

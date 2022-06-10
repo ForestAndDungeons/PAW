@@ -11,7 +11,7 @@ public class EnemyAnimEvent : MonoBehaviour
         
         if (attack == "Attack")
         {
-            Debug.Log("Enstro al Anim_Event_Attack, " + attack);
+            Debug.Log("Entro al Anim_Event_Attack, " + attack);
             _enemy.enemySoundsManager.playOnAttack();
             _enemy.enemyAttack.ActivateCollider();
         }
@@ -21,6 +21,16 @@ public class EnemyAnimEvent : MonoBehaviour
         }
     }
 
+    public void Anim_event_InstantiateKey()
+    {
+        if (_enemy.HasAKey)
+        {
+            if (_enemy._keyPrefab !=null)
+            {
+                GameObject key = Instantiate(_enemy._keyPrefab, (transform.position + new Vector3(0, 0.5f, 0)), _enemy._keyPrefab.transform.rotation);
+            }
+        }
+    }
 
 
 }
