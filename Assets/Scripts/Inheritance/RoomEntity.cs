@@ -4,68 +4,99 @@ using UnityEngine;
 
 public class RoomEntity : MonoBehaviour
 {
-    [Header("Door")]
-    [SerializeField]DoorScript _doorScript;
-    [SerializeField] DoorScript _doorScript1;
-    [SerializeField] DoorScript _doorScript2;
-    [SerializeField] DoorScript _doorScript3;
+    [Header("EnemyWithKey")]
+    [SerializeField] int _randomEnemy;
+
+    [Header("Doors")]
+    [SerializeField] List<DoorScript> _doorList;
+
 
     [Header("Listas")]
-    [SerializeField] List<GameObject> _enemyList = new List<GameObject>();
-    [SerializeField] List<GameObject> _playerList = new List<GameObject>();
+    [SerializeField] public List<GameObject> _enemyList = new List<GameObject>();
+    [SerializeField] public List<GameObject> _playerList = new List<GameObject>();
 
-    [Header("Count")]
-    public float EnemyCount;
-
+   /* public delegate void EventRoom();
+    public event EventRoom eventRoom;*/
+    private void Start()
+    {
+        StartCoroutine(WaitForFillList());
+    }
     void Update()
     {
-
-        if (_playerList.Count > 0)
+       /* if (eventRoom != null)
         {
-            _doorScript.CloseDoor();
-            _doorScript1.CloseDoor();
-            _doorScript2.CloseDoor();
-            _doorScript3.CloseDoor();
-            if (EnemyCount  >= _enemyList.Count)
+            eventRoom();
+        }*/
+         if (_playerList.Count > 0)
+        {
+            for (int i = 0; i < _doorList.Count; i++)
             {
-                _doorScript.OpenDoor();
-                _doorScript1.OpenDoor();
-                _doorScript2.OpenDoor();
-                _doorScript3.OpenDoor();
+                _doorList[i].CloseDoor();
+            }
+            
+            if (_enemyList.Count == 0)
+            {
+                for (int i = 0; i < _doorList.Count; i++)
+                {
+                    if (!_doorList[i].isSecretDoor)
+                    {
+                        _doorList[i].OpenDoor();
+                    }
+                }
             }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        // Layer 8 is Player
-        if (other.gameObject.layer == 8)
+        Player pj = other.gameObject.GetComponent<Player>();
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+
+        if (pj)
         {
             _playerList.Add(other.gameObject);
         }
-        // Layer 9 is Enemy
-        if (other.gameObject.layer == 9)
+
+        if (enemy)
         {
             _enemyList.Add(other.gameObject);
+
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 8)
+        Player pj = other.gameObject.GetComponent<Player>();
+        if (pj)
         {
             _playerList.Remove(other.gameObject);
-        }
-        
-        if (other.gameObject.layer == 9)
-        {
-            _enemyList.Remove(other.gameObject);
-        }
+        }   
         
     }
 
-    public void EnemySum()
+    public void ElimEnemyInList(GameObject enemy)
     {
-        EnemyCount++;
+        Debug.Log("Se elimino de la lista el enemigo: " + enemy);
+        _enemyList.Remove(enemy);
     }
 
+    public void EnemyWithKey(int enemyRandom)
+    {
+        for (int i = 0; i < _enemyList.Count; i++)
+        {
+            int index = _enemyList.IndexOf(_enemyList[i]);
+            if (enemyRandom == index)
+            {
+                Debug.Log("El enemigo: "+_enemyList[i].name+ " en el index: " + index + " es el que tiene la llave");
+                Enemy enemyComp = _enemyList[i].GetComponent<Enemy>();
+                enemyComp.HasAKey = true;
+            }
+        }
+    }
+
+    IEnumerator WaitForFillList()
+    {
+        yield return new WaitForSeconds(.5f);
+        _randomEnemy = Random.Range(0, _enemyList.Count);
+        EnemyWithKey(_randomEnemy);
+    }
 }

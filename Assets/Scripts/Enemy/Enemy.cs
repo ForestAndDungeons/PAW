@@ -5,6 +5,11 @@ using UnityEngine;
 public enum State { idle, persuit, attack, die };
 public class Enemy : MonoBehaviour
 {
+    [Header("Variables Enemy")]
+    public bool HasAKey;
+    public GameObject _keyPrefab;
+    
+
     [Header("Enemy State")]
     [SerializeField]State _state;
 
@@ -48,12 +53,11 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
         enemySoundsManager = new EnemySoundsManager(_enemyAudioSource, _enemyAClip);
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
         _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake,_distanceAttack ,_enemyAnimController, _knockbackForce,_knockbackTime,_knockbackCounter);
         _enemyState = new EnemyState(_state,_enemyAnimController,_enemyMove,_targets,enemySoundsManager,this);
-        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState,_roomEntity);
+        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState);
         _name = this.gameObject.name;
     }
 
@@ -103,6 +107,7 @@ public class Enemy : MonoBehaviour
     }
     public void DestroyThisObject()
     {
+        _roomEntity.ElimEnemyInList(this.gameObject);
         Destroy(this.gameObject, 2f);
     }
 
