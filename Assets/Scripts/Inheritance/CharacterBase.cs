@@ -31,9 +31,14 @@ public abstract class CharacterBase
         return _armor;
     }
 
-    public bool keyGetter()
+    public bool KeyGetter()
     {
         return _haveAKey;
+    }
+
+    public void KeySetter(bool haveAKey)
+    {
+        _haveAKey = haveAKey;
     }
     public abstract void onDamage(float damage);
 

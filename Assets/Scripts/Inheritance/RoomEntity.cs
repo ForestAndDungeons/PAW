@@ -8,7 +8,7 @@ public class RoomEntity : MonoBehaviour
     [SerializeField] int _randomEnemy;
 
     [Header("Doors")]
-    [SerializeField] List<DoorScript> _doorList;
+    [SerializeField] public List<DoorScript> _doorList;
 
 
     [Header("Listas")]
