@@ -2448,7 +2448,6 @@ GameObject:
   - component: {fileID: 2601490891826023591}
   - component: {fileID: 2601490891826023592}
   - component: {fileID: 6422758554665031874}
-  - component: {fileID: 6422758555231757345}
   m_Layer: 5
   m_Name: UI_Prefab
   m_TagString: Untagged
@@ -2561,19 +2560,6 @@ MonoBehaviour:
   _players:
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &6422758555231757345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2601490891826023594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c43d64a9dbf97f74c96fb8d0a40528a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionAnim: {fileID: 820462861}
 --- !u!1 &2601490892020140828
 GameObject:
   m_ObjectHideFlags: 0
@@ -3653,7 +3639,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6422758555231757345}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 5

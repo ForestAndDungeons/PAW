@@ -6,6 +6,7 @@ public class HealthUp : PickUp
 {
     [Header("Variables")]
     [SerializeField] float _healing;
+
     [Header("Audio")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip[] _audioClip;
