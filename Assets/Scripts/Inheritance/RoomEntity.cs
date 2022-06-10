@@ -7,9 +7,14 @@ public class RoomEntity : MonoBehaviour
     [Header("EnemyWithKey")]
     [SerializeField] int _randomEnemy;
 
+    [Header("Combat Music")]
+    [SerializeField] AudioSource _myAudioSource;
+    [SerializeField] AudioClip[] _audioClips;
+    [SerializeField] Animator _transition;
+    bool _musicFlag;
+
     [Header("Doors")]
     [SerializeField] public List<DoorScript> _doorList;
-
 
     [Header("Listas")]
     [SerializeField] public List<GameObject> _enemyList = new List<GameObject>();
@@ -20,6 +25,7 @@ public class RoomEntity : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitForFillList());
+        Debug.Log(Random.Range(1, 3));
     }
     void Update()
     {
@@ -34,13 +40,14 @@ public class RoomEntity : MonoBehaviour
                 _doorList[i].CloseDoor();
             }
             
-            if (_enemyList.Count == 0)
+            if (_enemyList.Count <= 0)
             {
                 for (int i = 0; i < _doorList.Count; i++)
                 {
                     if (!_doorList[i].isSecretDoor)
                     {
                         _doorList[i].OpenDoor();
+                        Destroy(this.gameObject, 2.5f);
                     }
                 }
             }
@@ -49,6 +56,14 @@ public class RoomEntity : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Player pj = other.gameObject.GetComponent<Player>();
+        
+        if(pj != null)
+        {
+            _transition.SetTrigger("fadeOut");
+            StartCoroutine(WaitForMusicTransition(Random.Range(1, 3)));
+            _musicFlag = true;
+        }
+
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
         if (pj)
@@ -63,14 +78,24 @@ public class RoomEntity : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         Player pj = other.gameObject.GetComponent<Player>();
+
         if (pj)
         {
             _playerList.Remove(other.gameObject);
         }   
-        
+    }*/
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (_enemyList.Count <= 0 && _musicFlag)
+        {
+            _transition.SetTrigger("fadeOut");
+            StartCoroutine(WaitForMusicTransition(0));
+            _musicFlag = false;
+        }
     }
 
     public void ElimEnemyInList(GameObject enemy)
@@ -106,5 +131,13 @@ public class RoomEntity : MonoBehaviour
         yield return new WaitForSeconds(1f);
         //playerGO es Player GameObject
         _playerList.Add(playerGO);
+    }
+
+    IEnumerator WaitForMusicTransition(int clipIndex)
+    {
+        yield return new WaitForSeconds(2f);
+        _myAudioSource.enabled = false;
+        _myAudioSource.clip = _audioClips[clipIndex];
+        _myAudioSource.enabled = true;
     }
 }

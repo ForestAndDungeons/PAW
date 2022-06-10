@@ -67,8 +67,8 @@ public class DoorScript : MonoBehaviour
     public void CloseDoor()
     {
         this.gameObject.SetActive(true);
-      /*  roomEntity.eventRoom -= OpenDoor;
-        roomEntity.eventRoom += CloseDoor;*/
+        /*  roomEntity.eventRoom -= OpenDoor;
+          roomEntity.eventRoom += CloseDoor;*/
     }
 
     public void DestroyDoor()

@@ -4,37 +4,19 @@ using UnityEngine;
 
 public class ChangeMusic : MonoBehaviour
 {
-    /*[SerializeField] AudioSource _myAudioSource;
+    [SerializeField] AudioSource _myAudioSource;
     [SerializeField] AudioClip[] _audioClips;
-    [SerializeField] Animation _transition;*/
+    [SerializeField] Animator _transition;
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        /* if (eventRoom != null)
-         {
-             eventRoom();
-         }*/
-        /*if (_playerList.Count > 0)
-        {
-            for (int i = 0; i < _doorList.Count; i++)
-            {
-                _doorList[i].CloseDoor();
-                _transition.SetTrigger("fadeIn");
-                _myAudioSource.PlayOneShot(_audioClips[1]);
-            }
+        _transition.SetTrigger("fadeIn");
+        _myAudioSource.PlayOneShot(_audioClips[1]);
+    }
 
-            if (_enemyList.Count == 0)
-            {
-                for (int i = 0; i < _doorList.Count; i++)
-                {
-                    if (!_doorList[i].isSecretDoor)
-                    {
-                        _doorList[i].OpenDoor();
-                        _transition.SetTrigger("fadeIn");
-                        _myAudioSource.PlayOneShot(_audioClips[0]);
-                    }
-                }
-            }
-        }*/
+    private void OnTriggerExit(Collider other)
+    {
+        _transition.SetTrigger("fadeIn");
+        _myAudioSource.PlayOneShot(_audioClips[0]);
     }
 }

@@ -31,7 +31,10 @@ public class CameraFollow : MonoBehaviour
         {
             _actualTarget = _targetP2;
             var vcam = GetComponent<Cinemachine.CinemachineVirtualCamera>();
-            vcam.Follow = _actualTarget;
+            if(vcam != null)
+            {
+                vcam.Follow = _actualTarget;
+            }
         }
     }
 
