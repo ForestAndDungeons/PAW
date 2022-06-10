@@ -6,8 +6,8 @@ public enum State { idle, persuit, attack, die };
 public class Enemy : MonoBehaviour
 {
     [Header("Variables Enemy")]
-    [SerializeField] bool _haveAKey;
     public GameObject _keyPrefab;
+    [SerializeField] bool _isInvulerable;
     
 
     [Header("Enemy State")]
@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _currentHealth;
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
+    [SerializeField] bool _haveAKey;
     [SerializeField] ParticleSystem _particleSystem;
 
     [Header("Variables Move")]
@@ -64,7 +65,7 @@ public class Enemy : MonoBehaviour
     public List<Transform> GetColliders() {return _targets;}
     void Update()
     {
-        _haveAKey = _enemyBase.keyGetter();
+        _haveAKey = _enemyBase.KeyGetter();
         _knockbackCounter = _enemyMove.CurrentKnockbackCounterGetter();
         _state = _enemyState.CurrentStateGetter();
          _enemyState.StateUpdate();
@@ -113,8 +114,22 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject, 2f);
     }
 
-    public bool GetterHaveAKey()
+    public bool GetterHaveAKey() { return _haveAKey; }
+
+    public void CoroutineInvulnerable(float damage)
     {
-        return _haveAKey;
+        StartCoroutine(OnInvulnerable(damage));
+    }
+
+    IEnumerator OnInvulnerable(float damage)
+    {
+        var damage2 = damage;
+        Debug.Log("Entro al Ienumerator");
+        _enemyBase.InvulnerableSetter(true);
+        damage = 0.0f;
+        yield return new WaitForSeconds(1f);
+
+        damage = damage2;
+        _enemyBase.InvulnerableSetter(false);
     }
 }

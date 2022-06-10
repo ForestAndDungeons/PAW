@@ -53,8 +53,5 @@ public class EnemyMovement
 
     public Transform MyTransformGetter() { return _transform; }
 
-    public float CurrentKnockbackCounterGetter()
-    {
-        return _knockbackCounter;
-    }
+    public float CurrentKnockbackCounterGetter() {return _knockbackCounter; }
 }
