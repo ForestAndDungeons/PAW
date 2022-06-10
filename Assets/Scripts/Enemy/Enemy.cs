@@ -5,6 +5,11 @@ using UnityEngine;
 public enum State { idle, persuit, attack, die };
 public class Enemy : MonoBehaviour
 {
+    [Header("Variables Enemy")]
+    public bool HasAKey;
+    public GameObject _keyPrefab;
+    
+
     [Header("Enemy State")]
     [SerializeField]State _state;
 
@@ -42,6 +47,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EnemyBase _enemyBase;
     EnemyState _enemyState;
     public EnemyAttack enemyAttack;
+    public RoomEntity _roomEntity;
 
     
 
@@ -76,17 +82,23 @@ public class Enemy : MonoBehaviour
     {
         if (other!=null)
         {
-             if (!_targets.Contains(other.transform))
-             {
-                _targets.Add(other.transform);
-             }
+            if (other.gameObject.layer == 8)
+            {
+                 if (!_targets.Contains(other.transform))
+                 {
+                    _targets.Add(other.transform);
+                 }
+            }
             
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        
-        _targets.Remove(other.transform);
+        var _isAttack = _enemyState.IsAttackGetter();
+        if (!_isAttack)
+        {
+            _targets.Remove(other.transform);
+        }
     }
 
     public void PartialSoundAttack()
@@ -95,6 +107,7 @@ public class Enemy : MonoBehaviour
     }
     public void DestroyThisObject()
     {
+        _roomEntity.ElimEnemyInList(this.gameObject);
         Destroy(this.gameObject, 2f);
     }
 
