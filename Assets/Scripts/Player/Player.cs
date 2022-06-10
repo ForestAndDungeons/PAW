@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         _currentHealth = _playerBase.currentHealthGetter();
         _attackPower = _playerBase.attackPowerGetter();
         _armor = _playerBase.armorGetter();
-        _haveAKey = _playerBase.keyGetter();
+        _haveAKey = _playerBase.KeyGetter();
         _isGrounded = _groundSensor.GroundSensorUpdate();
         _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
         _control.Movements(_isGrounded, _isDead);
@@ -165,13 +165,6 @@ public class Player : MonoBehaviour
         StartCoroutine(WaitForDeath());
     }
 
-    public bool HaveAKeyGetter()
-    {
-        return _haveAKey;
-    }
 
-    public void HaveAKeySetter(bool haveAKey)
-    {
-        _haveAKey = haveAKey;
-    }
+    
 }

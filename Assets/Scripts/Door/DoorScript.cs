@@ -5,6 +5,8 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     public bool isSecretDoor = false;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _audioClip;
     //public RoomEntity roomEntity;
     
 
@@ -38,12 +40,19 @@ public class DoorScript : MonoBehaviour
         {
             if (isSecretDoor)
             {
-                if(pj.HaveAKeyGetter()){
-                        OpenDoor();
-                        pj.HaveAKeySetter(false);
-                    }
+                if (pj._playerBase.KeyGetter()){
+
+                        pj._playerBase.KeySetter(false);
+                        _audioSource.PlayOneShot(_audioClip[1]);
+                        DestroyDoor();
+
+                }
+                else
+                {
+                    _audioSource.PlayOneShot(_audioClip[0]);
+                    Debug.Log("Esta puerta requiere de una llave para abrise");
+                }
                  
-                Debug.Log("Esta puerta requiere de una llave para abrise");
             }
         }
 
@@ -62,9 +71,16 @@ public class DoorScript : MonoBehaviour
         roomEntity.eventRoom += CloseDoor;*/
     }
 
+    public void DestroyDoor()
+    {
+        Destroy(this.gameObject, 0.7f);
+    }
     IEnumerator WaitForOpenFirstTime()
     {
         yield return new WaitForSeconds(2f);
-        OpenDoor();
+        if (!isSecretDoor)
+        {
+            OpenDoor();
+        }
     }
 }
