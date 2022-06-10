@@ -7,6 +7,7 @@ public class DoorScript : MonoBehaviour
     public bool isSecretDoor = false;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip[] _audioClip;
+    [SerializeField] RoomEntity _roomEntity;
     //public RoomEntity roomEntity;
     
 
@@ -40,19 +41,29 @@ public class DoorScript : MonoBehaviour
         {
             if (isSecretDoor)
             {
-                if (pj._playerBase.KeyGetter()){
-
+                if (pj._playerBase.KeyGetter())
+                {
+                    if(_roomEntity != null)
+                    { 
+                        if (_roomEntity._enemyList.Count <= 0)
+                        {
+                            pj._playerBase.KeySetter(false);
+                            _audioSource.PlayOneShot(_audioClip[1]);
+                            DestroyDoor();
+                        }
+                    }
+                    else
+                    {
                         pj._playerBase.KeySetter(false);
                         _audioSource.PlayOneShot(_audioClip[1]);
                         DestroyDoor();
-
+                    }
                 }
                 else
                 {
                     _audioSource.PlayOneShot(_audioClip[0]);
                     Debug.Log("Esta puerta requiere de una llave para abrise");
                 }
-                 
             }
         }
 
@@ -78,6 +89,7 @@ public class DoorScript : MonoBehaviour
     IEnumerator WaitForOpenFirstTime()
     {
         yield return new WaitForSeconds(2f);
+
         if (!isSecretDoor)
         {
             OpenDoor();
