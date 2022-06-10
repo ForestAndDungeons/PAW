@@ -9,6 +9,7 @@ public abstract class CharacterBase
     protected float _currentHealth;
     protected float _attackPower;
     protected float _armor;
+    protected bool _haveAKey;
 
     public float maxHealthGetter()
     {
@@ -30,6 +31,10 @@ public abstract class CharacterBase
         return _armor;
     }
 
+    public bool keyGetter()
+    {
+        return _haveAKey;
+    }
     public abstract void onDamage(float damage);
 
     public abstract void onAttack(Collision other);

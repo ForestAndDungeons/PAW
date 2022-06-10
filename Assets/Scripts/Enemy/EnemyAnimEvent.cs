@@ -23,7 +23,8 @@ public class EnemyAnimEvent : MonoBehaviour
 
     public void Anim_event_InstantiateKey()
     {
-        if (_enemy.HasAKey)
+        
+        if (_enemy.GetterHaveAKey())
         {
             if (_enemy._keyPrefab !=null)
             {
