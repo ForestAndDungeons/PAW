@@ -9,17 +9,16 @@ public class SpikeTrapHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.GetComponent<Player>();
-        var enemy = other.GetComponent<Enemy>();
-
-        if (player != null)
-            player._playerBase.onDamage(_damage);
-        else if (enemy != null)
-            enemy._enemyBase.onDamage(_damage);
+        Damage(_damage, other);
     }
 
     private void OnTriggerStay(Collider other)
     {
+        Damage(_damage, other);
+    }
+
+    void Damage(float damage, Collider other)
+    {
         var player = other.GetComponent<Player>();
         var enemy = other.GetComponent<Enemy>();
 
@@ -27,11 +26,5 @@ public class SpikeTrapHit : MonoBehaviour
             player._playerBase.onDamage(_damage);
         else if (enemy != null)
             enemy._enemyBase.onDamage(_damage);
-        StartCoroutine(WaitBeforeDamagin(_timeBeforeHit));
-    }
-
-    IEnumerator WaitBeforeDamagin(float timeBeforeHit)
-    {
-        yield return new WaitForSeconds(timeBeforeHit);
     }
 }

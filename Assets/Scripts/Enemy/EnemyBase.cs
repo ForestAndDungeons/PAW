@@ -34,19 +34,18 @@ public class EnemyBase : CharacterBase
 
     public override void onDamage(float damage)
     {
-        Debug.Log(_isInvulerable);
-        if (!_isInvulerable)
+        if (!_isImmune)
         {
             if (_currentHealth > 0) {
                 _enemy.CoroutineInvulnerable(damage);
                 _currentHealth -= damage - _armor;
+
                 if (_targets.Count > 0)
                 {
                     _enemyMove.OnKnockback(_targets[0]);
                     _enemySoundsManager.playOnCollision(_audioSource,_audioClip[0]);
                     _particleSystem.Play();
                 }
-            
             }
             else if (_currentHealth <= 0)
             {
@@ -71,8 +70,4 @@ public class EnemyBase : CharacterBase
     {
         _haveAKey = checker;
     }
-
-    public bool InvulnerableGetter() { return _isInvulerable; }
-
-    public void InvulnerableSetter(bool invulnerable) { _isInvulerable = invulnerable; }
 }
