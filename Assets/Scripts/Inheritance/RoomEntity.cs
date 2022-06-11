@@ -25,7 +25,6 @@ public class RoomEntity : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitForFillList());
-        Debug.Log(Random.Range(1, 3));
     }
     void Update()
     {
@@ -60,7 +59,7 @@ public class RoomEntity : MonoBehaviour
         if(pj != null)
         {
             _transition.SetTrigger("fadeOut");
-            StartCoroutine(WaitForMusicTransition(Random.Range(1, 3)));
+            StartCoroutine(WaitForMusicTransition(2));
             _musicFlag = true;
         }
 

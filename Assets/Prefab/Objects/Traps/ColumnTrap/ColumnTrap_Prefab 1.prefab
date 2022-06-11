@@ -4832,6 +4832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
+  _timeBeforeHit: 2
 --- !u!1 &549402636347951545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4853,7 +4854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &924379654374986499
 Transform:
   m_ObjectHideFlags: 0

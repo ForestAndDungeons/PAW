@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 2
+  _timeBeforeHit: 2
 --- !u!1 &3150136791426482493
 GameObject:
   m_ObjectHideFlags: 0

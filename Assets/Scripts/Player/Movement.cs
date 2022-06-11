@@ -36,4 +36,14 @@ public class Movement
     {
         _myRigidBody.MovePosition(_transform.position + (_transform.forward * input.magnitude)* _speed * Time.deltaTime);
     }
+
+    public float SpeedGetter()
+    {
+        return _speed;
+    }
+
+    public void SpeedSetter(float speed)
+    {
+        _speed = speed;
+    }
 }

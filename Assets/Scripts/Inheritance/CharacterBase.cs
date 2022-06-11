@@ -10,6 +10,9 @@ public abstract class CharacterBase
     protected float _attackPower;
     protected float _armor;
     protected bool _haveAKey;
+    protected bool _isBlocking;
+    protected bool _isImmune;
+    protected float _immuneTime;
 
     public float maxHealthGetter()
     {
@@ -40,6 +43,27 @@ public abstract class CharacterBase
     {
         _haveAKey = haveAKey;
     }
+
+    public bool IsBlockingGetter()
+    {
+        return _isBlocking;
+    }
+
+    public void IsBlockingSetter(bool isBlocking)
+    {
+        _isBlocking = isBlocking;
+    }
+
+    public bool IsImmuneGetter()
+    {
+        return _isImmune;
+    }
+
+    public void IsImmuneSetter(bool isImmune)
+    {
+        _isImmune = isImmune;
+    }
+
     public abstract void onDamage(float damage);
 
     public abstract void onAttack(Collision other);

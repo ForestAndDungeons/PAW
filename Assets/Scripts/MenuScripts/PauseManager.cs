@@ -6,6 +6,8 @@ public class PauseManager : MonoBehaviour
 {
     [Header("Pause Settings")]
     bool _isPaused;
+    AudioSource _audioSource;
+    [SerializeField] AudioClip[] _audioClip;
     [SerializeField] GameObject _pauseMenuUI;
     [SerializeField] KeyCode _pauseKey;
     [SerializeField] GameObject[] _players;
@@ -13,6 +15,7 @@ public class PauseManager : MonoBehaviour
     void Awake()
     {
         _isPaused = false;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -30,11 +33,13 @@ public class PauseManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             _pauseMenuUI.SetActive(true);
+            _audioSource.PlayOneShot(_audioClip[0]);
         }
         else
         {
             Time.timeScale = 1f;
             _pauseMenuUI.SetActive(false);
+            _audioSource.PlayOneShot(_audioClip[1]);
         }
     }
 

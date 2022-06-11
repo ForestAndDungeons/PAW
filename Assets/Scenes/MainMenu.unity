@@ -3507,8 +3507,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Player 1
 
+    Attack J
 
-    Attack F, Special G, Block C
+    Special K
+
+    Block L
+
 
     Movement'
   m_isRightToLeft: 0
@@ -3646,8 +3650,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Player 2
 
+    Attack Keypad 4
 
-    Attack L, Special K, Block M
+    Special Keypad 5
+
+    Block Keypad
+    6
+
 
     Movement'
   m_isRightToLeft: 0

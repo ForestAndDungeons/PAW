@@ -125,11 +125,11 @@ public class Enemy : MonoBehaviour
     {
         var damage2 = damage;
         Debug.Log("Entro al Ienumerator");
-        _enemyBase.InvulnerableSetter(true);
+        _enemyBase.IsImmuneSetter(true);
         damage = 0.0f;
         yield return new WaitForSeconds(1f);
 
         damage = damage2;
-        _enemyBase.InvulnerableSetter(false);
+        _enemyBase.IsImmuneSetter(false);
     }
 }

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     //[SerializeField] bool player2;
     [SerializeField] Player _otherPlayer;
+    [SerializeField] float _timeOfImmune;
 
 
     //Movement Variables.
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     [SerializeField] KeyCode _keySpecial;
     [SerializeField] KeyCode _keyBlock;
     [SerializeField] bool _isDead;
+    [SerializeField] bool _canMove;
 
     //GroundSensor Variables.
     [Header("GroundSensor Variables")]
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
         _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();
         _isDead = false;
+        _canMove = true;
 
         _playerSoundManager = new PlayerSoundManager(_audioSource,_audioClip);
 
@@ -91,7 +94,7 @@ public class Player : MonoBehaviour
 
         _animationController = new AnimationController(_myAnimator);
 
-        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _keySpecial, _keyBlock, _playerSoundManager, _isDead);
+        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _keySpecial, _keyBlock, _playerSoundManager);
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
@@ -112,13 +115,27 @@ public class Player : MonoBehaviour
         _armor = _playerBase.armorGetter();
         _haveAKey = _playerBase.KeyGetter();
         _isGrounded = _groundSensor.GroundSensorUpdate();
-        _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
-        _control.Movements(_isGrounded, _isDead);
+
+        if (!_isDead)
+        {
+            if (_canMove)
+            {
+                _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
+                _control.Movements(_isGrounded);
+            }
+            else if (!_canMove)
+            {
+                _animationController.InputUpdate(0, 0);
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        _control.IsometricMovement(_isDead);
+        if (!_isDead && _canMove)
+        {
+            _control.IsometricMovement();
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -144,6 +161,14 @@ public class Player : MonoBehaviour
         _myAnimator.SetBool("onAttack", false);
     }
 
+    public void DisableThisObject()
+    {
+        _isDead = true;
+        _collider.enabled = false;
+
+        StartCoroutine(WaitForDeath());
+    }
+
     public IEnumerator WaitForDeath()
     {
         yield return new WaitForSeconds(4f);
@@ -155,16 +180,14 @@ public class Player : MonoBehaviour
             _resumeButton.SetActive(false);
         }
     }
-
-    public void DisableThisObject()
+    public IEnumerator TimeOfImmune()
     {
-        _isDead = true;
-        _control.isDeadSetter(_isDead);
-        _collider.enabled = false;
-
-        StartCoroutine(WaitForDeath());
+        yield return new WaitForSeconds(_timeOfImmune);
+        _playerBase.IsImmuneSetter(false);
     }
 
-
-    
+    public void CanMoveSetter(bool canMove)
+    {
+        _canMove = canMove;
+    }
 }

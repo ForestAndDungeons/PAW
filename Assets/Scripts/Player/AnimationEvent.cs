@@ -7,6 +7,8 @@ public class AnimationEvent : MonoBehaviour
     [SerializeField] Player _player;
     [SerializeField] ParticleSystem _particleWalk;
     [SerializeField] ParticleSystem _particleSpecial;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _audioClip;
 
     public void ANIM_Event(string param)
     {
@@ -59,6 +61,21 @@ public class AnimationEvent : MonoBehaviour
         if (param == "isWalking")
         {
             _particleWalk.Play();
+        }
+
+        if (param == "step")
+        {
+            //_audioSource.PlayOneShot(_audioClip[0]);
+        }
+
+        if (param == "stopMove")
+        {
+            _player.CanMoveSetter(false);
+        }
+
+        if (param == "startMove")
+        {
+            _player.CanMoveSetter(true);
         }
     }
 }
