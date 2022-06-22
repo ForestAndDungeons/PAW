@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     //[SerializeField] bool player2;
     [SerializeField] Player _otherPlayer;
     [SerializeField] float _timeOfImmune;
+    [SerializeField] SKeyCode[] _sKeyCode;
 
 
     //Movement Variables.
@@ -24,10 +25,6 @@ public class Player : MonoBehaviour
     [Header("Control Variables")]
     [SerializeField] string _verticalAxis;
     [SerializeField] string _horizontalAxis;
-    [SerializeField] KeyCode _keyJump;
-    [SerializeField] KeyCode _keyAttack;
-    [SerializeField] KeyCode _keySpecial;
-    [SerializeField] KeyCode _keyBlock;
     [SerializeField] bool _isDead;
     [SerializeField] bool _canMove;
 
@@ -94,7 +91,7 @@ public class Player : MonoBehaviour
 
         _animationController = new AnimationController(_myAnimator);
 
-        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _animationController, _turnSpeed, _keyJump, _keyAttack, _keySpecial, _keyBlock, _playerSoundManager);
+        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _turnSpeed, _sKeyCode, _playerSoundManager);
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
@@ -144,22 +141,7 @@ public class Player : MonoBehaviour
 
         if (pickUp != null)
             pickUp.Pick(_playerBase);
-    }
-
-    public void SoundAttack()
-    {
-        _playerSoundManager.playOnAttack();
-    }
-
-    public void SoundHit()
-    {
-        _playerSoundManager.playOnHit();
-    }
-
-    public void EndAttack()
-    {
-        _myAnimator.SetBool("onAttack", false);
-    }
+    } 
 
     public void DisableThisObject()
     {
@@ -189,5 +171,40 @@ public class Player : MonoBehaviour
     public void CanMoveSetter(bool canMove)
     {
         _canMove = canMove;
+    }
+
+    //PlayerSoundManager Methods
+    public void SoundAttack()
+    {
+        _playerSoundManager.playOnAttack();
+    }
+
+    public void SoundHit()
+    {
+        _playerSoundManager.playOnHit();
+    }
+
+    //AnimationController Methods
+    public void EndAttack()
+    {
+        _animationController.onAttackEnd();
+    }
+
+        //Methods for SKeyCode
+    public void Attack()
+    {
+        _animationController.onAttack();
+    }
+    public void Special()
+    {
+        _animationController.onSpecial();
+    }
+    public void Block()
+    {
+        _animationController.onBlockStart();
+    }
+    public void Jump()
+    {
+        _movement.Jump();
     }
 }

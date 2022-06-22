@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBase : CharacterBase
+public class PlayerBase : CharacterBase, ICharacterBase
 {
     AudioSource _audioSource;
     AudioClip[] _audioClip;
@@ -29,7 +29,7 @@ public class PlayerBase : CharacterBase
         _animationController = animationController;
     }
 
-    public override void onDamage(float damage)
+    public void onDamage(float damage)
     {
         if (!_isImmune)
         {
@@ -70,9 +70,9 @@ public class PlayerBase : CharacterBase
         }
     }
 
-    public override void onAttack(Collision other){}
+    public void onAttack(Collision other){}
 
-    public override void HealthUp(float add)
+    public void HealthUp(float add)
     {
         _currentHealth += add;
 

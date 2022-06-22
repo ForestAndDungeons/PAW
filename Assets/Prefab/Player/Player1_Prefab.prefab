@@ -9818,16 +9818,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _otherPlayer: {fileID: 0}
   _timeOfImmune: 2
+  _sKeyCode:
+  - key: 106
+    method:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4722530154124861423}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: Attack
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: _animationController.onAttack()
+            m_BoolArgument: 0
+          m_CallState: 2
+  - key: 107
+    method:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4722530154124861423}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: Special
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: _animationController.onSpecial()
+            m_BoolArgument: 0
+          m_CallState: 2
+  - key: 108
+    method:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4722530154124861423}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: Block
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: _animationController.onBlockStart()
+            m_BoolArgument: 0
+          m_CallState: 2
+  - key: 0
+    method:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4722530154124861423}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: Jump
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   _speed: 5.5
   _forceJump: 0
   _turnSpeed: 1080
   _myRigidBody: {fileID: 1115997523177092324}
   _verticalAxis: Vertical
   _horizontalAxis: Horizontal
-  _keyJump: 32
-  _keyAttack: 106
-  _keySpecial: 107
-  _keyBlock: 108
   _isDead: 0
   _canMove: 0
   _radius: 0.5
@@ -19781,43 +19842,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 27b81d5ded0d73440b643e5d5d3fb85a, type: 3}
   m_PrefabInstance: {fileID: 3206865866569111961}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &3206865866334620274
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323991901253952712}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 61b41c0dfc119374d8de145bbc23988e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &376161664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323991901253952712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7e75c59be1baf5418aced38d2a75a39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 4722530154124861423}
-  _particleWalk: {fileID: 1059151849458816428}
-  _particleSpecial: {fileID: 570048956}
-  _audioSource: {fileID: 1897928471}
-  _audioClip:
-  - {fileID: 8300000, guid: b2b96094e07a3454ab422af82e9d017f, type: 3}
 --- !u!82 &1897928471
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19914,6 +19938,43 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &3206865866334620274
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323991901253952712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61b41c0dfc119374d8de145bbc23988e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &376161664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323991901253952712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e75c59be1baf5418aced38d2a75a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 4722530154124861423}
+  _particleWalk: {fileID: 1059151849458816428}
+  _particleSpecial: {fileID: 570048956}
+  _audioSource: {fileID: 1897928471}
+  _audioClip:
+  - {fileID: 8300000, guid: b2b96094e07a3454ab422af82e9d017f, type: 3}
 --- !u!54 &2843125404626023969
 Rigidbody:
   m_ObjectHideFlags: 0
