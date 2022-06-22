@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : CharacterBase
+public class EnemyBase : CharacterBase, ICharacterBase
 {
     EnemySoundsManager _enemySoundsManager;
     Enemy _enemy;
@@ -32,7 +32,7 @@ public class EnemyBase : CharacterBase
         _enemyState = enemyState;
     }
 
-    public override void onDamage(float damage)
+    public void onDamage(float damage)
     {
         if (!_isImmune)
         {
@@ -55,13 +55,13 @@ public class EnemyBase : CharacterBase
         }
     }
 
-    public override void onAttack(Collision other)
+    public void onAttack(Collision other)
     {
         if (other != null)
             other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
     }
 
-    public override void HealthUp(float healing)
+    public void HealthUp(float healing)
     {
         //Sistema preparado para futuro feature
     }

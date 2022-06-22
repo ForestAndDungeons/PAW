@@ -17,10 +17,7 @@ public class Control
     public float _verticalInput;
     public float _horizontalInput;
 
-    KeyCode _keyJump;
-    KeyCode _keyAttack;
-    KeyCode _keySpecial;
-    KeyCode _keyBlock;
+    SKeyCode[] _sKeyCode;
 
     //Isometric variables.
     Vector3 _input;
@@ -31,18 +28,14 @@ public class Control
     AnimationController _animationController;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, AnimationController animationController, float turnSpeed, KeyCode keyJump, KeyCode keyAttack, KeyCode keySpecial, KeyCode keyBlock, PlayerSoundManager playerSoundManager)
+    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, float turnSpeed, SKeyCode[] sKeyCode, PlayerSoundManager playerSoundManager)
     {
         _movement = movement;
         _transform = transform;
         _verticalAxis = verticalAxis;
         _horizontalAxis = horizontalAxis;
-        _animationController = animationController;
         _turnSpeed = turnSpeed;
-        _keyJump = keyJump;
-        _keyAttack = keyAttack;
-        _keySpecial = keySpecial;
-        _keyBlock = keyBlock;
+        _sKeyCode = sKeyCode;
         _playerSoundManager = playerSoundManager;
     }
 
@@ -66,24 +59,15 @@ public class Control
             _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _turnSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(_keyJump) && isGrounded)
-            _movement.Jump();
-
-        if (Input.GetKeyDown(_keyAttack))
+        foreach (SKeyCode keyCode in _sKeyCode)
         {
-            _animationController.onAttack();
-        }
-
-        if (Input.GetKey(_keySpecial))
-        {
-            _animationController.onSpecial();
-        }
-
-        if (Input.GetKeyDown(_keyBlock))
-        {
-            _animationController.onBlockStart();
+            if (Input.GetKeyDown(keyCode.key))
+            {
+                keyCode.method.Invoke();
+            }
         }
     }
+
     public void IsometricMovement()
     {
         _movement.IsometricMove(_input);

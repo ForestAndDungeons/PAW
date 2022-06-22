@@ -63,10 +63,4 @@ public abstract class CharacterBase
     {
         _isImmune = isImmune;
     }
-
-    public abstract void onDamage(float damage);
-
-    public abstract void onAttack(Collision other);
-
-    public abstract void HealthUp(float healing);
 }
