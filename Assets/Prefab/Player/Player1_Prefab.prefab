@@ -9867,7 +9867,7 @@ MonoBehaviour:
             m_StringArgument: _animationController.onBlockStart()
             m_BoolArgument: 0
           m_CallState: 2
-  - key: 0
+  - key: 32
     method:
       m_PersistentCalls:
         m_Calls:
@@ -9894,7 +9894,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _characterBaseSO: {fileID: 11400000, guid: 0f56893ec24dba64e8cf1d2a7016df20, type: 2}
+  _playerBaseSO: {fileID: 11400000, guid: 0f56893ec24dba64e8cf1d2a7016df20, type: 2}
   _name: Player
   _maxHealth: 5
   _currentHealth: 0
