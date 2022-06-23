@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
         if (breakable != null)
             breakable.Break();
 
-        _attackPower = _player._playerBase.attackPowerGetter();
+        _attackPower = _player._playerBase.GetAttackPower();
         _particleSystem.Play();
 
         if (other != null)

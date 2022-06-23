@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class SKeyCode
+public struct SKeyCode
 {
     public KeyCode key;
     public UnityEvent method;

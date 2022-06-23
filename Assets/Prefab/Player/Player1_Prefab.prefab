@@ -9883,12 +9883,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  _speed: 5.5
-  _forceJump: 0
+  _dataMovement: {fileID: 11400000, guid: a4722fac96ec5174ba72a7fca96ca24e, type: 2}
   _turnSpeed: 1080
   _myRigidBody: {fileID: 1115997523177092324}
-  _verticalAxis: Vertical
-  _horizontalAxis: Horizontal
+  _controlSO: {fileID: 11400000, guid: 24806dd47b95f11439b9582b17edda00, type: 2}
   _isDead: 0
   _canMove: 0
   _radius: 0.5
@@ -9896,6 +9894,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  _characterBaseSO: {fileID: 11400000, guid: 0f56893ec24dba64e8cf1d2a7016df20, type: 2}
   _name: Player
   _maxHealth: 5
   _currentHealth: 0
