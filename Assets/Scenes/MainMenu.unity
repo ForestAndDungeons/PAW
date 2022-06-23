@@ -4936,7 +4936,7 @@ MonoBehaviour:
       - m_Target: {fileID: 664923483}
         m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
         m_MethodName: ChangeScene
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8451,6 +8451,38 @@ PrefabInstance:
       propertyPath: transitionAnim
       value: 
       objectReference: {fileID: 492701255}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: _scenes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: _scenes.Array.data[0]
+      value: Level1.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: _scenes.Array.data[1]
+      value: Level1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: _scenes.Array.data[2]
+      value: Level1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: sceneToLoad.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: sceneToLoad.Array.data[0]
+      value: Level1.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: sceneToLoad.Array.data[1]
+      value: Level1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: sceneToLoad.Array.data[2]
+      value: Level1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1279187200335794355, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
       propertyPath: m_Name
       value: SceneManager
