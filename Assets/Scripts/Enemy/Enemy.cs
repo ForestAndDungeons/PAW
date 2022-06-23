@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum State { idle, persuit, attack, die };
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, ICharacterBase
 {
     [Header("Variables Enemy")]
     public GameObject _keyPrefab;
@@ -65,11 +65,11 @@ public class Enemy : MonoBehaviour
     public List<Transform> GetColliders() {return _targets;}
     void Update()
     {
-        _haveAKey = _enemyBase.KeyGetter();
+        _haveAKey = _enemyBase.GetKey();
         _knockbackCounter = _enemyMove.CurrentKnockbackCounterGetter();
         _state = _enemyState.CurrentStateGetter();
          _enemyState.StateUpdate();
-        _currentHealth = _enemyBase.currentHealthGetter();
+        _currentHealth = _enemyBase.GetCurrentHealth();
         if (_targets.Count > 0)
         {
             if (_targets[0].gameObject.activeSelf == false)
@@ -125,11 +125,26 @@ public class Enemy : MonoBehaviour
     {
         var damage2 = damage;
         Debug.Log("Entro al Ienumerator");
-        _enemyBase.IsImmuneSetter(true);
+        _enemyBase.SetIsImmune(true);
         damage = 0.0f;
         yield return new WaitForSeconds(1f);
 
         damage = damage2;
-        _enemyBase.IsImmuneSetter(false);
+        _enemyBase.SetIsImmune(false);
+    }
+
+    public void onDamage(float damage)
+    {
+        _enemyBase.onDamage(damage);
+    }
+
+    public void onAttack(Collision other)
+    {
+        _enemyBase.onAttack(other);
+    }
+
+    public void HealthUp(float add)
+    {
+        _enemyBase.HealthUp(add);
     }
 }

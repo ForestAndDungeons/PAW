@@ -8,6 +8,6 @@ public class Block : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _playerBase.IsBlockingSetter(true);
+        _playerBase.SetIsBlocking(true);
     }
 }

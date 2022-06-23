@@ -5,14 +5,10 @@ using UnityEngine;
 public class Control 
 {
     //Class.
+    ControlSO _data;
     Movement _movement;
     PlayerSoundManager _playerSoundManager;
-
     Transform _transform;
-
-    //Save name that Class Player gives, sets if it's player1 or player2.
-    string _verticalAxis;
-    string _horizontalAxis;
 
     public float _verticalInput;
     public float _horizontalInput;
@@ -21,20 +17,17 @@ public class Control
 
     //Isometric variables.
     Vector3 _input;
-    float _turnSpeed;
     bool _isDead;
     bool _canMove;
 
     AnimationController _animationController;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Control(Movement movement, Transform transform, string verticalAxis, string horizontalAxis, float turnSpeed, SKeyCode[] sKeyCode, PlayerSoundManager playerSoundManager)
+    public Control(ControlSO controlSO, Movement movement, Transform transform, SKeyCode[] sKeyCode, PlayerSoundManager playerSoundManager)
     {
+        _data = controlSO;
         _movement = movement;
         _transform = transform;
-        _verticalAxis = verticalAxis;
-        _horizontalAxis = horizontalAxis;
-        _turnSpeed = turnSpeed;
         _sKeyCode = sKeyCode;
         _playerSoundManager = playerSoundManager;
     }
@@ -43,9 +36,9 @@ public class Control
 
     public void Movements(bool isGrounded)
     {
-        _input = new Vector3 (Input.GetAxisRaw(_horizontalAxis), 0, Input.GetAxisRaw(_verticalAxis)).normalized;
-        _verticalInput = Input.GetAxis(_verticalAxis);
-        _horizontalInput = Input.GetAxis(_horizontalAxis);
+        _input = new Vector3 (Input.GetAxisRaw(_data.horizontalAxis), 0, Input.GetAxisRaw(_data.verticalAxis)).normalized;
+        _verticalInput = Input.GetAxis(_data.verticalAxis);
+        _horizontalInput = Input.GetAxis(_data.horizontalAxis);
 
         if (_input != Vector3.zero)
         {
@@ -56,7 +49,7 @@ public class Control
             var relative = (_transform.position + skewedInput) - _transform.position;
             var rot = Quaternion.LookRotation(relative, Vector3.up);
 
-            _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _turnSpeed * Time.deltaTime);
+            _transform.rotation = Quaternion.RotateTowards(_transform.rotation, rot, _data.turnSpeed * Time.deltaTime);
         }
 
         foreach (SKeyCode keyCode in _sKeyCode)

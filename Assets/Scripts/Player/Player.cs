@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ICharacterBase
 {
     Renderer _renderer;
     Collider _collider;
-
-    //[SerializeField] bool player2;
     [SerializeField] Player _otherPlayer;
     [SerializeField] float _timeOfImmune;
     [SerializeField] SKeyCode[] _sKeyCode;
 
-
     //Movement Variables.
     [Header("Movement Variables")]
-    [SerializeField] float _speed;
-    [SerializeField] float _forceJump;
+    [SerializeField] MovementSO _dataMovement;
     [SerializeField] float _turnSpeed;
     [SerializeField] Rigidbody _myRigidBody;
 
     //Control Variables.
     [Header("Control Variables")]
-    [SerializeField] string _verticalAxis;
-    [SerializeField] string _horizontalAxis;
+    [SerializeField] ControlSO _controlSO;
     [SerializeField] bool _isDead;
     [SerializeField] bool _canMove;
 
@@ -36,6 +31,7 @@ public class Player : MonoBehaviour
 
     //PlayerBase Variables.
     [Header("PlayerBase Variables")]
+    [SerializeField] PlayerBaseSO _playerBaseSO;
     [SerializeField] string _name;
     [SerializeField] float _maxHealth;
     [SerializeField] float _currentHealth;
@@ -85,21 +81,21 @@ public class Player : MonoBehaviour
         _isDead = false;
         _canMove = true;
 
-        _playerSoundManager = new PlayerSoundManager(_audioSource,_audioClip);
+        _playerSoundManager = new PlayerSoundManager(_audioSource, _audioClip);
 
-        _movement = new Movement(_speed, _forceJump, _myRigidBody, transform);
+        _movement = new Movement(_dataMovement ,_myRigidBody, transform);
 
         _animationController = new AnimationController(_myAnimator);
 
-        _control = new Control(_movement, transform, _verticalAxis, _horizontalAxis, _turnSpeed, _sKeyCode, _playerSoundManager);
+        _control = new Control(_controlSO, _movement, transform, _sKeyCode, _playerSoundManager);
             
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_name, _maxHealth, _attackPower, _armor, _haveAKey, _playerSoundManager , _audioClip , _audioSource, _particleOnDamage, this, _animationController);
+        _playerBase = new PlayerBase(_playerBaseSO, _name, _haveAKey, _playerSoundManager , _audioClip , _audioSource, _particleOnDamage, this, _animationController);
 
         _uiPlayer = new UIPlayer(_imageUIHearts, _spriteHeart, _imageUIArmor, _spriteArmor);
 
-        _currentHealth = _playerBase.currentHealthGetter();
+        _currentHealth = _playerBase.GetCurrentHealth();
         _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
     }
 
@@ -107,10 +103,11 @@ public class Player : MonoBehaviour
     private void Update()
     {
         //Mantiene actualizado los datos de las variables para verlos en Inspector y pasarlos como parametros.
-        _currentHealth = _playerBase.currentHealthGetter();
-        _attackPower = _playerBase.attackPowerGetter();
-        _armor = _playerBase.armorGetter();
-        _haveAKey = _playerBase.KeyGetter();
+        _maxHealth = _playerBase.GetMaxHealth();
+        _currentHealth = _playerBase.GetCurrentHealth();
+        _attackPower = _playerBase.GetAttackPower();
+        _armor = _playerBase.GetArmor();
+        _haveAKey = _playerBase.GetKey();
         _isGrounded = _groundSensor.GroundSensorUpdate();
 
         if (!_isDead)
@@ -125,6 +122,21 @@ public class Player : MonoBehaviour
                 _animationController.InputUpdate(0, 0);
             }
         }
+    }
+
+    public void onDamage(float damage)
+    {
+        _playerBase.onDamage(damage);
+    }
+
+    public void onAttack(Collision other)
+    {
+        _playerBase.onAttack(other);
+    }
+
+    public void HealthUp(float add)
+    {
+        _playerBase.HealthUp(add);
     }
 
     private void FixedUpdate()
@@ -165,7 +177,7 @@ public class Player : MonoBehaviour
     public IEnumerator TimeOfImmune()
     {
         yield return new WaitForSeconds(_timeOfImmune);
-        _playerBase.IsImmuneSetter(false);
+        _playerBase.SetIsImmune(false);
     }
 
     public void CanMoveSetter(bool canMove)

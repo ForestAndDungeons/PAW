@@ -14,52 +14,42 @@ public abstract class CharacterBase
     protected bool _isImmune;
     protected float _immuneTime;
 
-    public float maxHealthGetter()
+    public float GetMaxHealth()
     {
         return _maxHealth;
     }
 
-    public float currentHealthGetter()
+    public float GetCurrentHealth()
     {
         return _currentHealth;
     }
 
-    public float attackPowerGetter()
+    public float GetAttackPower()
     {
         return _attackPower;
     }
 
-    public float armorGetter()
+    public float GetArmor()
     {
         return _armor;
     }
 
-    public bool KeyGetter()
+    public bool GetKey()
     {
         return _haveAKey;
     }
 
-    public void KeySetter(bool haveAKey)
+    public void SetKey(bool haveAKey)
     {
         _haveAKey = haveAKey;
     }
 
-    public bool IsBlockingGetter()
-    {
-        return _isBlocking;
-    }
-
-    public void IsBlockingSetter(bool isBlocking)
+    public void SetIsBlocking(bool isBlocking)
     {
         _isBlocking = isBlocking;
     }
 
-    public bool IsImmuneGetter()
-    {
-        return _isImmune;
-    }
-
-    public void IsImmuneSetter(bool isImmune)
+    public void SetIsImmune(bool isImmune)
     {
         _isImmune = isImmune;
     }

@@ -41,20 +41,20 @@ public class DoorScript : MonoBehaviour
         {
             if (isSecretDoor)
             {
-                if (pj._playerBase.KeyGetter())
+                if (pj._playerBase.GetKey())
                 {
                     if(_roomEntity != null)
                     { 
                         if (_roomEntity._enemyList.Count <= 0)
                         {
-                            pj._playerBase.KeySetter(false);
+                            pj._playerBase.SetKey(false);
                             _audioSource.PlayOneShot(_audioClip[1]);
                             DestroyDoor();
                         }
                     }
                     else
                     {
-                        pj._playerBase.KeySetter(false);
+                        pj._playerBase.SetKey(false);
                         _audioSource.PlayOneShot(_audioClip[1]);
                         DestroyDoor();
                     }

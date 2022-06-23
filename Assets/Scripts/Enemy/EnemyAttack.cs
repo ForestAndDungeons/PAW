@@ -17,7 +17,7 @@ public class EnemyAttack : MonoBehaviour
 
     public void OnTriggerEnter(Collider player)
     {
-        _attackPower = this.gameObject.GetComponentInParent<Enemy>()._enemyBase.attackPowerGetter();
+        _attackPower = this.gameObject.GetComponentInParent<Enemy>()._enemyBase.GetAttackPower();
 
         if (player != null)
         {

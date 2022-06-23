@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerBase : CharacterBase, ICharacterBase
 {
+    PlayerBaseSO _data;
     AudioSource _audioSource;
     AudioClip[] _audioClip;
 
@@ -13,13 +14,13 @@ public class PlayerBase : CharacterBase, ICharacterBase
     ParticleSystem _particleSystem;
     AnimationController _animationController;
 
-    public PlayerBase(string name, float maxHealth, float attackPower, float armor,bool haveKey ,PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
+    public PlayerBase(PlayerBaseSO playerBaseSO, string name, bool haveKey ,PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
     {
+        _data = playerBaseSO;
         _name = name;
-        _maxHealth = maxHealth;
-        _currentHealth = maxHealth;
-        _attackPower = attackPower;
-        _armor = armor;
+        _maxHealth = _data.maxHealth;
+        _currentHealth = _maxHealth;
+        _attackPower = _data.attackPower;
         _haveAKey = haveKey;
         _playerSoundManager = playerSoundManager;
         _audioClip = audioClip;
@@ -57,7 +58,7 @@ public class PlayerBase : CharacterBase, ICharacterBase
                 _playerSoundManager.playOnCollision(_audioSource, _audioClip[0]);
                 _particleSystem.Play();
                 _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
-                IsImmuneSetter(true);
+                SetIsImmune(true);
                 _player.StartCoroutine(_player.TimeOfImmune());
             }
 
