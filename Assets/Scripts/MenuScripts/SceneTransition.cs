@@ -62,7 +62,10 @@ public class SceneTransition : MonoBehaviour
         //sceneToLoad = PlayerPrefs.GetString(SaveData.CURRENT_LEVEL_KEY, sceneToLoad);
         SceneManager.LoadScene(sceneToLoad);
     }*/
-
+    public void GoMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void QuitGame()
     {
         Application.Quit();
