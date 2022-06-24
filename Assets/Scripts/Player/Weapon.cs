@@ -44,34 +44,19 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void activateColliderAttack()
+    public void ActivateColliderAttack(bool activate)
     {
-        _myColliderAttack.enabled = true;
+        _myColliderAttack.enabled = activate;
     }
 
-    public void deactivateColliderAttack()
+    public void ActivateColliderSpecial(bool activate)
     {
-        _myColliderAttack.enabled = false;
+        _myColliderSpecial.enabled = activate;
     }
 
-    public void activateColliderSpecial()
+    public void ActivateColliderBlock(bool activate)
     {
-        _myColliderSpecial.enabled = true;
-    }
-
-    public void deactivateColliderSpecial()
-    {
-        _myColliderSpecial.enabled = false;
-    }
-
-    public void activateColliderBlock()
-    {
-        _myColliderBlock.enabled = true;
-    }
-
-    public void deactivateColliderBlock()
-    {
-        _myColliderBlock.enabled = false;
+        _myColliderBlock.enabled = activate;
     }
 
     public IEnumerator SlowMotion()

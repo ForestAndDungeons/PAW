@@ -61,14 +61,14 @@ ModelImporter:
       events:
       - time: 0
         functionName: ANIM_Event
-        data: blockStart
+        data: stopMove
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0
         functionName: ANIM_Event
-        data: stopMove
+        data: blockStart
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

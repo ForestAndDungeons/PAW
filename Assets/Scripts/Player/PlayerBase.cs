@@ -60,13 +60,14 @@ public class PlayerBase : CharacterBase, ICharacterBase
                 _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
                 SetIsImmune(true);
                 _player.StartCoroutine(_player.TimeOfImmune());
-            }
+            
 
-            if (_currentHealth <= 0)
-            {
-                _playerSoundManager.playOnDeath();
-                _animationController.onDeath();
-                _player.DisableThisObject();
+                if (_currentHealth <= 0)
+                {
+                    _playerSoundManager.playOnDeath();
+                    _animationController.onDeath();
+                    _player.DisableThisObject();
+                }
             }
         }
     }
