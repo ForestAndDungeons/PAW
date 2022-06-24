@@ -277,7 +277,6 @@ MonoBehaviour:
   - {fileID: 5858323033465408276, guid: ce7adb9090f9f9249ba074d69714d922, type: 3}
   - {fileID: 8172868564417492588, guid: 72ae752669e318640853f1d3f6bcbbe3, type: 3}
   - {fileID: 2697701167161937878, guid: 5d35dd9a5276b104bb7bfb4d7777b551, type: 3}
-  - {fileID: 5365547559676901595, guid: 4aacee79dc73d4a48a66e6bba1dd0072, type: 3}
   _randomFloat: 0
 --- !u!199 &5547063455377507086
 ParticleSystemRenderer:

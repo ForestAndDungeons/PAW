@@ -57,7 +57,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b4ae7388868a148b73e9fd892c19be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _teleport: []
   _randomEnemy: 0
+  _myAudioSource: {fileID: 0}
+  _audioClips: []
+  _transition: {fileID: 0}
   _doorList:
   - {fileID: 0}
   - {fileID: 0}
