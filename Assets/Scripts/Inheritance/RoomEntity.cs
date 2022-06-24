@@ -127,7 +127,7 @@ public class RoomEntity : MonoBehaviour
 
     IEnumerator WaitForAddPlayer(GameObject playerGO)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         //playerGO es Player GameObject
         _playerList.Add(playerGO);
     }
