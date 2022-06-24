@@ -15,12 +15,12 @@ public class AnimationEvent : MonoBehaviour
         if (param == "attackStart")
         {
             _player._playerSoundManager.playOnAttack();
-            _player.weapon.activateColliderAttack();
+            _player.weapon.ActivateColliderAttack(true);
         }
 
         if (param == "attackEnd")
         {
-            _player.weapon.deactivateColliderAttack();
+            _player.weapon.ActivateColliderAttack(false);
         }
 
         if (param == "attackAnimationEnd")
@@ -31,13 +31,13 @@ public class AnimationEvent : MonoBehaviour
         if (param == "specialStart")
         {
             _player._playerSoundManager.playOnSpecial();
-            _player.weapon.activateColliderSpecial();
+            _player.weapon.ActivateColliderSpecial(true);
             _particleSpecial.Play();
         }
 
         if (param == "specialEnd")
         {
-            _player.weapon.deactivateColliderSpecial();
+            _player.weapon.ActivateColliderSpecial(false);
         }
 
         if (param == "specialAnimationEnd")
@@ -47,14 +47,15 @@ public class AnimationEvent : MonoBehaviour
 
         if (param == "blockStart")
         {
+            _player.weapon.ActivateColliderBlock(true);
             //_player._playerSoundManager.playOnSpecial();
-            _player.weapon.activateColliderBlock();
             //_particleSpecial.Play();
         }
 
         if (param == "blockEnd")
         {
-            _player.weapon.deactivateColliderBlock();
+            _player.weapon.ActivateColliderBlock(false);
+            _player._playerBase.SetIsBlocking(false);
             _player._animationController.onBlockEnd();
         }
 

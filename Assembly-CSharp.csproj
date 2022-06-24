@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyState.cs" />
+    <Compile Include="Assets\Scripts\Player\SO\PlayerBaseSO.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Inheritance\ICharacterBase.cs" />
     <Compile Include="Assets\Scripts\Trap\SpikeTrap.cs" />
@@ -75,10 +76,12 @@
     <Compile Include="Assets\Scripts\Player\AnimationEvent.cs" />
     <Compile Include="Assets\Scripts\Player\Control.cs" />
     <Compile Include="Assets\Scripts\Player\Block.cs" />
-    <Compile Include="Assets\Scripts\SKeyCode.cs" />
+    <Compile Include="Assets\Scripts\Player\SKeyCode.cs" />
+    <Compile Include="Assets\Scripts\Player\SO\ControlSO.cs" />
     <Compile Include="Assets\Scripts\PickUp\PickUp.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimEvent.cs" />
     <Compile Include="Assets\Scripts\Inheritance\CharacterBase.cs" />
+    <Compile Include="Assets\Scripts\Player\SO\MovementSO.cs" />
     <Compile Include="Assets\Scripts\Inheritance\RoomEntity.cs" />
     <Compile Include="Assets\Scripts\PickUp\AttackUp.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\SceneTransition.cs" />
@@ -97,9 +100,6 @@
     <Compile Include="Assets\Scripts\PickUp\KeyUp.cs" />
     <Compile Include="Assets\Scripts\Door\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
-    <Compile Include="Assets\Scripts\Player\SO\MovementSO.cs" />
-    <Compile Include="Assets\Scripts\Player\SO\ControlSO.cs" />
-    <Compile Include="Assets\Scripts\Player\SO\PlayerBaseSO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -72,6 +72,7 @@ public class Player : MonoBehaviour, ICharacterBase
     [HideInInspector] public PlayerBase _playerBase;
 
     public Weapon weapon;
+    public Block block;
 
     //Instancia las clases y le pasa los parametros.
     private void Start()
