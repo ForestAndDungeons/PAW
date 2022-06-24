@@ -8,6 +8,9 @@ public class Breakable : MonoBehaviour
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] GameObject _whole;
     [SerializeField] GameObject _broken;
+    [SerializeField] bool _isChest;
+    [SerializeField] Chest _chest;
+    
 
     public void Break()
     {
@@ -17,5 +20,13 @@ public class Breakable : MonoBehaviour
 
         _particleSystem.Play();
         _breakSound.Play();
+
+        if (_chest!=null)
+        {
+            if (_isChest)
+            {
+                _chest.OpenChest(this.gameObject.transform);
+            }
+        }
     }
 }
