@@ -8,16 +8,18 @@ public class EnemyAnimEvent : MonoBehaviour
 
     public void Anim_Event_Attack(string attack)
     {
-        
-        if (attack == "Attack")
+        if (_enemy.enemyAttack != null)
         {
-            Debug.Log("Entro al Anim_Event_Attack, " + attack);
-            _enemy.enemySoundsManager.playOnAttack();
-            _enemy.enemyAttack.ActivateCollider();
-        }
-        if (attack == "FinishAttack")
-        {
-            _enemy.enemyAttack.DeactivateCollider();
+            if (attack == "Attack")
+            {
+                Debug.Log("Entro al Anim_Event_Attack, " + attack);
+                _enemy.enemySoundsManager.playOnAttack();
+                _enemy.enemyAttack.ActivateCollider();
+            }
+            if (attack == "FinishAttack")
+            {
+                _enemy.enemyAttack.DeactivateCollider();
+            }
         }
     }
 
@@ -26,12 +28,11 @@ public class EnemyAnimEvent : MonoBehaviour
         
         if (_enemy.GetterHaveAKey())
         {
-            if (_enemy._keyPrefab !=null)
+            if (_enemy.keyPrefab !=null)
             {
-                GameObject key = Instantiate(_enemy._keyPrefab, (transform.position + new Vector3(0, 0.5f, 0)), _enemy._keyPrefab.transform.rotation);
+                GameObject key = Instantiate(_enemy.keyPrefab, (transform.position + new Vector3(0, 0.5f, 0)), _enemy.keyPrefab.transform.rotation);
             }
         }
     }
-
 
 }
