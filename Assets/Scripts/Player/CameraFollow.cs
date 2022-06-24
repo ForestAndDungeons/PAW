@@ -27,10 +27,12 @@ public class CameraFollow : MonoBehaviour
         {
             _actualTarget = _targetP1;
         }
+
         if (!pj.isActiveAndEnabled)
         {
             _actualTarget = _targetP2;
             var vcam = GetComponent<Cinemachine.CinemachineVirtualCamera>();
+
             if(vcam != null)
             {
                 vcam.Follow = _actualTarget;

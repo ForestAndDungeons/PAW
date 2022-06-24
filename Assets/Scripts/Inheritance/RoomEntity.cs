@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RoomEntity : MonoBehaviour
 {
+    [SerializeField] List<Teleport> _teleport;
+
     [Header("EnemyWithKey")]
     [SerializeField] int _randomEnemy;
 
@@ -130,6 +132,11 @@ public class RoomEntity : MonoBehaviour
         yield return new WaitForSeconds(0f);
         //playerGO es Player GameObject
         _playerList.Add(playerGO);
+
+        foreach (Teleport tp in _teleport)
+        {
+            tp.TeleportToRoom(_playerList);
+        }
     }
 
     IEnumerator WaitForMusicTransition(int clipIndex)
@@ -138,5 +145,10 @@ public class RoomEntity : MonoBehaviour
         _myAudioSource.enabled = false;
         _myAudioSource.clip = _audioClips[clipIndex];
         _myAudioSource.enabled = true;
+    }
+
+    public List<GameObject> GetPlayerList()
+    {
+        return _playerList;
     }
 }

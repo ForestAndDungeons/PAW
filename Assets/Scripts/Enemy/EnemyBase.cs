@@ -34,7 +34,6 @@ public class EnemyBase : CharacterBase, ICharacterBase
 
     public void onDamage(float damage)
     {
-        Debug.Log("El enimigo " + _enemy.gameObject.name + " esta siendo dañado");
         if (!_isImmune)
         {
             if (_currentHealth > 0) {
