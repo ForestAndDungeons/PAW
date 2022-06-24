@@ -141,21 +141,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186507958cc732145844635724e566c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HasAKey: 0
-  _keyPrefab: {fileID: 7956874207726150469, guid: 306f26a8ec25998478a3c8374146545e, type: 3}
+  keyPrefab: {fileID: 7956874207726150469, guid: 306f26a8ec25998478a3c8374146545e, type: 3}
+  _isInvulerable: 0
+  _isRangeEnemy: 0
+  _ArrowPref: {fileID: 0}
+  _shootPoint: {fileID: 0}
   _state: 0
   _name: Enemy
   _maxHealth: 3
   _currentHealth: 0
   _attackPower: 1
   _armor: 0
+  _haveAKey: 0
   _particleSystem: {fileID: 1938268371}
   _speed: 3
   _rb: {fileID: 7372105791957241239}
   _knockbackForce: 4
   _knockbackTime: 0.1
-  _distanceBrake: 2
-  _distanceAttack: 5
+  _distanceBrake: 3
+  _startTimeBtwShoot: 0
   _targets: []
   _enemyAnim: {fileID: 2854554289922017895}
   _enemyAudioSource: {fileID: 2321902975047959289}
@@ -6609,8 +6613,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.26234168, y: 0.8100819, z: 0.26786226}
-  m_Center: {x: 0.04778302, y: -0.33184975, z: -0.032213364}
+  m_Size: {x: 0.34553847, y: 2.6714609, z: 0.42985892}
+  m_Center: {x: 0.00619735, y: -0.09530122, z: 0.010849994}
 --- !u!114 &720206957
 MonoBehaviour:
   m_ObjectHideFlags: 0
