@@ -8,7 +8,8 @@ public class Player : MonoBehaviour, ICharacterBase
     Renderer _renderer;
     Collider _collider;
     [SerializeField] Player _otherPlayer;
-    [SerializeField] Camera _camera;
+    [SerializeField] Camera _myCamera;
+    [SerializeField] Camera _player2Minimap;
     [SerializeField] float _timeOfImmune;
     [SerializeField] SKeyCode[] _sKeyCode;
 
@@ -169,8 +170,9 @@ public class Player : MonoBehaviour, ICharacterBase
     {
         yield return new WaitForSeconds(4f);
         this.gameObject.SetActive(false);
-        _camera.enabled = false;
-        _otherPlayer._camera.rect = new Rect(0f, 0f, 1f, 1f);
+        _myCamera.enabled = false;
+        _otherPlayer._myCamera.rect = new Rect(0f, 0f, 1f, 1f);
+        _otherPlayer._player2Minimap.enabled = false;
 
         if (_otherPlayer._isDead)
         {
