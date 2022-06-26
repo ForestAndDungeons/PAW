@@ -51,3 +51,5 @@ MonoBehaviour:
   waitTime: 1.5
   transitionAnim: {fileID: 0}
   musicAnim: {fileID: 0}
+  _scenes: []
+  _scenesLoaded: []

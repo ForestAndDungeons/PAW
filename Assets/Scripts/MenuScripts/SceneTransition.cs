@@ -18,9 +18,12 @@ public class SceneTransition : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-        _scenesIndex = Random.Range(0, _scenes.Count);
-        _sceneToLoad = _scenes[_scenesIndex];
-        _scenesLoaded.Add(_scenes[_scenesIndex]);
+        if(_scenes.Count > 0)
+        {
+            _scenesIndex = Random.Range(0, _scenes.Count);
+            _sceneToLoad = _scenes[_scenesIndex];
+            _scenesLoaded.Add(_scenes[_scenesIndex]);
+        }
     }
 
     IEnumerator Transition(string sceneToLoad)

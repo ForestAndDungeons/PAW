@@ -4814,7 +4814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5090330606467468382}
   m_Layer: 8
-  m_Name: EnemyTarget
+  m_Name: EnemyTarget2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4916,7 +4916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherPlayer: {fileID: 0}
-  _camera: {fileID: 0}
+  _myCamera: {fileID: 0}
+  _player2Minimap: {fileID: 0}
   _timeOfImmune: 2
   _sKeyCode:
   - key: 260
@@ -14893,7 +14894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6047677539051601536}
   m_Layer: 8
-  m_Name: CameraTarget
+  m_Name: CameraTarget2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
