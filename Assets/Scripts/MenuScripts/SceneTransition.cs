@@ -14,6 +14,7 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] Animator musicAnim;
     [SerializeField] List<string> _scenes;
     [SerializeField] List<string> _scenesLoaded;
+    [SerializeField] string _mainMenu;
 
     private void Start()
     {
@@ -65,6 +66,11 @@ public class SceneTransition : MonoBehaviour
         //sceneToLoad = PlayerPrefs.GetString(SaveData.CURRENT_LEVEL_KEY, sceneToLoad);
         SceneManager.LoadScene(sceneToLoad);
     }*/
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(_mainMenu);
+    }
 
     public void QuitGame()
     {
