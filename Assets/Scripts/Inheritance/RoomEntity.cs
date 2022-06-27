@@ -122,7 +122,7 @@ public class RoomEntity : MonoBehaviour
 
     IEnumerator WaitForFillList()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(0.5f);
         _randomEnemy = Random.Range(0, _enemyList.Count);
         EnemyWithKey(_randomEnemy);
     }
@@ -142,9 +142,9 @@ public class RoomEntity : MonoBehaviour
     IEnumerator WaitForMusicTransition(int clipIndex)
     {
         yield return new WaitForSeconds(2f);
-        _myAudioSource.enabled = false;
+        _myAudioSource.Stop();
         _myAudioSource.clip = _audioClips[clipIndex];
-        _myAudioSource.enabled = true;
+        _myAudioSource.Play();
     }
 
     public List<GameObject> GetPlayerList()
