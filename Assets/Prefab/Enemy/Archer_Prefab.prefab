@@ -867,6 +867,7 @@ GameObject:
   - component: {fileID: 270107128610408765}
   - component: {fileID: 4823671091789941573}
   - component: {fileID: 8404538248739161839}
+  - component: {fileID: 3872177277485321469}
   m_Layer: 9
   m_Name: Archer_Prefab
   m_TagString: Untagged
@@ -5857,6 +5858,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3872177277485321469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958953689695239262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e49f2a562314a44b8814e951c46ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: -7812876629166958500}
 --- !u!1 &2983849435889028688
 GameObject:
   m_ObjectHideFlags: 0
