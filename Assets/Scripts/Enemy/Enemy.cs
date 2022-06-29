@@ -74,7 +74,6 @@ public class Enemy : MonoBehaviour , ICharacterBase
         _haveAKey = _enemyBase.GetKey();
         _knockbackCounter = _enemyMove.CurrentKnockbackCounterGetter();
         _state = _enemyState.CurrentStateGetter();
-        //_enemyState.StateUpdate();
         if (_stateDelegate!=null)
         {
             _stateDelegate();
@@ -138,7 +137,7 @@ public class Enemy : MonoBehaviour , ICharacterBase
     public void DestroyThisObject()
     {
         _roomEntity.ElimEnemyInList(this.gameObject);
-        Destroy(this.gameObject, 2f);
+        Destroy(this.gameObject, 0.3f);
     }
 
     public bool GetterHaveAKey() { return _haveAKey; }

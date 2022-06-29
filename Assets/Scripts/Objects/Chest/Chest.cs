@@ -6,6 +6,7 @@ public class Chest : MonoBehaviour
 {
     [SerializeField] List<GameObject> _listObjects;
     [SerializeField] float _randomFloat;
+    [SerializeField] Transform _spawnObject;
 
     private void Awake()
     {
@@ -21,8 +22,9 @@ public class Chest : MonoBehaviour
                 int index = _listObjects.IndexOf(_listObjects[i]);
                 if (_randomFloat == index)
                 {
+                    
                     Debug.Log("El objeto a instanciar es : " + _listObjects[i].name);
-                    Instantiate(_listObjects[i], transform.position + new Vector3(0f,0f,6f) , Quaternion.identity);
+                    Instantiate(_listObjects[i], _spawnObject.position , Quaternion.identity);
 
                 }
             }

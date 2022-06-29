@@ -15,45 +15,17 @@ public class RoomEntity : MonoBehaviour
     [SerializeField] Animator _transition;
     bool _musicFlag;
 
-    [Header("Doors")]
-    [SerializeField] public List<DoorScript> _doorList;
-
     [Header("Listas")]
     [SerializeField] public List<GameObject> _enemyList = new List<GameObject>();
     [SerializeField] public List<GameObject> _playerList = new List<GameObject>();
 
-   /* public delegate void EventRoom();
-    public event EventRoom eventRoom;*/
+    public delegate void EventRoom();
+    public event EventRoom eventRoom;
     private void Start()
     {
         StartCoroutine(WaitForFillList());
     }
-    void Update()
-    {
-       /* if (eventRoom != null)
-        {
-            eventRoom();
-        }*/
-         if (_playerList.Count > 0)
-        {
-            for (int i = 0; i < _doorList.Count; i++)
-            {
-                _doorList[i].CloseDoor();
-            }
-            
-            if (_enemyList.Count <= 0)
-            {
-                for (int i = 0; i < _doorList.Count; i++)
-                {
-                    if (!_doorList[i].isSecretDoor)
-                    {
-                        _doorList[i].OpenDoor();
-                        Destroy(this.gameObject, 2.5f);
-                    }
-                }
-            }
-        }
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
         Player pj = other.gameObject.GetComponent<Player>();
@@ -79,16 +51,6 @@ public class RoomEntity : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerExit(Collider other)
-    {
-        Player pj = other.gameObject.GetComponent<Player>();
-
-        if (pj)
-        {
-            _playerList.Remove(other.gameObject);
-        }   
-    }*/
-
     private void OnTriggerStay(Collider other)
     {
         if (_enemyList.Count <= 0 && _musicFlag)
@@ -103,6 +65,13 @@ public class RoomEntity : MonoBehaviour
     {
         Debug.Log("Se elimino de la lista el enemigo: " + enemy);
         _enemyList.Remove(enemy);
+        if (_enemyList.Count <=0)
+        {
+            if (eventRoom != null)
+            {
+                eventRoom();
+            }
+        }
     }
 
     public void EnemyWithKey(int enemyRandom)
@@ -120,13 +89,18 @@ public class RoomEntity : MonoBehaviour
         }
     }
 
+    public void DestroyRoomEntity()
+    {
+        Destroy(this.gameObject, 2.5f);
+    }
+
+    // IENUMERATORS
     IEnumerator WaitForFillList()
     {
         yield return new WaitForSeconds(0.5f);
         _randomEnemy = Random.Range(0, _enemyList.Count);
         EnemyWithKey(_randomEnemy);
     }
-
     IEnumerator WaitForAddPlayer(GameObject playerGO)
     {
         yield return new WaitForSeconds(0f);
@@ -136,6 +110,13 @@ public class RoomEntity : MonoBehaviour
         foreach (Teleport tp in _teleport)
         {
             tp.TeleportToRoom(_playerList);
+        }
+        if (_playerList.Count <= 1)
+        {
+            if (eventRoom != null)
+            {
+                eventRoom();
+            }
         }
     }
 
