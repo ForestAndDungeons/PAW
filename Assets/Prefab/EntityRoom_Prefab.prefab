@@ -60,11 +60,10 @@ MonoBehaviour:
   _teleport: []
   _randomEnemy: 0
   _myAudioSource: {fileID: 0}
-  _audioClips: []
+  _audioClips:
+  - {fileID: 8300000, guid: 4024831f53932b54abea4a6a47802c9e, type: 3}
+  - {fileID: 8300000, guid: de314b638c3d5714e9a59b51d4596be4, type: 3}
+  - {fileID: 8300000, guid: 437e337135ea79d488ba90e1f921ae49, type: 3}
   _transition: {fileID: 0}
-  _doorList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _enemyList: []
   _playerList: []
