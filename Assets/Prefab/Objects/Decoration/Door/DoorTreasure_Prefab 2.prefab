@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afa82ae9cfdda244b3e5f0ac09b35f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSecretDoor: 1
+  _isSecretDoor: 1
   _audioSource: {fileID: 9086609901828713839}
   _audioClip:
   - {fileID: 8300000, guid: e4b74064e7e38404195013ced04d741c, type: 3}

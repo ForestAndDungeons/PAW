@@ -4,30 +4,12 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
-    public bool isSecretDoor = false;
+    [SerializeField] bool _isSecretDoor;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip[] _audioClip;
     [SerializeField] RoomEntity _roomEntity;
-    //public RoomEntity roomEntity;
-    
-
-    private void Start()
-    {
-       // roomEntity.eventRoom += OpenDoor;
-    }
-    private void Update()
-    {
-        /*if (roomEntity._playerList.Count > 0)
-        {
-            roomEntity.eventRoom += CloseDoor;
-            Debug.Log("Tengo que cerrar las puertas prro");
-            if (roomEntity._enemyList.Count == 0)
-            {
-                roomEntity.eventRoom += OpenDoor;
-                Debug.Log("Tengo que abrir las puertas prro");
-            }
-        }*/
-    }
+    [SerializeField] bool _isOpen;
+   
 
     private void Awake()
     {
@@ -39,7 +21,7 @@ public class DoorScript : MonoBehaviour
         Player pj =  collision.gameObject.GetComponent<Player>();
         if (pj!=null)
         {
-            if (isSecretDoor)
+            if (_isSecretDoor)
             {
                 if (pj._playerBase.GetKey())
                 {
@@ -70,16 +52,26 @@ public class DoorScript : MonoBehaviour
     }
     public void OpenDoor()
     {
-        this.gameObject.SetActive(false);
-       /* roomEntity.eventRoom -= CloseDoor;
-        roomEntity.eventRoom += OpenDoor;*/
+        if (!_isSecretDoor)
+        {
+            Debug.Log("Abro Puertas");
+            _isOpen = true;
+            this.gameObject.SetActive(false);
+            _roomEntity.eventRoom -= OpenDoor;
+            _roomEntity.eventRoom += CloseDoor;
+        }
     }
 
     public void CloseDoor()
     {
-        this.gameObject.SetActive(true);
-        /*  roomEntity.eventRoom -= OpenDoor;
-          roomEntity.eventRoom += CloseDoor;*/
+        if (!_isSecretDoor)
+        {
+            _isOpen = false;
+            Debug.Log("Cierro Puertas");
+            this.gameObject.SetActive(true);
+            _roomEntity.eventRoom -= CloseDoor;
+            _roomEntity.eventRoom += OpenDoor;
+        }
     }
 
     public void DestroyDoor()
@@ -90,9 +82,12 @@ public class DoorScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        if (!isSecretDoor)
+        if (!_isSecretDoor)
         {
-            OpenDoor();
+            if (!_isOpen)
+            {
+                OpenDoor();
+            }
         }
     }
 }

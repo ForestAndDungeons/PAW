@@ -23,6 +23,10 @@ public class EnemyAnimEvent : MonoBehaviour
         }
     }
 
+    public void Anim_event_EnemyDeath()
+    {
+        _enemy.DestroyThisObject();
+    }
     public void Anim_event_InstantiateKey()
     {
         

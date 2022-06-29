@@ -93,35 +93,43 @@ public class EnemyState
                 }
                 break;
             case State.attack:
-                if (_isAttack)
+                if (!isDead)
                 {
-                    _transform.LookAt(_targets[0].position);
-                    if (_timeBtwShoot <= 0)
+
+                    if (_isAttack)
                     {
-                        _enemyAnimController.OnAttack();
-                        _enemy.InstantiateArrow();
-                        _timeBtwShoot = _startTimeBtwShoot;
-                        Debug.Log("El enemigo "+_enemy.gameObject.name+" de rango ataca");
+                        _transform.LookAt(_targets[0].position);
+                        if (_timeBtwShoot <= 0)
+                        {
+                            _enemyAnimController.OnAttack();
+                            _enemy.InstantiateArrow();
+                            _timeBtwShoot = _startTimeBtwShoot;
+                            Debug.Log("El enemigo "+_enemy.gameObject.name+" de rango ataca");
+                        }
+                        else
+                        {
+                            _timeBtwShoot -= Time.deltaTime;
+                        }
+                        if (_targets.Count == 0)
+                        {
+                                isIdle();
+                        }
+                        if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
+                        {
+                                _isAttack = false;
+                                _enemyAnimController.OnAttackEnd();
+                                isEscape();
+                        }
                     }
-                    else
-                    {
-                        _timeBtwShoot -= Time.deltaTime;
-                    }
-                    if (_targets.Count == 0)
-                    {
-                            isIdle();
-                    }
-                    if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
-                    {
-                            _isAttack = false;
-                            _enemyAnimController.OnAttackEnd();
-                            isEscape();
-                    }
+                }
+                else
+                {
+                    isDie();
                 }
                 break;
             case State.die:
-                _enemy.DestroyThisObject();
                 _enemyAnimController.OnDeath();
+                //_enemy.DestroyThisObject();
                 break;
         }
     }
@@ -163,59 +171,21 @@ public class EnemyState
                 }
                 break;
             case State.attack:
-                if (_isAttack)
-                {
-                    _enemyAnimController.OnAttack();
-
-                    if (_targets.Count == 0)
-                    {
-                        isIdle();
-                    }
-                    if (Vector3.Distance(_transform.position, _targets[0].position) >= _distanceBrake)
-                    {
-                        _enemyAnimController.OnAttackEnd();
-                        _isAttack = false;
-                        isPersuit();
-                    }
-                }
-                break;
-            case State.die:
-                _enemy.DestroyThisObject();
-                _enemyAnimController.OnDeath();
-                break;
-            default:
-                Debug.Log("no entre a ningun state");
-                break;
-        }
-    }
-    /*public void StateUpdate()
-    {
-        Transform _transform = _enemyMovement.MyTransformGetter();
-        float _distanceBrake = _enemyMovement.DistanceBrakeGetter();
-
-        switch (_currentState)
-        {
-            case State.idle:
-                if (_targets.Count == 0)
-                {
-                    _enemyAnimController.OnIdle();
-                }
-                else
-                {
-                    isPersuit();
-                }
-                break;
-            case State.persuit:
                 if (!isDead)
                 {
-                    if (_targets.Count > 0)
+                    if (_isAttack)
                     {
-                        _enemyMovement.FollowToPlayer(_targets[0]);
-                        _enemyAnimController.OnWalking();
-                        if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
+                        _enemyAnimController.OnAttack();
+
+                        if (_targets.Count == 0)
                         {
-                            _isAttack = true;
-                            isAttack();
+                            isIdle();
+                        }
+                        if (Vector3.Distance(_transform.position, _targets[0].position) >= _distanceBrake)
+                        {
+                            _enemyAnimController.OnAttackEnd();
+                            _isAttack = false;
+                            isPersuit();
                         }
                     }
                 }
@@ -224,32 +194,15 @@ public class EnemyState
                     isDie();
                 }
                 break;
-            case State.attack:
-                if (_isAttack)
-                {
-                    _enemyAnimController.OnAttack();
-                    if (_targets.Count == 0)
-                    {
-                        isIdle();
-                    }
-                    if (Vector3.Distance(_transform.position, _targets[0].position) >= _distanceBrake)
-                    {
-                        _enemyAnimController.OnAttackEnd();
-                        _isAttack = false;
-                        isPersuit();
-                    }
-                }
-                break;
             case State.die:
-                _enemy.DestroyThisObject();
+                //_enemy.DestroyThisObject();
                 _enemyAnimController.OnDeath();
                 break;
             default:
                 Debug.Log("no entre a ningun state");
                 break;
         }
-    }*/
-
+    }
 
 
     // Funciones Para pasar de State
