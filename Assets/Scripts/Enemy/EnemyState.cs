@@ -53,7 +53,7 @@ public class EnemyState
             case State.idle:
                 if (_targets.Count == 0)
                 {
-                    _enemyAnimController.OnIdle();
+                    _enemyAnimController.OnMovement(0);
                 }
                 else if(_targets.Count > 0)
                 {
@@ -74,11 +74,10 @@ public class EnemyState
                 if (!isDead)
                 {
                     _transform.LookAt(_targets[0].position);
-                    Debug.Log("Estoy en escape");
                     if (_targets.Count > 0)
                     {
                         _enemyMovement.Escape(_targets[0]);
-                        _enemyAnimController.OnWalking();
+                        _enemyAnimController.OnMovement(1);
                         if (Vector3.Distance(_transform.position, _targets[0].position) >= _distanceBrake)
                         {
                             _isAttack = true;
@@ -101,10 +100,9 @@ public class EnemyState
                         _transform.LookAt(_targets[0].position);
                         if (_timeBtwShoot <= 0)
                         {
-                            _enemyAnimController.OnAttack();
+                            _enemyAnimController.OnAttack(true);
                             _enemy.InstantiateArrow();
                             _timeBtwShoot = _startTimeBtwShoot;
-                            Debug.Log("El enemigo "+_enemy.gameObject.name+" de rango ataca");
                         }
                         else
                         {
@@ -117,7 +115,7 @@ public class EnemyState
                         if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
                         {
                                 _isAttack = false;
-                                _enemyAnimController.OnAttackEnd();
+                                _enemyAnimController.OnAttack(false);
                                 isEscape();
                         }
                     }
@@ -129,7 +127,6 @@ public class EnemyState
                 break;
             case State.die:
                 _enemyAnimController.OnDeath();
-                //_enemy.DestroyThisObject();
                 break;
         }
     }
@@ -144,7 +141,7 @@ public class EnemyState
             case State.idle:
                 if (_targets.Count == 0)
                 {
-                    _enemyAnimController.OnIdle();
+                    _enemyAnimController.OnMovement(0);
                 }
                 else
                 {
@@ -157,7 +154,7 @@ public class EnemyState
                     if (_targets.Count > 0)
                     {
                         _enemyMovement.FollowToPlayer(_targets[0]);
-                        _enemyAnimController.OnWalking();
+                        _enemyAnimController.OnMovement(1);
                         if (Vector3.Distance(_transform.position, _targets[0].position) <= _distanceBrake)
                         {
                             _isAttack = true;
@@ -175,7 +172,7 @@ public class EnemyState
                 {
                     if (_isAttack)
                     {
-                        _enemyAnimController.OnAttack();
+                        _enemyAnimController.OnAttack(true);
 
                         if (_targets.Count == 0)
                         {
@@ -183,7 +180,7 @@ public class EnemyState
                         }
                         if (Vector3.Distance(_transform.position, _targets[0].position) >= _distanceBrake)
                         {
-                            _enemyAnimController.OnAttackEnd();
+                            _enemyAnimController.OnAttack(false);
                             _isAttack = false;
                             isPersuit();
                         }
@@ -195,7 +192,6 @@ public class EnemyState
                 }
                 break;
             case State.die:
-                //_enemy.DestroyThisObject();
                 _enemyAnimController.OnDeath();
                 break;
             default:

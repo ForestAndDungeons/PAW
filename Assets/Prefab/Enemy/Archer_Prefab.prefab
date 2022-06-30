@@ -905,9 +905,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyPrefab: {fileID: 7956874207726150469, guid: 306f26a8ec25998478a3c8374146545e, type: 3}
+  _DropleableList:
+  - {fileID: 5365547559676901595, guid: 4aacee79dc73d4a48a66e6bba1dd0072, type: 3}
+  - {fileID: 5858323033465408276, guid: ce7adb9090f9f9249ba074d69714d922, type: 3}
   _isInvulerable: 0
   _isRangeEnemy: 1
-  _ArrowPref: {fileID: 2023027701853276377, guid: d065ebda09a42d744b8f7d2035f1b51e, type: 3}
+  _ArrowPref: {fileID: 2023027701853276377, guid: 41106dcf21d24bf488d66243f3287257, type: 3}
   _shootPoint: {fileID: 4249075787888987739}
   _state: 0
   _name: Archer
@@ -5987,7 +5990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3137979920609887871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.426, z: 1.3}
+  m_LocalPosition: {x: 0, y: 1.214, z: 1.552}
   m_LocalScale: {x: 0.58823526, y: 0.58823526, z: 0.58823526}
   m_Children: []
   m_Father: {fileID: 2475713263014110948}

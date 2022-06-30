@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour , IDamage
 {
     [Header("Variables Enemy")]
     public GameObject keyPrefab;
+    [SerializeField] List<GameObject> _DropleableList = new List<GameObject>();
+
     [SerializeField] bool _isInvulerable;
     [SerializeField] bool _isRangeEnemy;
     [SerializeField] GameObject _ArrowPref;
@@ -56,7 +58,6 @@ public class Enemy : MonoBehaviour , IDamage
     public delegate void StateDelegate();
     public StateDelegate _stateDelegate;
 
-    //public Weapon weapon;
 
     void Awake()
     {
@@ -68,11 +69,12 @@ public class Enemy : MonoBehaviour , IDamage
         _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, _haveAKey, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState);
         _name = this.gameObject.name;
         _enemyState.StateStart();
-
-        //weapon.SetAttackPower(_attackPower);
+  
     }
-
+    //GETTERS
     public List<Transform> GetColliders() {return _targets;}
+    public List<GameObject> GetDropeables() {return _DropleableList;}
+    public bool GetterHaveAKey() {return _haveAKey;}
     void Update()
     {
         _haveAKey = _enemyBase.GetKey();
@@ -123,28 +125,32 @@ public class Enemy : MonoBehaviour , IDamage
         }
     }
 
+    //Instantiate
+
     public void InstantiateArrow()
     {
         if (_shootPoint != null && _ArrowPref !=null)
         {
-            Debug.Log("Instancio una flecha");
             GameObject arrow = Instantiate(_ArrowPref, _shootPoint.position, _ArrowPref.transform.rotation);
             Rigidbody rb = arrow.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 5f, ForceMode.Impulse);
         }
     }
+
+    //Other Funtions
     public void PartialSoundAttack()
     {
         enemySoundsManager.playOnAttack();
     }
     public void DestroyThisObject()
     {
-        _roomEntity.ElimEnemyInList(this.gameObject);
-        Destroy(this.gameObject, 0.3f);
+        if (_roomEntity !=null)
+        {
+            _roomEntity.ElimEnemyInList(this.gameObject);
+            Destroy(this.gameObject, 0.3f);
+        }
     }
-
-    public bool GetterHaveAKey() { return _haveAKey; }
 
     public void CoroutineInvulnerable(float damage)
     {
@@ -158,13 +164,14 @@ public class Enemy : MonoBehaviour , IDamage
         _enemyBase.SetIsImmune(true);
         damage = 0.0f;
         yield return new WaitForSeconds(.5f);
-
+        _enemyAnimController.OnHit(false);
         damage = damage2;
         _enemyBase.SetIsImmune(false);
     }
 
     public void onDamage(float damage)
     {
+        _enemyAnimController.OnHit(true);
         _enemyBase.onDamage(damage);
     }
 

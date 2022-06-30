@@ -39,7 +39,6 @@ public class EnemyBase : CharacterBase, IDamage
             if (_currentHealth > 0) {
                 _enemy.CoroutineInvulnerable(damage);
                 _currentHealth -= damage - _armor;
-
                 if (_targets.Count > 0)
                 {
                     _enemyMove.OnKnockback(_targets[0]);
