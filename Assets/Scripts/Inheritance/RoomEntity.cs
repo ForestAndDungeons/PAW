@@ -78,7 +78,6 @@ public class RoomEntity : MonoBehaviour
     //Funcion que elimina enemigos de la lista y cuando no tenga mas enemigos ejecuta el eventRoom que ejecutaria la funcion OpenDoor
     public void ElimEnemyInList(GameObject enemy)
     {
-        Debug.Log("Se elimino de la lista el enemigo: " + enemy);
         _enemyList.Remove(enemy);
         if (_enemyList.Count <=0)
         {
@@ -97,7 +96,6 @@ public class RoomEntity : MonoBehaviour
             int index = _enemyList.IndexOf(_enemyList[i]);
             if (enemyRandom == index)
             {
-                Debug.Log("El enemigo: "+_enemyList[i].name+" es el que tiene la llave");
                 Enemy enemyWithKey = _enemyList[i].GetComponent<Enemy>();
                 enemyWithKey._enemyBase.EnemyWithKey(true);
                 

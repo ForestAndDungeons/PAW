@@ -63,7 +63,6 @@ public class DoorScript : MonoBehaviour
         if (!_isSecretDoor)
         {
             //Desactivamos los GameObjects
-            Debug.Log("Abro Puertas");
             _isOpen = true;
             this.gameObject.SetActive(false);
             //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
@@ -79,7 +78,6 @@ public class DoorScript : MonoBehaviour
         if (!_isSecretDoor)
         {
             _isOpen = false;
-            Debug.Log("Cierro Puertas");
             //Activamos los GameObjects
             this.gameObject.SetActive(true);
             //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
