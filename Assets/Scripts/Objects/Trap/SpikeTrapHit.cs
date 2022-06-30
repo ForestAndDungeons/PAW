@@ -18,7 +18,7 @@ public class SpikeTrapHit : MonoBehaviour
 
     void Damage(Collider other)
     {
-        var entity = other.GetComponent<ICharacterBase>();
+        var entity = other.GetComponent<IDamage>();
 
         if (entity != null)
             entity.onDamage(_damage);

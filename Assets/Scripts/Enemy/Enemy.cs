@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum State { idle, persuit, attack, die, escape };
-public class Enemy : MonoBehaviour , ICharacterBase
+public class Enemy : MonoBehaviour , IDamage
 {
     [Header("Variables Enemy")]
     public GameObject keyPrefab;
@@ -56,7 +56,9 @@ public class Enemy : MonoBehaviour , ICharacterBase
     public delegate void StateDelegate();
     public StateDelegate _stateDelegate;
 
-    void Start()
+    //public Weapon weapon;
+
+    void Awake()
     {
         _timeBtwShoot = _startTimeBtwShoot;
         enemySoundsManager = new EnemySoundsManager(_enemyAudioSource, _enemyAClip);
@@ -66,6 +68,8 @@ public class Enemy : MonoBehaviour , ICharacterBase
         _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, _haveAKey, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState);
         _name = this.gameObject.name;
         _enemyState.StateStart();
+
+        //weapon.SetAttackPower(_attackPower);
     }
 
     public List<Transform> GetColliders() {return _targets;}

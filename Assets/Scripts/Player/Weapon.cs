@@ -4,44 +4,40 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    float _attackPower;
+    [SerializeField] float _attackPower;
+    [SerializeField] float _slowMotion;
     [SerializeField] Collider _myColliderAttack;
     [SerializeField] Collider _myColliderSpecial;
     [SerializeField] Collider _myColliderBlock;
-    Player _player;
-
-    [SerializeField] float _slowMotion;
     [SerializeField] ParticleSystem _particleSystem;
 
     private void Start()
     {
-        _player = this.gameObject.GetComponentInParent<Player>();
+        //_entity = this.GetComponentInParent<Player>();
+
+        //_attackPower = _entity.GetAttackPower();
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        var breakable = other.GetComponent<Breakable>();
+        var entity = other.GetComponent<IDamage>();
 
-        if (breakable != null)
-            breakable.Break();
-
-        _attackPower = _player._playerBase.GetAttackPower();
-        _particleSystem.Play();
-
-        if (other != null)
+        if (entity != null)
         {
-            var enemy = other.gameObject.GetComponent<Enemy>();
-
-            if (enemy != null)
-            {
-                enemy._enemyBase.onDamage(_attackPower);
-
-                Time.timeScale = 0.5f;
-                StartCoroutine(SlowMotion());
-            }
-
-            _player.SoundHit();
+            entity.onDamage(_attackPower);
+            Time.timeScale = 0.5f;
+            StartCoroutine(SlowMotion());
         }
+    }
+
+    public void SetAttackPower(float attackPower)
+    {
+        _attackPower = attackPower;
+    }
+
+    public void AttackUp(float add)
+    {
+        _attackPower += add;
     }
 
     public void ActivateColliderAttack(bool activate)

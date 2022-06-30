@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, ICharacterBase
+public class Player : MonoBehaviour, IDamage
 {
     Renderer _renderer;
     Collider _collider;
@@ -18,12 +18,16 @@ public class Player : MonoBehaviour, ICharacterBase
     [SerializeField] MovementSO _dataMovement;
     [SerializeField] float _turnSpeed;
     [SerializeField] Rigidbody _myRigidBody;
+    public delegate void MovementDelegate();
+    public MovementDelegate _movementDelegate;
 
     //Control Variables.
     [Header("Control Variables")]
     [SerializeField] ControlSO _controlSO;
     [SerializeField] bool _isDead;
     [SerializeField] bool _canMove;
+    public delegate void ControlDelegate(bool isGrounded);
+    public ControlDelegate _controlDelegate;
 
     //GroundSensor Variables.
     [Header("GroundSensor Variables")]
@@ -77,7 +81,7 @@ public class Player : MonoBehaviour, ICharacterBase
     public Block block;
 
     //Instancia las clases y le pasa los parametros.
-    private void Start()
+    private void Awake()
     {
         _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();
@@ -100,6 +104,12 @@ public class Player : MonoBehaviour, ICharacterBase
 
         _currentHealth = _playerBase.GetCurrentHealth();
         _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
+
+        _controlDelegate = _control.Movements;
+        _movementDelegate = _control.IsometricMovement;
+
+        _attackPower = _playerBase.GetAttackPower();
+        weapon.SetAttackPower(_attackPower);
     }
 
     //Llama a metodos de Artificial Updates.
@@ -115,7 +125,10 @@ public class Player : MonoBehaviour, ICharacterBase
 
         if (!_isDead)
         {
-            if (_canMove)
+            _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
+            _controlDelegate(_isGrounded);
+            
+            /*if (_canMove)
             {
                 _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
                 _control.Movements(_isGrounded);
@@ -123,8 +136,17 @@ public class Player : MonoBehaviour, ICharacterBase
             else if (!_canMove)
             {
                 _animationController.InputUpdate(0, 0);
-            }
+            }*/
         }
+    }
+
+    private void FixedUpdate()
+    {
+        _movementDelegate();
+        /*if (!_isDead && _canMove)
+        {
+            _control.IsometricMovement();
+        }*/
     }
 
     public void onDamage(float damage)
@@ -140,14 +162,6 @@ public class Player : MonoBehaviour, ICharacterBase
     public void HealthUp(float add)
     {
         _playerBase.HealthUp(add);
-    }
-
-    private void FixedUpdate()
-    {
-        if (!_isDead && _canMove)
-        {
-            _control.IsometricMovement();
-        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -197,11 +211,6 @@ public class Player : MonoBehaviour, ICharacterBase
         _playerSoundManager.playOnAttack();
     }
 
-    public void SoundHit()
-    {
-        _playerSoundManager.playOnHit();
-    }
-
     //AnimationController Methods
     public void EndAttack()
     {
@@ -224,5 +233,27 @@ public class Player : MonoBehaviour, ICharacterBase
     public void Jump()
     {
         _movement.Jump();
+    }
+
+    public void SetEmptyAnimationInput(bool isGrounded)
+    {
+        _animationController.InputUpdate(0, 0);
+    }
+    public void SetControlDelegate()
+    {
+        _controlDelegate = _control.Movements;
+    }
+    public void SetEmptyControlDelegate()
+    {
+        _controlDelegate = SetEmptyAnimationInput;
+    }
+
+    public void SetMovementDelegate()
+    {
+        _movementDelegate = _control.IsometricMovement;
+    }
+    public void SetEmptyMovementDelegate()
+    {
+        _movementDelegate = delegate{};
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breakable : MonoBehaviour
+public class Breakable : MonoBehaviour, IDamage
 {
     [SerializeField] AudioSource _breakSound;
     [SerializeField] ParticleSystem _particleSystem;
@@ -12,7 +12,7 @@ public class Breakable : MonoBehaviour
     [SerializeField] Chest _chest;
     
 
-    public void Break()
+    public void onDamage(float damage)
     {
         this.gameObject.GetComponent<Collider>().enabled = false;
         _whole.SetActive(false);

@@ -10,7 +10,6 @@ public class DoorScript : MonoBehaviour
     [SerializeField] AudioClip[] _audioClip;
     [SerializeField] RoomEntity _roomEntity;
     [SerializeField] bool _isOpen;
-   
 
     private void Awake()
     {
@@ -45,7 +44,6 @@ public class DoorScript : MonoBehaviour
                             DestroyDoor();
                         }
                     }
-                    
                 }
                 //Si el player no posee una llave
                 else
@@ -56,8 +54,8 @@ public class DoorScript : MonoBehaviour
                 }
             }
         }
-
     }
+    
     //Funcion para abrir puertas
     public void OpenDoor()
     {

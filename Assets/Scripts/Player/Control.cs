@@ -33,7 +33,6 @@ public class Control
     }
 
     //Update artificial, se llama en el Update de Player.
-
     public void Movements(bool isGrounded)
     {
         _input = new Vector3 (Input.GetAxisRaw(_data.horizontalAxis), 0, Input.GetAxisRaw(_data.verticalAxis)).normalized;
