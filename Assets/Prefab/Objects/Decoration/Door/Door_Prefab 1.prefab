@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7972541930315304841}
   - component: {fileID: 942922658}
   - component: {fileID: 4599707251589427528}
+  - component: {fileID: 7451123334563238169}
   m_Layer: 0
   m_Name: Door_Prefab 1
   m_TagString: Untagged
@@ -96,11 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afa82ae9cfdda244b3e5f0ac09b35f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSecretDoor: 0
+  _isSecretDoor: 0
   _audioSource: {fileID: 4599707251589427528}
   _audioClip:
   - {fileID: 0}
   _roomEntity: {fileID: 0}
+  _isOpen: 0
 --- !u!65 &942922658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -210,3 +212,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &7451123334563238169
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921225537645774151}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14c2d78a963b3e74092ea748be047e16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
