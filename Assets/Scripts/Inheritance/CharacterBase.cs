@@ -14,6 +14,10 @@ public abstract class CharacterBase
     protected bool _isImmune;
     protected float _immuneTime;
 
+    public abstract void onAttack(Collision other);
+
+    public abstract void HealthUp(float healing);
+
     public float GetMaxHealth()
     {
         return _maxHealth;

@@ -71,12 +71,16 @@ public class AnimationEvent : MonoBehaviour
 
         if (param == "stopMove")
         {
-            _player.CanMoveSetter(false);
+            //_player.CanMoveSetter(false);
+            _player.SetEmptyControlDelegate();
+            _player.SetEmptyMovementDelegate();
         }
 
         if (param == "startMove")
         {
-            _player.CanMoveSetter(true);
+            //_player.CanMoveSetter(true);
+            _player.SetControlDelegate();
+            _player.SetMovementDelegate();
         }
     }
 }

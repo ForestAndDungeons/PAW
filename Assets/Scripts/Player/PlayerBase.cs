@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBase : CharacterBase, ICharacterBase
+public class PlayerBase : CharacterBase, IDamage
 {
     PlayerBaseSO _data;
     AudioSource _audioSource;
@@ -59,6 +59,7 @@ public class PlayerBase : CharacterBase, ICharacterBase
                 _particleSystem.Play();
                 _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
                 SetIsImmune(true);
+                _playerSoundManager.playOnHit();
                 _player.StartCoroutine(_player.TimeOfImmune());
             
 
@@ -72,9 +73,9 @@ public class PlayerBase : CharacterBase, ICharacterBase
         }
     }
 
-    public void onAttack(Collision other){}
+    public override void onAttack(Collision other){}
 
-    public void HealthUp(float add)
+    public override void HealthUp(float add)
     {
         _currentHealth += add;
 
