@@ -131,7 +131,8 @@ public class Enemy : MonoBehaviour , IDamage
     {
         if (_shootPoint != null && _ArrowPref !=null)
         {
-            GameObject arrow = Instantiate(_ArrowPref, _shootPoint.position, _ArrowPref.transform.rotation);
+            var dir = _targets[0].transform.position - _ArrowPref.transform.position;
+            GameObject arrow = Instantiate(_ArrowPref, _shootPoint.position,_ArrowPref.transform.rotation);
             Rigidbody rb = arrow.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 5f, ForceMode.Impulse);
@@ -160,7 +161,6 @@ public class Enemy : MonoBehaviour , IDamage
     IEnumerator OnInvulnerable(float damage)
     {
         yield return new WaitForSeconds(1f);
-        _enemyAnimController.OnHit(false);
         _enemyBase.SetIsImmune(true);
         yield return new WaitForSeconds(1f);
         _enemyBase.SetIsImmune(false);
@@ -182,7 +182,10 @@ public class Enemy : MonoBehaviour , IDamage
         _enemyBase.HealthUp(add);
     }
 
-
+    public void StopHit()
+    {
+        _enemyAnimController.OnHit(false);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
