@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class PickUp : MonoBehaviour
 {
     [Header("Text")]
-    protected ItemUI _itemUI;
+    [SerializeField] protected ItemUI _itemUI;
     [SerializeField] protected string _title;
     [SerializeField] protected string _description;
     [SerializeField] protected bool _isConsumable;
@@ -17,7 +17,7 @@ public abstract class PickUp : MonoBehaviour
 
     public abstract void Pick(PlayerBase playerBase);
 
-    private void Start()
+    private void Awake()
     {
         _itemUI = FindObjectOfType<ItemUI>();
     }
