@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour , IDamage
     [SerializeField] float _knockbackTime;
                      float _knockbackCounter;
     [SerializeField] float _distanceBrake;
+    [SerializeField] float _distanceFollow;
                      float _timeBtwShoot;
     [SerializeField] float _startTimeBtwShoot;
     [SerializeField] List<Transform> _targets = new List<Transform>();
@@ -65,8 +66,8 @@ public class Enemy : MonoBehaviour , IDamage
         enemySoundsManager = new EnemySoundsManager(_enemyAudioSource, _enemyAClip);
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
         _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake, _enemyAnimController, _knockbackForce,_knockbackTime,_knockbackCounter);
-        _enemyState = new EnemyState(_state,_enemyAnimController,_enemyMove,_targets,enemySoundsManager,this, _isRangeEnemy,_timeBtwShoot, _startTimeBtwShoot);
-        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, _haveAKey, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState);
+        _enemyState = new EnemyState(_state,_enemyAnimController,_enemyMove,_targets,enemySoundsManager,this, _isRangeEnemy,_timeBtwShoot, _startTimeBtwShoot, _distanceFollow);
+        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, _haveAKey, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState, _enemyAnimController);
         _name = this.gameObject.name;
         _enemyState.StateStart();
   
@@ -110,20 +111,19 @@ public class Enemy : MonoBehaviour , IDamage
             
         }
     }
-    private void OnTriggerExit(Collider other)
+   /* private void OnTriggerExit(Collider other)
     {
         if (_isRangeEnemy)
         {
             _targets.Remove(other.transform);
         }
         else { 
-            var _isAttack = _enemyState.IsAttackGetter();
-            if (!_isAttack)
-            {
-                _targets.Remove(other.transform);
+                if (_enemyState.CurrentStateGetter() == State.idle)
+                {
+                    _targets.Remove(other.transform);
+                }
             }
-        }
-    }
+    }*/
 
     //Instantiate
 
@@ -159,19 +159,16 @@ public class Enemy : MonoBehaviour , IDamage
 
     IEnumerator OnInvulnerable(float damage)
     {
-        var damage2 = damage;
-        Debug.Log("Entro al Ienumerator");
+        yield return new WaitForSeconds(1f);
         _enemyBase.SetIsImmune(true);
-        damage = 0.0f;
-        yield return new WaitForSeconds(.5f);
-        _enemyAnimController.OnHit(false);
-        damage = damage2;
+        yield return new WaitForSeconds(1f);
         _enemyBase.SetIsImmune(false);
+        _enemyAnimController.OnHit(false);
+
     }
 
     public void onDamage(float damage)
     {
-        _enemyAnimController.OnHit(true);
         _enemyBase.onDamage(damage);
     }
 
@@ -190,5 +187,8 @@ public class Enemy : MonoBehaviour , IDamage
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _distanceBrake);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _distanceFollow);
     }
+
 }

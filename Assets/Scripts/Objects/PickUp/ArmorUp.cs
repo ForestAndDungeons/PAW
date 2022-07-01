@@ -19,6 +19,6 @@ public class ArmorUp : PickUp
     {
         _pickUpSound.playOnCollision(_audioSource, _audioClip[0]);
         playerBase.ArmorUp(_armor);
-        onPickUp();
+        OnPickUp();
     }
 }

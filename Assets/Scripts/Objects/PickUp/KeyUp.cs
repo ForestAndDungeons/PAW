@@ -19,6 +19,6 @@ public class KeyUp : PickUp
     {
         _pickUpSound.playOnCollision(_audioSource, _audioClip[0]);
         playerBase.KeyUp(_key);
-        onPickUp();
+        OnPickUp();
     }
 }

@@ -53,17 +53,17 @@ public class EnemyAnimEvent : MonoBehaviour
     public GameObject PorcentajeDrop()
     {
         float randomPorcentaje = Random.Range(0,101);
-        if (randomPorcentaje >=0 && randomPorcentaje <10) //10%
+        if (randomPorcentaje >=0 && randomPorcentaje <=15) //15%
         {
-            Debug.Log("si es 0 o menor a 10 entra en el 10% y dropea potion. Salio : " + randomPorcentaje);
+            Debug.Log("si es 0 o menor a 10 entra en el 15% y dropea potion. Salio : " + randomPorcentaje);
             return _enemy.GetDropeables()[0];
         }
-        else if (randomPorcentaje >=10 && randomPorcentaje <= 50 ) //%40
+        else if (randomPorcentaje >15 && randomPorcentaje <= 35 ) //%20
         {
-            Debug.Log("si es mayor a 10 o menor o igual a 50 entra en el 40% y dropea escudo. Salio : " + randomPorcentaje);
+            Debug.Log("si es mayor a 10 o menor o igual a 50 entra en el 20% y dropea escudo. Salio : " + randomPorcentaje);
             return _enemy.GetDropeables()[1];
         }
-        else  //50%
+        else  //60%
         {
             Debug.Log("si es mayor a 51 entra en el 40% que no dropea nada. Salio : " +randomPorcentaje);
             return null;

@@ -15,8 +15,9 @@ public class EnemyState
     bool _isRangeEnemy;
     float _timeBtwShoot;
     float _startTimeBtwShoot;
+    float _distanceFollow;
 
-    public EnemyState(State state, EnemyAnimatorController enemyAnimController,EnemyMovement enemyMovement,List<Transform> targets, EnemySoundsManager enemySoundsManager,Enemy enemy,bool isRangeEnemy,float timeBtwShoot, float startTimeBtwShoot)
+    public EnemyState(State state, EnemyAnimatorController enemyAnimController,EnemyMovement enemyMovement,List<Transform> targets, EnemySoundsManager enemySoundsManager,Enemy enemy,bool isRangeEnemy,float timeBtwShoot, float startTimeBtwShoot, float distanceFollow)
     {
         _currentState = state;
         _enemyAnimController = enemyAnimController;
@@ -27,6 +28,7 @@ public class EnemyState
         _isRangeEnemy = isRangeEnemy;
         _timeBtwShoot = timeBtwShoot;
         _startTimeBtwShoot = startTimeBtwShoot;
+        _distanceFollow = distanceFollow;
     }
 
     public void StateStart()
@@ -83,6 +85,14 @@ public class EnemyState
                             _isAttack = true;
                             isAttack();
                         }
+                        else
+                        {
+                            isIdle();
+                        }
+                    }
+                    else
+                    {
+                        isIdle();
                     }
 
                 }
@@ -139,13 +149,16 @@ public class EnemyState
         switch (_currentState)
         {
             case State.idle:
-                if (_targets.Count == 0)
+                if (_targets.Count > 0)
                 {
-                    _enemyAnimController.OnMovement(0);
-                }
-                else
-                {
-                    isPersuit();
+                    if (Vector3.Distance(_transform.position, _targets[0].position) > _distanceFollow)
+                    {
+                        _enemyAnimController.OnMovement(0);
+                    }
+                    else
+                    {
+                        isPersuit();
+                    }
                 }
                 break;
             case State.persuit:
@@ -160,6 +173,14 @@ public class EnemyState
                             _isAttack = true;
                             isAttack();
                         }
+                        else
+                        {
+                            isIdle();
+                        }
+                    }
+                    else
+                    {
+                        isIdle();
                     }
                 }
                 else

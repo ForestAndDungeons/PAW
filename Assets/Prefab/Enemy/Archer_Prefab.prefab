@@ -922,9 +922,10 @@ MonoBehaviour:
   _particleSystem: {fileID: 4823671091789941573}
   _speed: 2
   _rb: {fileID: -4843371408109957760}
-  _knockbackForce: 4
+  _knockbackForce: 2
   _knockbackTime: 0.1
   _distanceBrake: 4
+  _distanceFollow: 0
   _startTimeBtwShoot: 2
   _targets: []
   _enemyAnim: {fileID: 8404538248739161839}

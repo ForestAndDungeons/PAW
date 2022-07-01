@@ -11,7 +11,7 @@ public abstract class PickUp : MonoBehaviour
 
     public abstract void Pick(PlayerBase playerBase);
 
-    public void onPickUp()
+    public void OnPickUp()
     {
         _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();
