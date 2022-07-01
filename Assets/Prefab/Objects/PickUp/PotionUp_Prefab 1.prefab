@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 421957557}
   - component: {fileID: 1130420962}
   - component: {fileID: 1130420963}
+  - component: {fileID: 6963479028216774767}
   m_Layer: 13
   m_Name: PotionUp_Prefab 1
   m_TagString: Untagged
@@ -98,10 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991ab2c4de91e354b878ade11f09e35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healing: 2
+  _title: 
+  _description: 
+  _speedUP: 0
+  _isConsumable: 1
   _audioSource: {fileID: 421957557}
   _audioClip:
   - {fileID: 8300000, guid: d484b67cb87e8d94eb8ba84d8a2ba8b7, type: 3}
+  _healing: 2
 --- !u!65 &2439915866307815231
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4992,3 +4997,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!95 &6963479028216774767
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5365547559676901595}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8a492406b1f7464ba8d48a4f9e7c813, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
