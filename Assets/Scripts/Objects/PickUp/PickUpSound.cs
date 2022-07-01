@@ -9,6 +9,7 @@ public class PickUpSound : SoundsManager
         _audioSource = audioSource;
         _audioClip = audioClip;
     }
+
     public override void playOnCollision(AudioSource audioSource, AudioClip _audioClip)
     {
         Debug.Log("Ejecuto sonido PickUp");
