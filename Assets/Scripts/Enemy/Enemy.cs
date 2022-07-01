@@ -160,10 +160,10 @@ public class Enemy : MonoBehaviour , IDamage
     IEnumerator OnInvulnerable(float damage)
     {
         yield return new WaitForSeconds(1f);
+        _enemyAnimController.OnHit(false);
         _enemyBase.SetIsImmune(true);
         yield return new WaitForSeconds(1f);
         _enemyBase.SetIsImmune(false);
-        _enemyAnimController.OnHit(false);
 
     }
 

@@ -493,6 +493,7 @@ GameObject:
   - component: {fileID: 7972541930315304841}
   - component: {fileID: 942922658}
   - component: {fileID: 9086609901828713839}
+  - component: {fileID: -7655767604537552490}
   m_Layer: 0
   m_Name: DoorTreasure_Prefab 2
   m_TagString: Untagged
@@ -577,11 +578,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isSecretDoor: 1
+  _collider: {fileID: 942922658}
+  _roomEntity: {fileID: 0}
+  _isOpen: 0
+  _animator: {fileID: -7655767604537552490}
   _audioSource: {fileID: 9086609901828713839}
   _audioClip:
   - {fileID: 8300000, guid: e4b74064e7e38404195013ced04d741c, type: 3}
   - {fileID: 8300000, guid: 978a5ebb59e95e84695e6ee2405df526, type: 3}
-  _roomEntity: {fileID: 0}
 --- !u!65 &942922658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -607,7 +611,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.525
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -691,6 +695,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-7655767604537552490
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921225537645774151}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14c2d78a963b3e74092ea748be047e16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7900754242009133713
 GameObject:
   m_ObjectHideFlags: 0

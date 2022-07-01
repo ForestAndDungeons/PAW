@@ -20,6 +20,10 @@ public class RoomEntity : MonoBehaviour
     bool _musicFlag;
     [SerializeField] AudioClip[] _audioClips;
 
+    [Header("Audio Door")]
+    [SerializeField] AudioSource _audioSourceDoor;
+    [SerializeField] AudioClip[] _doorsClips;
+
     [Header("Listas")]
     //Lista para guardar enemigos de la habitacion
     [SerializeField] public List<GameObject> _enemyList = new List<GameObject>();
@@ -87,6 +91,7 @@ public class RoomEntity : MonoBehaviour
         {
             if (eventRoom != null)
             {
+                _audioSourceDoor.PlayOneShot(_doorsClips[0]);
                 eventRoom();
             }
             DestroyRoomEntity();
@@ -140,8 +145,15 @@ public class RoomEntity : MonoBehaviour
             if (eventRoom != null)
             {
                 eventRoom();
+                StartCoroutine(WaitForDoorSound());
             }
         }
+    }
+    IEnumerator WaitForDoorSound()
+    {
+       
+        yield return new WaitForSeconds(0.6f);
+        _audioSourceDoor.PlayOneShot(_doorsClips[1]);
     }
 
     IEnumerator WaitForMusicTransition(int clipIndex)

@@ -59,11 +59,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _teleport: []
   _randomEnemy: 0
-  _myAudioSource: {fileID: 0}
   _audioClips:
   - {fileID: 8300000, guid: 4024831f53932b54abea4a6a47802c9e, type: 3}
   - {fileID: 8300000, guid: de314b638c3d5714e9a59b51d4596be4, type: 3}
   - {fileID: 8300000, guid: 437e337135ea79d488ba90e1f921ae49, type: 3}
-  _transition: {fileID: 0}
+  _audioSourceDoor: {fileID: 1780145312831038309, guid: f1d6efddca9b09244a9776dd282a2b8d, type: 3}
+  _doorsClips:
+  - {fileID: 8300000, guid: fbf152cf3bf78594f80191fabd4783c2, type: 3}
+  - {fileID: 8300000, guid: e43500221c78b964b80982dd8ea3654d, type: 3}
   _enemyList: []
   _playerList: []

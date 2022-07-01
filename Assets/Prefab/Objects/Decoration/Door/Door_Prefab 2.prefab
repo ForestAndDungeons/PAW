@@ -163,11 +163,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isSecretDoor: 0
-  _audioSource: {fileID: 0}
-  _audioClip:
-  - {fileID: 0}
+  _collider: {fileID: 3118706157016112999}
   _roomEntity: {fileID: 0}
   _isOpen: 0
+  _animator: {fileID: 3247094816412196827}
+  _audioSource: {fileID: 8400789444995321107}
+  _audioClip:
+  - {fileID: 8300000, guid: fbf152cf3bf78594f80191fabd4783c2, type: 3}
+  - {fileID: 8300000, guid: e43500221c78b964b80982dd8ea3654d, type: 3}
 --- !u!82 &8400789444995321107
 AudioSource:
   m_ObjectHideFlags: 0
