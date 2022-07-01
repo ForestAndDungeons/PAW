@@ -89,7 +89,7 @@ public class AnimationEvent : MonoBehaviour
         if (param == "step")
         {
             _particleWalk.Play();
-            _audioSource.PlayOneShot(_audioClip[0]);
+            //_audioSource.PlayOneShot(_audioClip[0]);
         }
 
         if (param == "slowMove")
