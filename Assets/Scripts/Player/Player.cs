@@ -156,7 +156,7 @@ public class Player : MonoBehaviour, IDamage
         _playerBase.HealthUp(add);
     }
 
-    public void SpeedUp()
+    public void AttackSpeedUp()
     {
         _myAnimator.SetBool("AttackSpeedUp", true);
     }
