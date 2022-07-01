@@ -102,4 +102,9 @@ public class PlayerBase : CharacterBase, IDamage
     {
         _haveAKey = add;
     }
+
+    public void SpeedUp()
+    {
+        _player.SpeedUp();
+    }
 }

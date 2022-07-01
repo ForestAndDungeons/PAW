@@ -63,7 +63,6 @@ public class Player : MonoBehaviour, IDamage
     //AnimationController Variable.
     [Header("Animation")]
     [SerializeField] Animator _myAnimator;
-    [SerializeField] float _attackSpeed;
 
     [Header("Pause")]
     [SerializeField] PauseManager _pauseManager;
@@ -112,8 +111,6 @@ public class Player : MonoBehaviour, IDamage
 
         _attackPower = _playerBase.GetAttackPower();
         weapon.SetAttackPower(_attackPower);
-
-        _attackSpeed = _myAnimator.speed;
     }
 
     //Llama a metodos de Artificial Updates.
@@ -159,6 +156,11 @@ public class Player : MonoBehaviour, IDamage
         _playerBase.HealthUp(add);
     }
 
+    public void SpeedUp()
+    {
+        _myAnimator.SetBool("AttackSpeedUp", true);
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         var pickUp = other.GetComponent<PickUp>();
@@ -195,11 +197,6 @@ public class Player : MonoBehaviour, IDamage
         _playerBase.SetIsImmune(false);
     }
 
-    public void CanMoveSetter(bool canMove)
-    {
-        _canMove = canMove;
-    }
-
     //PlayerSoundManager Methods
     public void SoundAttack()
     {
@@ -228,11 +225,6 @@ public class Player : MonoBehaviour, IDamage
     public void Jump()
     {
         _movement.Jump();
-    }
-
-    public void SetAttackSpeed(float add)
-    {
-        _attackSpeed += add;
     }
 
     public void SetEmptyAnimationInput(bool isGrounded)
