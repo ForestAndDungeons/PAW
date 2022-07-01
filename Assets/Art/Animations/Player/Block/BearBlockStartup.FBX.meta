@@ -68,14 +68,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.16108786
         functionName: ANIM_Event
-        data: stopMove
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 1
-        functionName: ANIM_Event
-        data: startMove
+        data: slowMove
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

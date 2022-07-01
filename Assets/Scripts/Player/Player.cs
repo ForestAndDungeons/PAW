@@ -71,8 +71,8 @@ public class Player : MonoBehaviour, IDamage
 
     //Clases Variables.
     Control _control;
-    Movement _movement;
     GroundSensor _groundSensor;
+    [HideInInspector] public Movement _movement;
     [HideInInspector] public UIPlayer _uiPlayer;
     [HideInInspector] public PlayerSoundManager _playerSoundManager;
     [HideInInspector] public AnimationController _animationController;
