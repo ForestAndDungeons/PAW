@@ -14,10 +14,11 @@ public class RoomEntity : MonoBehaviour
 
     [Header("Combat Music")]
     //Audios de la musica
-    [SerializeField] AudioSource _myAudioSource;
-    [SerializeField] AudioClip[] _audioClips;
-    [SerializeField] Animator _transition;
+    SceneTransition _sceneTransition;
+    AudioSource _musicAudioSource;
+    Animator _musicTransition;
     bool _musicFlag;
+    [SerializeField] AudioClip[] _audioClips;
 
     [Header("Listas")]
     //Lista para guardar enemigos de la habitacion
@@ -32,6 +33,9 @@ public class RoomEntity : MonoBehaviour
     {
         //Co-Rutina que inicia la funcion WaitForFillList
         StartCoroutine(WaitForFillList());
+        _sceneTransition = FindObjectOfType<SceneTransition>();
+        _musicAudioSource = _sceneTransition.GetComponent<AudioSource>();
+        _musicTransition = _sceneTransition.GetComponent<Animator>();
     }
 
     //Funcion OnTrigger que chequea quien entra dentro del area
@@ -44,7 +48,7 @@ public class RoomEntity : MonoBehaviour
         {
             //Ejecutamos la funcion para agregar los players a la lista de players dentro del RoomEntity
             AddPlayer(other.gameObject);
-            _transition.SetTrigger("fadeOut");
+            _musicTransition.SetTrigger("fadeOut");
             StartCoroutine(WaitForMusicTransition(2));
             _musicFlag = true;
         }
@@ -67,7 +71,7 @@ public class RoomEntity : MonoBehaviour
         if (_enemyList.Count <= 0 && _musicFlag)
         {
             //Realiza un fadeout a la musica de combate
-            _transition.SetTrigger("fadeOut");
+            _musicTransition.SetTrigger("fadeOut");
             //Inicia el Ienumerator para cambiar de musica
             StartCoroutine(WaitForMusicTransition(0));
             //Seteamos el booleano de musica de combate a falso
@@ -144,9 +148,10 @@ public class RoomEntity : MonoBehaviour
     {
         //Espera 2 segundos para intercambiar entre los diferentes AudioSource, con su respectiva musica
         yield return new WaitForSeconds(2f);
-        _myAudioSource.Stop();
-        _myAudioSource.clip = _audioClips[clipIndex];
-        _myAudioSource.Play();
+        _musicAudioSource.Stop();
+        _musicAudioSource.volume = 0f;
+        _musicAudioSource.clip = _audioClips[clipIndex];
+        _musicAudioSource.Play();
     }
 
     //PlayerList es privada, para no hacerla publica y poder usar la lista de manera actualizada usamos el Getter

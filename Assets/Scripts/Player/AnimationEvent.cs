@@ -91,16 +91,24 @@ public class AnimationEvent : MonoBehaviour
             //_audioSource.PlayOneShot(_audioClip[0]);
         }
 
+        if (param == "slowMove")
+        {
+            _player._movement.SetSlowSpeed();
+        }
+
+        if (param == "normalMove")
+        {
+            _player._movement.SetNormalSpeed();
+        }
+
         if (param == "stopMove")
         {
-            //_player.CanMoveSetter(false);
             _player.SetEmptyControlDelegate();
             _player.SetEmptyMovementDelegate();
         }
 
         if (param == "startMove")
         {
-            //_player.CanMoveSetter(true);
             _player.SetControlDelegate();
             _player.SetMovementDelegate();
         }

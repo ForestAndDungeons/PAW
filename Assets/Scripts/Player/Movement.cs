@@ -8,6 +8,7 @@ public class Movement
     Rigidbody _myRigidBody;
     Transform _transform;
     float _speed;
+    float _speedNormal;
     float _forceJump;
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
@@ -41,6 +42,17 @@ public class Movement
     public void SetSpeedBonus(float add)
     {
         _speed += add;
+    }
+
+    public void SetSlowSpeed()
+    {
+        _speedNormal = _speed;
+        _speed = _speed * 0.5f;
+    }
+
+    public void SetNormalSpeed()
+    {
+        _speed = _speedNormal;
     }
 
     public void SetForceJumpBonus(float add)
