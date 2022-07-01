@@ -112,17 +112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3d6e74e45187c40b4238ffb550cb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemUI: {fileID: 0}
   _title: 
   _description: 
-  _speedUP: 0
   _isConsumable: 1
-  _audioSource: {fileID: 7956874207726150465}
-  _audioClip:
-  - {fileID: 8300000, guid: f873c26602b54814794f8f1f2792e2cd, type: 3}
   _key: 1
   _audioSource: {fileID: 7956874207726150465}
   _audioClip:
-  - {fileID: 8300000, guid: f873c26602b54814794f8f1f2792e2cd, type: 3}
+  - {fileID: 8300000, guid: cfc6c0d0a9ca30d4289833b2b1fc95da, type: 3}
 --- !u!82 &7956874207726150465
 AudioSource:
   m_ObjectHideFlags: 0
