@@ -6,7 +6,7 @@ public class AttackSpeedUp : PickUp
 {
     public override void Pick(PlayerBase playerBase)
     {
-        playerBase.SpeedUp();
+        playerBase.AttackSpeedUp();
         OnPickUp();
     }
 }
