@@ -1829,7 +1829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 600, y: -400}
+  m_AnchoredPosition: {x: 600, y: -452}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &478908460
@@ -3370,6 +3370,8 @@ MonoBehaviour:
 
     Attack J
 
+    Combo Double J
+
     Special K
 
     Block L
@@ -3486,7 +3488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 745, y: 358}
+  m_AnchoredPosition: {x: 630, y: 358}
   m_SizeDelta: {x: 351.4317, y: 42.831604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962425427
@@ -3513,10 +3515,12 @@ MonoBehaviour:
 
     Attack Keypad 4
 
-    Special Keypad 5
+    Combo Double Keypad 4
 
-    Block Keypad
-    6
+    Special
+    Keypad 5
+
+    Block Keypad 6
 
 
     Movement'
@@ -3582,7 +3586,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 169.59544, w: -76.93537}
+  m_margin: {x: 0, y: 0, z: 97.87754, w: -76.93537}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5152,7 +5156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -465, y: -123.000015}
+  m_AnchoredPosition: {x: -465, y: -184}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343604486
@@ -5719,7 +5723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 422, y: -123.000015}
+  m_AnchoredPosition: {x: 422, y: -175.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1477782619
