@@ -8,8 +8,6 @@ public class Breakable : MonoBehaviour, IDamage
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] GameObject _whole;
     [SerializeField] GameObject _broken;
-    [SerializeField] bool _isChest;
-    [SerializeField] Chest _chest;
     
 
     public void onDamage(float damage)
@@ -20,13 +18,5 @@ public class Breakable : MonoBehaviour, IDamage
 
         _particleSystem.Play();
         _breakSound.Play();
-
-        if (_chest!=null)
-        {
-            if (_isChest)
-            {
-                _chest.OpenChest(this.gameObject.transform);
-            }
-        }
     }
 }

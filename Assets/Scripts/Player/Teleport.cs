@@ -9,14 +9,17 @@ public class Teleport : MonoBehaviour
     public void TeleportToRoom(List<GameObject> playerList)
     {
         Debug.Log("Entre teleport");
-        foreach(GameObject room in playerList)
+        if (playerList.Count > 0)
         {
-            if(room != null)
+            foreach(GameObject room in playerList)
             {
-                if (room == this.gameObject){}
-                else
+                if(room != null)
                 {
-                    this.transform.position = _otherPlayer.transform.position;
+                    if (room == this.gameObject){}
+                    else
+                    {
+                        this.transform.position = _otherPlayer.transform.position;
+                    }
                 }
             }
         }
