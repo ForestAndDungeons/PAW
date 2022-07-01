@@ -81,15 +81,10 @@ public class AnimationEvent : MonoBehaviour
             }
         }
 
-        /*if (param == "isWalking")
-        {
-            _particleWalk.Play();
-        }*/
-
         if (param == "step")
         {
             _particleWalk.Play();
-            //_audioSource.PlayOneShot(_audioClip[0]);
+            _audioSource.PlayOneShot(_audioClip[0]);
         }
 
         if (param == "slowMove")
