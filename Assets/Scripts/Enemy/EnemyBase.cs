@@ -13,8 +13,9 @@ public class EnemyBase : CharacterBase, IDamage
     ParticleSystem _particleSystem;
     EnemyState _enemyState;
     bool _isInvulerable;
+    EnemyAnimatorController _enemyAnimController;
 
-    public EnemyBase(string name, float maxHealth, float attackPower, float armor, bool haveAKey, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState)
+    public EnemyBase(string name, float maxHealth, float attackPower, float armor, bool haveAKey, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState,EnemyAnimatorController enemyAnimController)
     {
         _name = name;
         _maxHealth = maxHealth;
@@ -30,6 +31,7 @@ public class EnemyBase : CharacterBase, IDamage
         _enemyMove = enemyMove;
         _targets = targets;
         _enemyState = enemyState;
+        _enemyAnimController = enemyAnimController;
     }
 
     public void onDamage(float damage)
@@ -39,6 +41,7 @@ public class EnemyBase : CharacterBase, IDamage
             if (_currentHealth > 0) {
                 _enemy.CoroutineInvulnerable(damage);
                 _currentHealth -= damage - _armor;
+                _enemyAnimController.OnHit(true);
                 if (_targets.Count > 0)
                 {
                     _enemyMove.OnKnockback(_targets[0]);
