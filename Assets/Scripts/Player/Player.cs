@@ -11,7 +11,8 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] Camera _myCamera;
     [SerializeField] Camera _player2Minimap;
     [SerializeField] float _timeOfImmune;
-    [SerializeField] SKeyCode[] _sKeyCode;
+    public SKeyCode[] _sKeyCode;
+    public int combo;
 
     //Movement Variables.
     [Header("Movement Variables")]
@@ -123,30 +124,21 @@ public class Player : MonoBehaviour, IDamage
         _haveAKey = _playerBase.GetKey();
         _isGrounded = _groundSensor.GroundSensorUpdate();
 
+        if (Input.GetKeyDown(_sKeyCode[0].key))
+        {
+            combo++;
+        }
+
         if (!_isDead)
         {
             _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
             _controlDelegate(_isGrounded);
-            
-            /*if (_canMove)
-            {
-                _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
-                _control.Movements(_isGrounded);
-            }
-            else if (!_canMove)
-            {
-                _animationController.InputUpdate(0, 0);
-            }*/
         }
     }
 
     private void FixedUpdate()
     {
         _movementDelegate();
-        /*if (!_isDead && _canMove)
-        {
-            _control.IsometricMovement();
-        }*/
     }
 
     public void onDamage(float damage)

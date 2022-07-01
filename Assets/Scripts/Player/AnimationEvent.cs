@@ -26,6 +26,24 @@ public class AnimationEvent : MonoBehaviour
         if (param == "attackAnimationEnd")
         {
             _player._animationController.onAttackEnd();
+            if (_player.combo <= 1)
+            {
+                _player.combo = 0;
+            }
+        }
+
+        if (param == "attack2AnimationEnd")
+        {
+            _player._animationController.onAttack2End();
+        }
+
+        if (param == "attack2")
+        {
+            if (_player.combo > 1)
+            {
+                _player._animationController.onAttack2();
+                _player.combo = 0;
+            } 
         }
 
         if (param == "specialStart")
@@ -48,15 +66,19 @@ public class AnimationEvent : MonoBehaviour
         if (param == "blockStart")
         {
             _player.weapon.ActivateColliderBlock(true);
+            //_player._playerBase.SetIsBlocking(true);
             //_player._playerSoundManager.playOnSpecial();
             //_particleSpecial.Play();
         }
 
         if (param == "blockEnd")
         {
-            _player.weapon.ActivateColliderBlock(false);
-            _player._playerBase.SetIsBlocking(false);
-            _player._animationController.onBlockEnd();
+            if (!Input.GetKey(_player._sKeyCode[2].key))
+            {
+                _player.weapon.ActivateColliderBlock(false);
+                _player._playerBase.SetIsBlocking(false);
+                _player._animationController.onBlockEnd();
+            }
         }
 
         if (param == "isWalking")
