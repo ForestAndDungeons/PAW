@@ -6,9 +6,11 @@ public class KeyUp : PickUp
 {
     [Header("Variables")]
     [SerializeField] bool _key;
+
     [Header("Audio")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip[] _audioClip;
+    PickUpSound _pickUpSound;
 
     private void Start()
     {

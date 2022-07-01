@@ -26,7 +26,6 @@ public class Player : MonoBehaviour, IDamage
     [Header("Control Variables")]
     [SerializeField] ControlSO _controlSO;
     [SerializeField] bool _isDead;
-    [SerializeField] bool _canMove;
     public delegate void ControlDelegate(bool isGrounded);
     public ControlDelegate _controlDelegate;
 
@@ -87,7 +86,6 @@ public class Player : MonoBehaviour, IDamage
         _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();
         _isDead = false;
-        _canMove = true;
 
         _playerSoundManager = new PlayerSoundManager(_audioSource, _audioClip);
 
