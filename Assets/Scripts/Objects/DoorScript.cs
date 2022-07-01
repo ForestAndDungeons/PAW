@@ -5,11 +5,18 @@ using UnityEngine;
 //Juan Barrientos Picasso - P.A.W
 public class DoorScript : MonoBehaviour
 {
+    [Header ("Variables")]
     [SerializeField] bool _isSecretDoor;
-    [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip[] _audioClip;
+    [SerializeField] Collider _collider;
     [SerializeField] RoomEntity _roomEntity;
     [SerializeField] bool _isOpen;
+
+    [Header("Animator")]
+    [SerializeField] Animator _animator;
+
+    [Header("Audio")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _audioClip;
 
     private void Awake()
     {
@@ -64,7 +71,8 @@ public class DoorScript : MonoBehaviour
         {
             //Desactivamos los GameObjects
             _isOpen = true;
-            this.gameObject.SetActive(false);
+            _animator.SetBool("isClose", false);
+            _collider.enabled = false;
             //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
             _roomEntity.eventRoom -= OpenDoor;
             _roomEntity.eventRoom += CloseDoor;
@@ -79,7 +87,8 @@ public class DoorScript : MonoBehaviour
         {
             _isOpen = false;
             //Activamos los GameObjects
-            this.gameObject.SetActive(true);
+            _collider.enabled = true;
+            _animator.SetBool("isClose", true);
             //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
             _roomEntity.eventRoom -= CloseDoor;
             _roomEntity.eventRoom += OpenDoor;

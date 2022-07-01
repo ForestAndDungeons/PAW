@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isSecretDoor: 0
+  _collider: {fileID: 942922658}
   _audioSource: {fileID: 4599707251589427528}
   _audioClip:
   - {fileID: 0}
