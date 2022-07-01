@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7956874207726150465}
   - component: {fileID: 7956874207726150470}
   - component: {fileID: 7956874207726150471}
+  - component: {fileID: -6644027247852048814}
   m_Layer: 13
   m_Name: Key_Prefab 1
   m_TagString: Untagged
@@ -111,6 +112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3d6e74e45187c40b4238ffb550cb59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _title: 
+  _description: 
+  _speedUP: 0
+  _isConsumable: 1
+  _audioSource: {fileID: 7956874207726150465}
+  _audioClip:
+  - {fileID: 8300000, guid: f873c26602b54814794f8f1f2792e2cd, type: 3}
   _key: 1
   _audioSource: {fileID: 7956874207726150465}
   _audioClip:
@@ -4983,3 +4991,22 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!95 &-6644027247852048814
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7956874207726150469}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8a492406b1f7464ba8d48a4f9e7c813, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

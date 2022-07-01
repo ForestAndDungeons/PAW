@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -6723297963135853646}
   - component: {fileID: -6118627314610984130}
   - component: {fileID: 4037441247610992225}
+  - component: {fileID: 7211757917561647624}
   m_Layer: 13
   m_Name: AttackSpeedUp_Prefab 1
   m_TagString: Untagged
@@ -4995,3 +4996,22 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!95 &7211757917561647624
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2186397289128541551}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8a492406b1f7464ba8d48a4f9e7c813, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

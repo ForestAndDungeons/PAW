@@ -63,6 +63,7 @@ public class Player : MonoBehaviour, IDamage
     //AnimationController Variable.
     [Header("Animation")]
     [SerializeField] Animator _myAnimator;
+    [SerializeField] float _attackSpeed;
 
     [Header("Pause")]
     [SerializeField] PauseManager _pauseManager;
@@ -91,15 +92,15 @@ public class Player : MonoBehaviour, IDamage
 
         _playerSoundManager = new PlayerSoundManager(_audioSource, _audioClip);
 
-        _movement = new Movement(_dataMovement ,_myRigidBody, transform);
+        _movement = new Movement(_dataMovement, _myRigidBody, transform);
 
         _animationController = new AnimationController(_myAnimator);
 
         _control = new Control(_controlSO, _movement, transform, _sKeyCode, _playerSoundManager);
-            
+
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_playerBaseSO, _name, _haveAKey, _playerSoundManager , _audioClip , _audioSource, _particleOnDamage, this, _animationController);
+        _playerBase = new PlayerBase(_playerBaseSO, _name, _haveAKey, _playerSoundManager, _audioClip, _audioSource, _particleOnDamage, this, _animationController);
 
         _uiPlayer = new UIPlayer(_imageUIHearts, _spriteHeart, _imageUIArmor, _spriteArmor);
 
@@ -111,6 +112,8 @@ public class Player : MonoBehaviour, IDamage
 
         _attackPower = _playerBase.GetAttackPower();
         weapon.SetAttackPower(_attackPower);
+
+        _attackSpeed = _myAnimator.speed;
     }
 
     //Llama a metodos de Artificial Updates.
@@ -162,7 +165,7 @@ public class Player : MonoBehaviour, IDamage
 
         if (pickUp != null)
             pickUp.Pick(_playerBase);
-    } 
+    }
 
     public void DisableThisObject()
     {
@@ -209,7 +212,7 @@ public class Player : MonoBehaviour, IDamage
         _animationController.onAttackEnd();
     }
 
-        //Methods for SKeyCode
+    //Methods for SKeyCode
     public void Attack()
     {
         _animationController.onAttack();
@@ -225,6 +228,11 @@ public class Player : MonoBehaviour, IDamage
     public void Jump()
     {
         _movement.Jump();
+    }
+
+    public void SetAttackSpeed(float add)
+    {
+        _attackSpeed += add;
     }
 
     public void SetEmptyAnimationInput(bool isGrounded)
@@ -246,6 +254,6 @@ public class Player : MonoBehaviour, IDamage
     }
     public void SetEmptyMovementDelegate()
     {
-        _movementDelegate = delegate{};
+        _movementDelegate = delegate { };
     }
 }
