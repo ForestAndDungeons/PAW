@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
     [Header("Pause Settings")]
     bool _isPaused;
     AudioSource _audioSource;
+    SceneTransition _sceneTransition;
     [SerializeField] AudioClip[] _audioClip;
     [SerializeField] GameObject _pauseMenuUI;
     [SerializeField] KeyCode _pauseKey;
@@ -16,6 +17,7 @@ public class PauseManager : MonoBehaviour
     {
         _isPaused = false;
         _audioSource = GetComponent<AudioSource>();
+        _sceneTransition = FindObjectOfType<SceneTransition>();
     }
 
     void Update()
@@ -51,5 +53,10 @@ public class PauseManager : MonoBehaviour
 
         Time.timeScale = 0f;
         _pauseMenuUI.SetActive(true);
+    }
+
+    public void SceneTransitionGoToMenu()
+    {
+        _sceneTransition.GoToMenu();
     }
 }

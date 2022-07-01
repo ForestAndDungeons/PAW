@@ -77,6 +77,7 @@ public class SceneTransition : MonoBehaviour
         _audioSource.volume = 0f;
         _audioSource.clip = _mainMenuMusic;
         _audioSource.Play();
+        Destroy(this.gameObject);
     }
 
     public void QuitGame()

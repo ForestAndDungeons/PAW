@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Player\Block.cs" />
     <Compile Include="Assets\Scripts\Player\SKeyCode.cs" />
     <Compile Include="Assets\Scripts\Player\SO\ControlSO.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\SceneTransitionOS.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\PickUp.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimEvent.cs" />
     <Compile Include="Assets\Scripts\Inheritance\CharacterBase.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Scripts\Player\UIPlayer.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\PickUpSound.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MenuOptions.cs" />
+    <Compile Include="Assets\Scripts\MenuScripts\NextLevel.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\ArmorUp.cs" />
     <Compile Include="Assets\Scripts\Inheritance\MonoMethods.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorController.cs" />
@@ -102,8 +104,6 @@
     <Compile Include="Assets\Scripts\Objects\PickUp\KeyUp.cs" />
     <Compile Include="Assets\Scripts\Objects\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
-    <Compile Include="Assets\Scripts\MenuScripts\NextLevel.cs" />
-    <Compile Include="Assets\Scripts\MenuScripts\SceneTransitionOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
