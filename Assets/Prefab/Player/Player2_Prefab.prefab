@@ -4984,6 +4984,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  combo: 0
   _dataMovement: {fileID: 11400000, guid: a4722fac96ec5174ba72a7fca96ca24e, type: 2}
   _turnSpeed: 1080
   _myRigidBody: {fileID: 6670248294070730240}
@@ -14869,8 +14870,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: -1.2098382e-11, y: 0.2699166, z: 0.010682748}
+  m_Size: {x: 2.329232, y: 0.96859086, z: 2.1355295}
+  m_Center: {x: -0.041721374, y: 4.347539e-12, z: 0.377891}
 --- !u!114 &6047677540862408007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14883,6 +14884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a9f8c2869d64d45bc61e53d84dfae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1325296930917242123}
   _myCollider: {fileID: 6047677538930754111}
 --- !u!1 &6047677539051601543
 GameObject:
@@ -20020,10 +20022,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e5d6019e1d0b64a8b60da8c8f27720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackPower: 0
+  _slowMotion: 0.08
   _myColliderAttack: {fileID: 6047677540614927429}
   _myColliderSpecial: {fileID: 6047677539691897299}
   _myColliderBlock: {fileID: 6047677538930754111}
-  _slowMotion: 0.08
   _particleSystem: {fileID: 6443341705715347164}
 --- !u!82 &6047677540836974067
 AudioSource:

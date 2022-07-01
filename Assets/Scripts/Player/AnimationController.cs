@@ -16,9 +16,19 @@ public class AnimationController
         _myAnimator.SetBool("onAttack", true);
     }
 
+    public void onAttack2()
+    {
+        _myAnimator.SetBool("onAttack2", true);
+    }
+
     public void onAttackEnd()
     {
         _myAnimator.SetBool("onAttack", false);
+    }
+
+    public void onAttack2End()
+    {
+        _myAnimator.SetBool("onAttack2", false);
     }
 
     public void onSpecial()
