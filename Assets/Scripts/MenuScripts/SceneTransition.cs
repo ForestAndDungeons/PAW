@@ -91,10 +91,15 @@ public class SceneTransition : MonoBehaviour
             _scenes.Add(scene);
     }
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         UpdateList();
         ChangeScene();
+    }*/
+
+    public void Victory(string victoryScreen)
+    {
+        SceneManager.LoadScene(_victoryScreen);
     }
 
     IEnumerator Transition(string sceneToLoad)
