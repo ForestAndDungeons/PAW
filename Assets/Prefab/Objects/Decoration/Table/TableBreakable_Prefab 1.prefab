@@ -53,6 +53,7 @@ MonoBehaviour:
   _particleSystem: {fileID: 258780287291621130}
   _whole: {fileID: 4018799831797010634}
   _broken: {fileID: 7239764786904722117}
+  _coin: {fileID: 916985028585331380, guid: 6371aa8286bf1964f808147aae3527e0, type: 3}
 --- !u!65 &258780287291621131
 BoxCollider:
   m_ObjectHideFlags: 0
