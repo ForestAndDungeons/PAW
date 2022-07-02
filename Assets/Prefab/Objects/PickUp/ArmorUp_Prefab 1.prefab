@@ -101,12 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: 
   _description: 
-  _speedUP: 0
   _isConsumable: 1
+  _armor: 1
   _audioSource: {fileID: 3690015579229203788}
   _audioClip:
   - {fileID: 8300000, guid: f873c26602b54814794f8f1f2792e2cd, type: 3}
-  _armor: 1
 --- !u!65 &2194623833104247349
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4992,7 +4991,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: -7759331768739107841, guid: bdf6bc407b3ed884b9a046230b639bfb, type: 3}
+  m_Mesh: {fileID: -7759331768739107841, guid: e5a8024279e207949a5e13b45a796386, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}

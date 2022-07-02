@@ -8,7 +8,7 @@ public class Breakable : MonoBehaviour, IDamage
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] GameObject _whole;
     [SerializeField] GameObject _broken;
-    
+    [SerializeField] GameObject _coin;
 
     public void onDamage(float damage)
     {
@@ -18,5 +18,7 @@ public class Breakable : MonoBehaviour, IDamage
 
         _particleSystem.Play();
         _breakSound.Play();
+
+        Instantiate(_coin, _broken.transform.position, Quaternion.Euler(0f,0f,90f));
     }
 }
