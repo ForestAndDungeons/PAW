@@ -927,7 +927,7 @@ MonoBehaviour:
   _knockbackTime: 0.1
   _distanceBrake: 4
   _distanceFollow: 0
-  _startTimeBtwShoot: 2
+  _startTimeBtwShoot: 2.5
   _targets: []
   _enemyAnim: {fileID: 8404538248739161839}
   _enemyAudioSource: {fileID: 935123396449176470}
@@ -7910,6 +7910,10 @@ PrefabInstance:
     - target: {fileID: 2023027701853276377, guid: 41106dcf21d24bf488d66243f3287257, type: 3}
       propertyPath: m_Name
       value: Archer_Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023027701853276377, guid: 41106dcf21d24bf488d66243f3287257, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2023027701853276377, guid: 41106dcf21d24bf488d66243f3287257, type: 3}
       propertyPath: m_IsActive
