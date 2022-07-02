@@ -107,4 +107,10 @@ public class PlayerBase : CharacterBase, IDamage
     {
         _player.AttackSpeedUp();
     }
+
+    public override void SetForceJump(float forceJump)
+    {
+        _forceJump = forceJump;
+        _player._movement.SetForceJump(_forceJump);
+    }
 }

@@ -13,6 +13,7 @@ public abstract class CharacterBase
     protected bool _isBlocking;
     protected bool _isImmune;
     protected float _immuneTime;
+    protected float _forceJump;
 
     public abstract void onAttack(Collision other);
 
@@ -56,5 +57,10 @@ public abstract class CharacterBase
     public void SetIsImmune(bool isImmune)
     {
         _isImmune = isImmune;
+    }
+
+    public virtual void SetForceJump(float forceJump)
+    {
+        _forceJump = forceJump;
     }
 }

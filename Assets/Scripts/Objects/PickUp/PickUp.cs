@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class PickUp : MonoBehaviour
 {
     [Header("Text")]
-    [SerializeField] protected ItemUI _itemUI;
+    protected ItemUI _itemUI;
     [SerializeField] protected string _title;
     [SerializeField] protected string _description;
     [SerializeField] protected bool _isConsumable;

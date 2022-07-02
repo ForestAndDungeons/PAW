@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement 
+public class Movement
 {
     MovementSO _data;
     Rigidbody _myRigidBody;
@@ -36,7 +36,7 @@ public class Movement
 
     public void IsometricMove(Vector3 input)
     {
-        _myRigidBody.MovePosition(_transform.position + (_transform.forward * input.magnitude)* _speed * Time.deltaTime);
+        _myRigidBody.MovePosition(_transform.position + (_transform.forward * input.magnitude) * _speed * Time.deltaTime);
     }
 
     public void SetSpeedBonus(float add)
@@ -55,8 +55,13 @@ public class Movement
         _speed = _speedNormal;
     }
 
-    public void SetForceJumpBonus(float add)
+    public void SetForceJump(float forceJump)
     {
-        _forceJump += add;
+        _forceJump = forceJump;
+    }
+
+    public float GetForceJump()
+    {
+        return _forceJump;
     }
 }

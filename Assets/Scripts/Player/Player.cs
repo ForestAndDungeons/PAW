@@ -43,6 +43,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] float _currentHealth;
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
+    [SerializeField] float _forceJump;
     [SerializeField] bool _haveAKey;
     [SerializeField] ParticleSystem _particleOnDamage;
     [SerializeField] ParticleSystem _particleWalk;
@@ -121,6 +122,7 @@ public class Player : MonoBehaviour, IDamage
         _armor = _playerBase.GetArmor();
         _haveAKey = _playerBase.GetKey();
         _isGrounded = _groundSensor.GroundSensorUpdate();
+        _forceJump = _movement.GetForceJump();
 
         if (Input.GetKeyDown(_sKeyCode[0].key))
         {
