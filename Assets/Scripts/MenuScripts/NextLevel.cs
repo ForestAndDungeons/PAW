@@ -5,6 +5,7 @@ using UnityEngine;
 public class NextLevel : MonoBehaviour
 {
     SceneTransition _sceneManager;
+    [SerializeField] string _victoryScreen;
 
     public void Awake()
     {
@@ -14,6 +15,7 @@ public class NextLevel : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         _sceneManager.UpdateList();
-        _sceneManager.ChangeScene();
+        _sceneManager.Victory(_victoryScreen);
+        //_sceneManager.ChangeScene();
     }
 }
