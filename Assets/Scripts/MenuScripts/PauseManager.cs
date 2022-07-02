@@ -13,6 +13,10 @@ public class PauseManager : MonoBehaviour
     [SerializeField] KeyCode _pauseKey;
     [SerializeField] GameObject[] _players;
 
+    [SerializeField] GameObject _resumeButton;
+    [SerializeField] GameObject _pausePanel;
+    [SerializeField] GameObject _defeatScreen;
+
     void Awake()
     {
         _isPaused = false;
@@ -49,10 +53,14 @@ public class PauseManager : MonoBehaviour
     {
         _isPaused = true;
         //TEMPORAL
-        _pauseKey = KeyCode.L;
+        _pauseKey = KeyCode.KeypadDivide;
 
         Time.timeScale = 0f;
         _pauseMenuUI.SetActive(true);
+        _resumeButton.SetActive(false);
+        _pausePanel.SetActive(false);
+        _defeatScreen.SetActive(true);
+
     }
 
     public void SceneTransitionGoToMenu()
