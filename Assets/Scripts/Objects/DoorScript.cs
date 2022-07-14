@@ -44,7 +44,7 @@ public class DoorScript : MonoBehaviour
                         if (_roomEntity._enemyList.Count <= 0)
                         {
                             //Booleano de que el player posee una llave lo ponemos en falso (USAS LA LLAVE)
-                            pj._playerBase.SetKey(false);
+                            pj._playerBase.SetKey(0);
                             //Se reproduce el audio de que se abre la puerta
                             _audioSource.PlayOneShot(_audioClip[1]);
                             //Se destruye la puerta

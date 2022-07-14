@@ -8,8 +8,18 @@ public abstract class PickUp : MonoBehaviour
     protected ItemUI _itemUI;
     [SerializeField] protected string _title;
     [SerializeField] protected string _description;
-    [SerializeField] protected bool _isConsumable;
 
+    [SerializeField] protected bool _isConsumable;
+    [SerializeField] protected bool _isPurchasable;
+
+    [SerializeField] protected float _number;
+    [SerializeField] protected float _price;
+
+    AudioSource _audioSource;
+    [SerializeField] AudioClip _audioClip;
+
+    protected delegate void PickUpDelegate(float number);
+    protected PickUpDelegate _pickUpDelegate;
 
     protected Renderer _renderer;
     protected Collider _collider;
@@ -20,9 +30,33 @@ public abstract class PickUp : MonoBehaviour
     private void Awake()
     {
         _itemUI = FindObjectOfType<ItemUI>();
+        _audioSource = GetComponent<AudioSource>();
+        _pickUpDelegate = null;
     }
 
-    public void OnPickUp()
+    public void OnPickUp(PlayerBase playerBase)
+    {
+        if (_isPurchasable)
+        {
+            var money = playerBase.GetMoney();
+            
+            if (money >= _price)
+            {
+                playerBase.SetMoney(money -= _price);
+                _audioSource.PlayOneShot(_audioClip);
+                _pickUpDelegate(_number);
+                Activate();
+            }
+        }
+        else
+        {
+            _audioSource.PlayOneShot(_audioClip);
+            _pickUpDelegate(_number);
+            Activate();
+        }
+    }
+
+    public void Activate()
     {
         _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();

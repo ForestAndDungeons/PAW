@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour, IDamage
 {
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] Camera _myCamera;
     [SerializeField] Camera _player2Minimap;
     [SerializeField] float _timeOfImmune;
+    [SerializeField] TMP_Text _moneyUI;
+
     public SKeyCode[] _sKeyCode;
     public int combo;
 
@@ -21,7 +24,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] Rigidbody _myRigidBody;
     public delegate void MovementDelegate();
     public MovementDelegate _movementDelegate;
-
+    
     //Control Variables.
     [Header("Control Variables")]
     [SerializeField] ControlSO _controlSO;
@@ -44,6 +47,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
     [SerializeField] float _forceJump;
+    [SerializeField] float _money;
     [SerializeField] bool _haveAKey;
     [SerializeField] ParticleSystem _particleOnDamage;
     [SerializeField] ParticleSystem _particleWalk;
@@ -123,6 +127,11 @@ public class Player : MonoBehaviour, IDamage
         _haveAKey = _playerBase.GetKey();
         _isGrounded = _groundSensor.GroundSensorUpdate();
         _forceJump = _movement.GetForceJump();
+
+        _moneyUI.text = System.Convert.ToString(_money);
+
+        //TEMP para ver
+        _money = _playerBase.GetMoney();
 
         if (Input.GetKeyDown(_sKeyCode[0].key))
         {
@@ -224,6 +233,7 @@ public class Player : MonoBehaviour, IDamage
     }
     public void Jump()
     {
+        if(_isGrounded)
         _movement.Jump();
     }
 

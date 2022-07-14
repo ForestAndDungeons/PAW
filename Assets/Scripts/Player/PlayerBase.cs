@@ -86,31 +86,26 @@ public class PlayerBase : CharacterBase, IDamage
 
         _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
     }
+
     public void ArmorUp(float add)
     {
         _armor += add;
-
         _player._uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
     }
 
-    public void AttackUp(float add)
-    {
-        _attackPower += add;
-    }
-
-    public void KeyUp(bool add)
-    {
-        _haveAKey = add;
-    }
-
-    public void AttackSpeedUp()
+    public void AttackSpeedUp(float add)
     {
         _player.AttackSpeedUp();
     }
 
-    public override void SetForceJump(float forceJump)
+    public void SetForceJump(float forceJump)
     {
         _forceJump = forceJump;
         _player._movement.SetForceJump(_forceJump);
+    }
+
+    public void SpeedUp(float add)
+    {
+        _player._movement.SetSpeedBonus(add);
     }
 }

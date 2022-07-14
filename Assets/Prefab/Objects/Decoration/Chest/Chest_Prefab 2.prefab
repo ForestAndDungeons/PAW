@@ -147,6 +147,8 @@ MonoBehaviour:
   _listObjects:
   - {fileID: 5728481763137000649, guid: edc6baececfd92e4e88a8d68cd2585a5, type: 3}
   - {fileID: 2186397289128541551, guid: ec0c5c20241338e429467049fd563aad, type: 3}
+  - {fileID: 1988065120456563796, guid: e142e4669ad32b049baf675abced27c3, type: 3}
+  - {fileID: 1122166473623046852, guid: da0bcf813ca9139499368e47c1fde4cf, type: 3}
   _randomFloat: 0
   _spawnObject: {fileID: 4023396635904370730}
   _collider: {fileID: 4946674547644271636}

@@ -101,10 +101,10 @@ MonoBehaviour:
   _title: Useless Boot
   _description: Now you can Jump!
   _isConsumable: 0
-  _forceJump: 10
-  _audioSource: {fileID: 8723851382771423407}
-  _audioClip:
-  - {fileID: 8300000, guid: b0fe24fb70a5d3c459da1c5bd0d95049, type: 3}
+  _isPurchasable: 0
+  _number: 5
+  _price: 20
+  _audioClip: {fileID: 8300000, guid: b0fe24fb70a5d3c459da1c5bd0d95049, type: 3}
 --- !u!65 &1136534026
 BoxCollider:
   m_ObjectHideFlags: 0

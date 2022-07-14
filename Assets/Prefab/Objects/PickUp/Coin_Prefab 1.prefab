@@ -102,10 +102,10 @@ MonoBehaviour:
   _title: 
   _description: 
   _isConsumable: 1
-  _value: 1
-  _audioSource: {fileID: 6220984048759506733}
-  _audioClip:
-  - {fileID: 8300000, guid: 629bb848575255b4c9bebd50c817ce8f, type: 3}
+  _isPurchasable: 0
+  _number: 1
+  _price: 0
+  _audioClip: {fileID: 8300000, guid: 629bb848575255b4c9bebd50c817ce8f, type: 3}
 --- !u!65 &-3789100914974163831
 BoxCollider:
   m_ObjectHideFlags: 0

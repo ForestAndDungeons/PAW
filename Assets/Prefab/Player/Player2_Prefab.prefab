@@ -4919,6 +4919,7 @@ MonoBehaviour:
   _myCamera: {fileID: 0}
   _player2Minimap: {fileID: 0}
   _timeOfImmune: 2
+  _moneyUI: {fileID: 0}
   _sKeyCode:
   - key: 260
     method:
@@ -4990,7 +4991,6 @@ MonoBehaviour:
   _myRigidBody: {fileID: 6670248294070730240}
   _controlSO: {fileID: 11400000, guid: 5baf5942dbb86024b97034dfb7901ded, type: 2}
   _isDead: 0
-  _canMove: 0
   _radius: 0.5
   _isGrounded: 0
   _groundLayer:
@@ -5002,6 +5002,8 @@ MonoBehaviour:
   _currentHealth: 0
   _attackPower: 1
   _armor: 0
+  _forceJump: 0
+  _money: 0
   _haveAKey: 0
   _particleOnDamage: {fileID: 8219167114958651588}
   _particleWalk: {fileID: 6728226457885269832}
@@ -14886,6 +14888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1325296930917242123}
   _myCollider: {fileID: 6047677538930754111}
+  _timeOfBlocking: 0
 --- !u!1 &6047677539051601543
 GameObject:
   m_ObjectHideFlags: 0

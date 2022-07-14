@@ -99,13 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cced8ab99f09035409154cb7b2c91cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemUI: {fileID: 0}
   _title: 
   _description: 
-  _attack: 1
-  _audioSource: {fileID: 8000198305634056376}
-  _audioClip:
-  - {fileID: 8300000, guid: 12b1ee958c7507f41b277bccf3ad4923, type: 3}
+  _isConsumable: 0
+  _isPurchasable: 0
+  _number: 1
+  _price: 20
+  _audioClip: {fileID: 8300000, guid: 12b1ee958c7507f41b277bccf3ad4923, type: 3}
 --- !u!65 &5681919255185231922
 BoxCollider:
   m_ObjectHideFlags: 0
