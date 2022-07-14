@@ -99,13 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0859ffaa2e7f22439872c32f58b6c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemUI: {fileID: 0}
   _title: Blessing Of Wind
   _description: +Attack Speed
-  _speedUP: 1
-  _audioSource: {fileID: -6723297963135853646}
-  _audioClip:
-  - {fileID: 8300000, guid: 12b1ee958c7507f41b277bccf3ad4923, type: 3}
+  _isConsumable: 0
+  _isPurchasable: 0
+  _number: 1
+  _price: 20
+  _audioClip: {fileID: 0}
 --- !u!65 &1605283777613341226
 BoxCollider:
   m_ObjectHideFlags: 0
