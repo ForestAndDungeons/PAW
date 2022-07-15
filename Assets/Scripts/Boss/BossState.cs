@@ -8,7 +8,8 @@ public class BossState
     //Objetos utilizados
     BossAnimController _bossAnimController;
     List<Transform> _enemySpawnPos;
-    EnemySoundsManager _enemySoundsManager;
+    AudioClip[] _bossAudioClip;
+    AudioSource _bossAudioSource;
     RoomEntity _roomEntity;
     Boss _boss;
     FallFloorSpawner _fallFloorSpawner;
@@ -39,11 +40,12 @@ public class BossState
     float _40Porvit;
     float _20Porvit;
 
-    public BossState(StateBoss Bossstate, BossAnimController bossAnimController, EnemySoundsManager enemySoundsManager, Boss boss, float timeBtwShoot, float startTimeBtwShoot, List<Transform> enemySpawnPos,RoomEntity roomEntity,float maxHeath,float startTimeBtwIdle, float timeBtwIdle, float startTimeBtwFallFloor, float timeBtwFallFloor, float startTimeBtwSpawnEnemy, float timeBtwSpawnEnemy, FallFloorSpawner fallFloorSpawner, Fireball fireball,FireBallSpawner fireBallSpawner, InmolateEnemy inmolateEnemy)
+    public BossState(StateBoss Bossstate, BossAnimController bossAnimController, AudioClip[] bossAudioClip, AudioSource bossAudioSource, Boss boss, float timeBtwShoot, float startTimeBtwShoot, List<Transform> enemySpawnPos,RoomEntity roomEntity,float maxHeath,float startTimeBtwIdle, float timeBtwIdle, float startTimeBtwFallFloor, float timeBtwFallFloor, float startTimeBtwSpawnEnemy, float timeBtwSpawnEnemy, FallFloorSpawner fallFloorSpawner, Fireball fireball,FireBallSpawner fireBallSpawner, InmolateEnemy inmolateEnemy)
     {
         _currentState = Bossstate;
         _bossAnimController = bossAnimController;
-        _enemySoundsManager = enemySoundsManager;
+        _bossAudioClip = bossAudioClip;
+        _bossAudioSource = bossAudioSource;
         _roomEntity = roomEntity;
         _boss = boss;
         _fallFloorSpawner = fallFloorSpawner;
@@ -67,7 +69,7 @@ public class BossState
 
     public void BossStateUpdate()
     {
-        Debug.Log("80% = "+_80Porvit+" 60% = "+_60Porvit+" 40% = "+_40Porvit+" 20% = "+ _20Porvit);
+        //Debug.Log("80% = "+_80Porvit+" 60% = "+_60Porvit+" 40% = "+_40Porvit+" 20% = "+ _20Porvit);
         // el boss Tendria 15 hp -- a los 80% de vida (12) Activa Jump, termina Jump y se activa nuevamente Fireball. -- a los 60% de vida (9) se activa estado SpawnEnemy, termina SpawnEnemy vuelve a fireball.--A los 40% (6) de vida Activa Jump, termina Jump y se activa nuevamente Fireball .-- A los 20%(3)Se activa RageMode, Fireballs mas rapidas y se intercambian entre Jump y Spawn enemie al mismo tiempo
         switch (_currentState)
         {
@@ -82,6 +84,7 @@ public class BossState
                         if (_timeBtwIdle <= 0)
                         {
                             _bossAnimController.OnIdle(false);
+                            _bossAudioSource.PlayOneShot(_bossAudioClip[0]);
                             _timeBtwIdle = _startTimeBtwIdle;
                             _isFireBall = true;
                             isFireBall();
@@ -107,16 +110,12 @@ public class BossState
             case StateBoss.Jump:
                 if (!isDead)
                 {
-                    
-                    Debug.Log("Estoy en el estado Jump");
-                    Debug.Log("Spawneo " + _randomSpawnFloor + " techos");
-                    Debug.Log("_currentSpawn: " + _currentSpawnFloor);
+                    //_bossAudioSource.PlayOneShot(_bossAudioClip[2]);
                     if (_currentSpawnFloor < _randomSpawnFloor)
                     {
                         if (_timeBtwFallFloor <= 0)
                         {
                             _bossAnimController.OnJump(true);
-                            Debug.Log("Instancio un techo N° " + _currentSpawnFloor);
                             _fallFloorSpawner.SpawnFloor();
                             _currentSpawnFloor++;
                             _timeBtwFallFloor = _startTimeBtwFallFloor;
@@ -128,7 +127,6 @@ public class BossState
                     }
                     else
                     {
-                        Debug.Log("Termine de tirar techos prro");
                         _bossAnimController.OnJump(false);
                         if (!_isFireBall)
                         {
@@ -155,7 +153,6 @@ public class BossState
                     {
                         if (!_rageMode)
                         {
-                            Debug.Log("Estoy en el estado Fireball");
                             Debug.Log(_boss.GetCurrentHealth());
                             if (_timeBtwShoot <= 0)
                             {
@@ -170,7 +167,7 @@ public class BossState
                             if (_boss.GetCurrentHealth() == _80Porvit || _boss.GetCurrentHealth() == _40Porvit)
                             {
                                 _bossAnimController.OnFireBall(false);
-                                _randomSpawnFloor = Random.Range(1,12);
+                                _randomSpawnFloor = Random.Range(6,13);
                                 _currentSpawnFloor = 0;
                                 _isFireBall = false;
                                 isJump();
@@ -178,8 +175,7 @@ public class BossState
                             else if (_boss.GetCurrentHealth() == _60Porvit)
                             {
                                 _bossAnimController.OnFireBall(false);
-                                _randomSpawnEnemies = Random.Range(1,12);
-                                _randomSpawnRatPos = Random.Range(0, 4);
+                                _randomSpawnEnemies = Random.Range(4,9);
                                 _currentSpawnEnemies = 0;
                                 _isFireBall = false;
                                 isSpawnEnemy();
@@ -201,15 +197,13 @@ public class BossState
             case StateBoss.SpawnEnemy:
                 if (!isDead)
                 {
-                    Debug.Log("Estoy en el estado SpawnEnemy");
-                    Debug.Log("Spawneo " + _randomSpawnEnemies + " enemigos");
-                    Debug.Log("_currentSpawn: " + _currentSpawnEnemies);
                     if (_currentSpawnEnemies < _randomSpawnEnemies)
                     {
                         if (_timeBtwSpawnEnemy <= 0)
                         {
+                            _randomSpawnRatPos = Random.Range(0, 4);
                             _bossAnimController.OnSpawnEnemy(true);
-                            Debug.Log("Instancio enemigo N° " + _currentSpawnEnemies);
+                            _bossAudioSource.PlayOneShot(_bossAudioClip[6]);
                             Debug.Log("_randomSpawnRatPos: " + _randomSpawnRatPos);
                             Debug.Log("x :" + _enemySpawnPos[_randomSpawnRatPos]);
                             _inmolateEnemy.InstantiateInmolateEnemy(_enemySpawnPos[_randomSpawnRatPos]);
@@ -223,7 +217,6 @@ public class BossState
                     }
                     else
                     {
-                        Debug.Log("Termine instanciar enemigos prro");
                         _bossAnimController.OnSpawnEnemy(false);
                         if (!_isFireBall)
                         {

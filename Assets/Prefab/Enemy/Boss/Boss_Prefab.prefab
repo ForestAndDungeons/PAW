@@ -223,7 +223,14 @@ MonoBehaviour:
   _startTimeBtwSpawnEnemy: 2
   _bossAnim: {fileID: 1985407679736331589}
   _bossAudioSource: {fileID: 8158460225413657247}
-  _bossAClip: []
+  _bossAClip:
+  - {fileID: 8300000, guid: 1560ecb36133741488319ed38bd98707, type: 3}
+  - {fileID: 8300000, guid: 7cf439e6b64414b4da7bd181d897a54f, type: 3}
+  - {fileID: 8300000, guid: 06636689a9db0f846ab15f7dc1ea0694, type: 3}
+  - {fileID: 8300000, guid: 3984dc6c6a4ca644097c12e40eb99728, type: 3}
+  - {fileID: 8300000, guid: 813212e6681d9cf4d9af62309fc4a088, type: 3}
+  - {fileID: 8300000, guid: d5be0d1025a50304fade50bee057633c, type: 3}
+  - {fileID: 8300000, guid: b509d8f6ce34d9f4c986e4ddb4f3f3dc, type: 3}
   _fireball: {fileID: 340383003594505907, guid: 5f873978c051a0849b32afd0bfb8f3e2, type: 3}
   _inmolateEnemy: {fileID: 5056521814417555649, guid: 6e618fc1fad3be0488e6826273d6aa8f, type: 3}
   _roomEntity: {fileID: 0}
@@ -238,8 +245,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.382
   m_Pitch: 1
   Loop: 0
   Mute: 0

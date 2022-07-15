@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossBase : CharacterBase, IDamage
 {
-    EnemySoundsManager _enemySoundsManager;
     Boss _boss;
     AudioSource _audioSource;
     AudioClip[] _audioClip;
@@ -13,14 +12,13 @@ public class BossBase : CharacterBase, IDamage
     BossAnimController _bossAnimController;
     BossState _bossState;
 
-    public BossBase(string name, float maxHealth, float attackPower, float armor, EnemySoundsManager enemySoundsManager, Boss boss, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, BossAnimController bossAnimController, BossState bossState)
+    public BossBase(string name, float maxHealth, float attackPower, float armor, Boss boss, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, BossAnimController bossAnimController, BossState bossState)
     {
         _name = name;
         _maxHealth = maxHealth;
         _currentHealth = maxHealth;
         _attackPower = attackPower;
         _armor = armor;
-        _enemySoundsManager = enemySoundsManager;
         _boss = boss;
         _audioSource = audioSource;
         _audioClip = audioClip;
@@ -38,13 +36,12 @@ public class BossBase : CharacterBase, IDamage
         {     
             _currentHealth -= damage - _armor;
             _bossAnimController.OnHit(true);
-            //_enemySoundsManager.playOnCollision(_audioSource, _audioClip[0]);
             _particleSystem.Play();
         }
         else if (_currentHealth <= 0)
         {
             _bossState.isDead = true;
-            //_enemySoundsManager.playOnDeath();
+            _audioSource.PlayOneShot(_audioClip[5]);
         }
     }
 

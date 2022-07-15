@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    [SerializeField] Transform _bossPos; 
+    [SerializeField] Transform _bossPos;
     Player _pjCol;
     Boss _boss;
     Weapon _pjAttack;
     [SerializeField] Rigidbody _myRB;
-    [SerializeField] float _forceSpeed;
+    float _forceSpeed;
+    [SerializeField] AudioSource _aSource;
+    [SerializeField] AudioClip _aClip;
 
     private void Start()
     {
@@ -50,6 +52,9 @@ public class Fireball : MonoBehaviour
         if (res != null)
         {
             Instantiate(this, res, resTransform.rotation);
+            _forceSpeed = Random.Range(8,13);
+            Debug.Log(_forceSpeed);
+            _aSource.PlayOneShot(_aClip);
         }
         
     }

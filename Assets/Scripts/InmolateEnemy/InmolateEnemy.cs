@@ -13,6 +13,8 @@ public class InmolateEnemy : MonoBehaviour, IDamage
     [SerializeField] List<Transform> _playerList;
     [SerializeField] float _speed;
     [SerializeField] Rigidbody _rb;
+    [SerializeField] AudioSource _aSource;
+    [SerializeField] AudioClip[] _aClip;
 
     void Awake()
     {
@@ -53,6 +55,7 @@ public class InmolateEnemy : MonoBehaviour, IDamage
     }
     public void DestroInmolateEnemy()
     {
+        _aSource.PlayOneShot(_aClip[1]);
         Destroy(this.gameObject);
     }
 
@@ -72,6 +75,7 @@ public class InmolateEnemy : MonoBehaviour, IDamage
     {
         Debug.Log(enemyPosToSpawn);
         Instantiate(this, enemyPosToSpawn.position, this.transform.rotation);
+        _aSource.PlayOneShot(_aClip[0]);
     }
 
     public void onDamage(float damage)
