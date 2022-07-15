@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 515354035036906754}
   - component: {fileID: 553474955766162526}
   - component: {fileID: 4075427632782682058}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Barrel_Prefab 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4601021705513851266}
   - component: {fileID: -1735332612030036181}
   - component: {fileID: 7627335499640125630}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Chair_Prefab 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
