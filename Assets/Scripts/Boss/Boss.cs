@@ -47,7 +47,7 @@ public class Boss : MonoBehaviour , IDamage
     FireBallSpawner _fireBallSpawner;
     [Header("Scripts")]
     [SerializeField]Fireball _fireball;
-    [SerializeField]RatEnemy _ratEnemy;
+    [SerializeField]InmolateEnemy _inmolateEnemy;
 
     [Header("RoomEntity")]
     public RoomEntity _roomEntity;
@@ -63,7 +63,7 @@ public class Boss : MonoBehaviour , IDamage
         _timeBtwSpawnEnemy = _startTimeBtwSpawnEnemy;
         enemySoundsManager = new EnemySoundsManager(_bossAudioSource, _bossAClip);
         _bossAnimController = new BossAnimController(_bossAnim);
-        _bossState = new BossState(_stateBoss, _bossAnimController, enemySoundsManager, this, _timeBtwShoot, _startTimeBtwShoot,_enemySpawnPos,_roomEntity,_maxHealth,_startTimeBtwIdle,_timeBtwIdle,_startTimeBtwFallFloor,_timeBtwFallFloor,_startTimeBtwSpawnEnemy,_timeBtwSpawnEnemy,_fallFloorSpawner, _fireball, _fireBallSpawner,_ratEnemy);
+        _bossState = new BossState(_stateBoss, _bossAnimController, enemySoundsManager, this, _timeBtwShoot, _startTimeBtwShoot,_enemySpawnPos,_roomEntity,_maxHealth,_startTimeBtwIdle,_timeBtwIdle,_startTimeBtwFallFloor,_timeBtwFallFloor,_startTimeBtwSpawnEnemy,_timeBtwSpawnEnemy,_fallFloorSpawner, _fireball, _fireBallSpawner,_inmolateEnemy);
         _bossBase = new BossBase(_name, _maxHealth, _attackPower, _armor, enemySoundsManager, this, _bossAudioSource, _bossAClip, _particleSystem, _bossAnimController,_bossState);
         _name = this.gameObject.name;
         
@@ -92,6 +92,10 @@ public class Boss : MonoBehaviour , IDamage
         }
     }
 
+    public void StopHit()
+    {
+        _bossAnimController.OnHit(false);
+    }
 
     public void onDamage(float damage)
     {
