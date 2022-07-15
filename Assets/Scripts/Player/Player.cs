@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] Camera _player2Minimap;
     [SerializeField] float _timeOfImmune;
     [SerializeField] TMP_Text _moneyUI;
+    public TMP_Text _infoUI;
 
     public SKeyCode[] _sKeyCode;
     public int combo;

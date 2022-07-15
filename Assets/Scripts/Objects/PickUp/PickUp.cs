@@ -39,7 +39,7 @@ public abstract class PickUp : MonoBehaviour
         if (_isPurchasable)
         {
             var money = playerBase.GetMoney();
-            
+
             if (money >= _price)
             {
                 playerBase.SetMoney(money -= _price);
@@ -73,5 +73,18 @@ public abstract class PickUp : MonoBehaviour
         }
 
         Destroy(this.gameObject, 1f);
+    }
+
+    public string GetTitle()
+    {
+        return _title;
+    }
+    public float GetPrice()
+    {
+        return _price;
+    }
+    public bool GetIsPurchasable()
+    {
+        return _isPurchasable;
     }
 }
