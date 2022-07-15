@@ -7,6 +7,8 @@ public class RoomEntity : MonoBehaviour
 {
     //Lista de teleports para los players
     [SerializeField] List<Teleport> _teleport;
+    [Header("BossRoom")]
+    [SerializeField] bool _isBossRoom;
 
     [Header("EnemyWithKey")]
     //Variable privada para guardar un enemigo random
@@ -146,6 +148,19 @@ public class RoomEntity : MonoBehaviour
             {
                 eventRoom();
                 StartCoroutine(WaitForDoorSound());
+            }
+        }
+        if (_playerList.Count >= 2)
+        {
+            if (_isBossRoom)
+            {
+                var boxCollider = this.gameObject.GetComponent<Collider>();
+                if (boxCollider !=null)
+                {
+                    boxCollider.enabled = false;
+                    Debug.Log("PlayerList : " + _playerList.Count);
+                }
+
             }
         }
     }
