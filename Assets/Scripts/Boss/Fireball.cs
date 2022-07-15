@@ -41,10 +41,13 @@ public class Fireball : MonoBehaviour
     {
         
         _pjAttack = other.gameObject.GetComponent<Weapon>();
-        Debug.Log(_pjAttack.name);
         if (_pjAttack!=null)
         {
             FireballReverse();
+        }
+        else
+        {
+            Debug.Log(".");
         }
     }
     public void InstantiateFireball(Vector3 res,Transform resTransform)

@@ -58,7 +58,6 @@ public class RoomEntity : MonoBehaviour
             StartCoroutine(WaitForMusicTransition(2));
             _musicFlag = true;
         }
-
         //Chequeamos si colisiono con un Enemigo
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
@@ -68,6 +67,7 @@ public class RoomEntity : MonoBehaviour
             _enemyList.Add(other.gameObject);
 
         }
+        else { Debug.Log("."); }
     }
 
     //Mientras el jugador siga dentro del RoomEntity pregunta
@@ -137,9 +137,12 @@ public class RoomEntity : MonoBehaviour
         _playerList.Add(playerGO);
 
         //Recorre la lista de teleports y teletransporta al otro player que no esta en PlayersList a la posicion del primero que entro a la habitacion
-        foreach (Teleport tp in _teleport)
+        if (_teleport!=null)
         {
-            tp.TeleportToRoom(_playerList);
+            foreach (Teleport tp in _teleport)
+            {
+                tp.TeleportToRoom(_playerList);
+            }
         }
         //Inicia el combate de la habitacion, ejecutamos el eventRoom que usa el CloseDoors
         if (_playerList.Count <= 1)

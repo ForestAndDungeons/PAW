@@ -218,7 +218,7 @@ MonoBehaviour:
   _armor: 0
   _particleSystem: {fileID: 6413444017285861783}
   _startTimeBtwIdle: 2
-  _startTimeBtwShoot: 3
+  _startTimeBtwShoot: 1
   _startTimeBtwFallFloor: 2
   _startTimeBtwSpawnEnemy: 2
   _bossAnim: {fileID: 1985407679736331589}
