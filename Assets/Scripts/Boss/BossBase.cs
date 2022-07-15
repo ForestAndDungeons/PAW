@@ -31,12 +31,15 @@ public class BossBase : CharacterBase, IDamage
 
     public void onDamage(float damage)
     {
+        _bossAnimController.OnFireBall(false);
+        _bossAnimController.OnJump(false);
+        _bossAnimController.OnSpawnEnemy(false);
         if (_currentHealth > 0)
         {     
             _currentHealth -= damage - _armor;
-            //_bossAnimController.OnHit(true);
+            _bossAnimController.OnHit(true);
             //_enemySoundsManager.playOnCollision(_audioSource, _audioClip[0]);
-            //_particleSystem.Play();
+            _particleSystem.Play();
         }
         else if (_currentHealth <= 0)
         {
