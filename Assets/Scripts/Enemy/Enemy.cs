@@ -111,19 +111,7 @@ public class Enemy : MonoBehaviour , IDamage
             
         }
     }
-   /* private void OnTriggerExit(Collider other)
-    {
-        if (_isRangeEnemy)
-        {
-            _targets.Remove(other.transform);
-        }
-        else { 
-                if (_enemyState.CurrentStateGetter() == State.idle)
-                {
-                    _targets.Remove(other.transform);
-                }
-            }
-    }*/
+
 
     //Instantiate
 
@@ -142,7 +130,7 @@ public class Enemy : MonoBehaviour , IDamage
     //Other Funtions
     public void PartialSoundAttack()
     {
-        enemySoundsManager.playOnAttack();
+        enemySoundsManager.playOnAttack();      
     }
     public void DestroyThisObject()
     {
