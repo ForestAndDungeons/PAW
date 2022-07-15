@@ -9,7 +9,7 @@ public class Fireball : MonoBehaviour
     Boss _boss;
     Weapon _pjAttack;
     [SerializeField] Rigidbody _myRB;
-    float _forceSpeed;
+    [SerializeField] float _forceSpeed;
     [SerializeField] AudioSource _aSource;
     [SerializeField] AudioClip _aClip;
 
@@ -52,7 +52,7 @@ public class Fireball : MonoBehaviour
         if (res != null)
         {
             Instantiate(this, res, resTransform.rotation);
-            _forceSpeed = Random.Range(8,13);
+            _forceSpeed = Random.Range(6,13);
             Debug.Log(_forceSpeed);
             _aSource.PlayOneShot(_aClip);
         }
