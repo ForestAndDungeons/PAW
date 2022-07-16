@@ -46,12 +46,15 @@ public class Boss : MonoBehaviour , IDamage
     FallFloorSpawner _fallFloorSpawner;
     FireBallSpawner _fireBallSpawner;
     [Header("Scripts")]
-    [SerializeField]Fireball _fireball;
-    [SerializeField]InmolateEnemy _inmolateEnemy;
+    [SerializeField] Fireball _fireball;
+    [SerializeField] InmolateEnemy _inmolateEnemy;
 
     [Header("RoomEntity")]
     public RoomEntity _roomEntity;
 
+
+    [SerializeField] Animator _bridge;
+    [SerializeField] GameObject _wall;
 
     void Awake()
     {
@@ -63,7 +66,7 @@ public class Boss : MonoBehaviour , IDamage
         _timeBtwSpawnEnemy = _startTimeBtwSpawnEnemy;
         //enemySoundsManager = new EnemySoundsManager(_bossAudioSource, _bossAClip);
         _bossAnimController = new BossAnimController(_bossAnim);
-        _bossState = new BossState(_stateBoss, _bossAnimController,_bossAClip,_bossAudioSource, this, _timeBtwShoot, _startTimeBtwShoot,_enemySpawnPos,_roomEntity,_maxHealth,_startTimeBtwIdle,_timeBtwIdle,_startTimeBtwFallFloor,_timeBtwFallFloor,_startTimeBtwSpawnEnemy,_timeBtwSpawnEnemy,_fallFloorSpawner, _fireball, _fireBallSpawner,_inmolateEnemy);
+        _bossState = new BossState(_stateBoss, _bossAnimController,_bossAClip,_bossAudioSource, this, _timeBtwShoot, _startTimeBtwShoot,_enemySpawnPos,_roomEntity,_maxHealth,_startTimeBtwIdle,_timeBtwIdle,_startTimeBtwFallFloor,_timeBtwFallFloor,_startTimeBtwSpawnEnemy,_timeBtwSpawnEnemy,_fallFloorSpawner, _fireball, _fireBallSpawner,_inmolateEnemy,_bridge,_wall);
         _bossBase = new BossBase(_name, _maxHealth, _attackPower, _armor, this, _bossAudioSource, _bossAClip, _particleSystem, _bossAnimController,_bossState);
         _name = this.gameObject.name;
         
