@@ -40,7 +40,10 @@ public class BossState
     float _40Porvit;
     float _20Porvit;
 
-    public BossState(StateBoss Bossstate, BossAnimController bossAnimController, AudioClip[] bossAudioClip, AudioSource bossAudioSource, Boss boss, float timeBtwShoot, float startTimeBtwShoot, List<Transform> enemySpawnPos,RoomEntity roomEntity,float maxHeath,float startTimeBtwIdle, float timeBtwIdle, float startTimeBtwFallFloor, float timeBtwFallFloor, float startTimeBtwSpawnEnemy, float timeBtwSpawnEnemy, FallFloorSpawner fallFloorSpawner, Fireball fireball,FireBallSpawner fireBallSpawner, InmolateEnemy inmolateEnemy)
+    GameObject _wall;
+    Animator _bridge;
+
+    public BossState(StateBoss Bossstate, BossAnimController bossAnimController, AudioClip[] bossAudioClip, AudioSource bossAudioSource, Boss boss, float timeBtwShoot, float startTimeBtwShoot, List<Transform> enemySpawnPos,RoomEntity roomEntity,float maxHeath,float startTimeBtwIdle, float timeBtwIdle, float startTimeBtwFallFloor, float timeBtwFallFloor, float startTimeBtwSpawnEnemy, float timeBtwSpawnEnemy, FallFloorSpawner fallFloorSpawner, Fireball fireball,FireBallSpawner fireBallSpawner, InmolateEnemy inmolateEnemy, Animator bridge, GameObject wall)
     {
         _currentState = Bossstate;
         _bossAnimController = bossAnimController;
@@ -65,6 +68,8 @@ public class BossState
         _60Porvit = (maxHeath * 60) / 100;
         _40Porvit = (maxHeath * 40) / 100;
         _20Porvit = (maxHeath * 20) / 100;
+        _bridge = bridge;
+        _wall = wall;
     }
 
     public void BossStateUpdate()
@@ -236,6 +241,8 @@ public class BossState
                 break;
             case StateBoss.die:
                 _bossAnimController.OnDeath();
+                _wall.SetActive(false);
+                _bridge.SetBool("Bridge", true);
                 break;
         }
     }
