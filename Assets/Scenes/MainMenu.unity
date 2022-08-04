@@ -8197,6 +8197,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1279187200335794353, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
+      propertyPath: _victoryMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 0fc935c2c3b2efa488435a729c06f044, type: 3}
     - target: {fileID: 1279187200335794355, guid: 3136b92ecd68d1f42a2c7c0f1b6f78ef, type: 3}
       propertyPath: m_Name
       value: SceneManager

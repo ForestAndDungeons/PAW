@@ -24,6 +24,7 @@ public class SceneTransition : MonoBehaviour
     AudioSource _audioSource;
     [SerializeField] AudioClip _mainMenuMusic;
     [SerializeField] AudioClip _levelMusic;
+    [SerializeField] AudioClip _victoryMusic;
 
     public void Awake()
     {
@@ -100,6 +101,7 @@ public class SceneTransition : MonoBehaviour
     public void Victory(string victoryScreen)
     {
         SceneManager.LoadScene(_victoryScreen);
+        _audioSource.enabled = false;
     }
 
     IEnumerator Transition(string sceneToLoad)

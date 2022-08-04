@@ -97,7 +97,6 @@ GameObject:
   m_Component:
   - component: {fileID: 931740765}
   - component: {fileID: 931740764}
-  - component: {fileID: 931740766}
   m_Layer: 19
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -155,23 +154,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 165193976}
---- !u!114 &931740766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931740763}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cef9d56f5c894a4598093482e446003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetP1: {fileID: 0}
-  _targetP2: {fileID: 0}
-  pj: {fileID: 0}
-  _smoothSpeed: 0
-  _offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1585857492
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +213,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -378,7 +360,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2028112172}
   - component: {fileID: 2028112174}
-  - component: {fileID: 2028112173}
   m_Layer: 20
   m_Name: CM vcam2
   m_TagString: Untagged
@@ -423,7 +404,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -436,23 +417,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1795312055}
---- !u!114 &2028112173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028112171}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cef9d56f5c894a4598093482e446003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetP1: {fileID: 0}
-  _targetP2: {fileID: 0}
-  pj: {fileID: 0}
-  _smoothSpeed: 0
-  _offset: {x: 0, y: 0, z: 0}
 --- !u!1 &2093689673
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +556,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
