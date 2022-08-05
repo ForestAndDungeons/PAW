@@ -15,6 +15,5 @@ public class UIBoss
         var _maxHealth = maxHealth;
         var _currentHealth = currentHealth;
         _sliderHealthBar.value = _currentHealth / _maxHealth;
-
     }
 }

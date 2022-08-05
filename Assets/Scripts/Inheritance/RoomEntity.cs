@@ -10,6 +10,8 @@ public class RoomEntity : MonoBehaviour
     [Header("BossRoom")]
     [SerializeField] bool _isBossRoom;
 
+    [SerializeField] GameObject _bossLifeSlider;
+
     [Header("EnemyWithKey")]
     //Variable privada para guardar un enemigo random
     [SerializeField] int _randomEnemy;
@@ -157,6 +159,7 @@ public class RoomEntity : MonoBehaviour
         {
             if (_isBossRoom)
             {
+                _bossLifeSlider.SetActive(true);
                 var boxCollider = this.gameObject.GetComponent<Collider>();
                 if (boxCollider !=null)
                 {
