@@ -3376,6 +3376,8 @@ MonoBehaviour:
 
     Block L
 
+    Stats
+    TAB
 
     Movement'
   m_isRightToLeft: 0
@@ -3488,7 +3490,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 630, y: 358}
+  m_AnchoredPosition: {x: 630, y: 335}
   m_SizeDelta: {x: 351.4317, y: 42.831604}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962425427
@@ -3521,7 +3523,6 @@ MonoBehaviour:
     Keypad 5
 
     Block Keypad 6
-
 
     Movement'
   m_isRightToLeft: 0
