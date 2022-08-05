@@ -130,7 +130,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 643, y: 554}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3201945911231557025
 CanvasRenderer:
@@ -703,6 +703,7 @@ MonoBehaviour:
   _players:
   - {fileID: 0}
   - {fileID: 0}
+  _bossLifeBar: {fileID: 7626597667026993955}
   _resumeButton: {fileID: 8437506872416245011}
   _pausePanel: {fileID: 490054116088991636}
   _defeatScreen: {fileID: 8437506872619232011}
@@ -1580,6 +1581,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d65158e3a75f4cd4c8fd9899c2aa4d98, type: 3}
+--- !u!1 &7626597667026993955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3698846160201506557, guid: d65158e3a75f4cd4c8fd9899c2aa4d98, type: 3}
+  m_PrefabInstance: {fileID: 6522319296613801438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7626597667026993952 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3698846160201506558, guid: d65158e3a75f4cd4c8fd9899c2aa4d98, type: 3}
