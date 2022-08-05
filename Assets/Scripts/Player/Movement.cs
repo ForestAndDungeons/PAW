@@ -60,6 +60,11 @@ public class Movement
         _forceJump = forceJump;
     }
 
+    public float GetSpeed()
+    {
+        return _speed;
+    }
+
     public float GetForceJump()
     {
         return _forceJump;

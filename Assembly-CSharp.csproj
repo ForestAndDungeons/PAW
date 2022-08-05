@@ -109,6 +109,7 @@
     <Compile Include="Assets\Scripts\Player\UIPlayer.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\PickUpSound.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\MenuOptions.cs" />
+    <Compile Include="Assets\Scripts\Boss\UIBoss.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\NextLevel.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\ArmorUp.cs" />
     <Compile Include="Assets\Scripts\Boss\Fireball.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\Price.cs" />
     <Compile Include="Assets\Scripts\Boss\FallFloorSpawner.cs" />
+    <Compile Include="Assets\Scripts\Player\UIStats.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
