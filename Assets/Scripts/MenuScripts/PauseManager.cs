@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] GameObject _pauseMenuUI;
     [SerializeField] KeyCode _pauseKey;
     [SerializeField] GameObject[] _players;
+    [SerializeField] GameObject _bossLifeBar;
 
     [SerializeField] GameObject _resumeButton;
     [SerializeField] GameObject _pausePanel;
@@ -60,6 +61,7 @@ public class PauseManager : MonoBehaviour
         _resumeButton.SetActive(false);
         _pausePanel.SetActive(false);
         _defeatScreen.SetActive(true);
+        _bossLifeBar.SetActive(false);
 
     }
 
