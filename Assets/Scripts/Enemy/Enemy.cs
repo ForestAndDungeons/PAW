@@ -112,6 +112,14 @@ public class Enemy : MonoBehaviour , IDamage
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        Player pj = other.GetComponent<Player>();
+        if (pj)
+        {
+            _targets.Remove(other.transform);
+        }
+    }
 
     //Instantiate
 
@@ -122,7 +130,7 @@ public class Enemy : MonoBehaviour , IDamage
             var dir = _targets[0].transform.position - _ArrowPref.transform.position;
             GameObject arrow = Instantiate(_ArrowPref, _shootPoint.position,_ArrowPref.transform.rotation);
             Rigidbody rb = arrow.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 20f, ForceMode.Impulse); //antes 32f
             rb.AddForce(transform.up * 5f, ForceMode.Impulse);
         }
     }

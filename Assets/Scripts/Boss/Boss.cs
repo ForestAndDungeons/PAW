@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum StateBoss { idle, Jump, FireBall, SpawnEnemy, die};
 public class Boss : MonoBehaviour , IDamage
 {
+    [Header("UI Boss")]
+    [SerializeField] GameObject _bossUI;
+    [SerializeField] Slider _sliderHeathBar;
+    UIBoss _uiBoss;
+
     [Header("Boss Lists")]
     [SerializeField] List<Transform> _enemySpawnPos = new List<Transform>();
 
@@ -59,18 +65,24 @@ public class Boss : MonoBehaviour , IDamage
     void Awake()
     {
         _fallFloorSpawner = GetComponentInChildren<FallFloorSpawner>();
+
         _fireBallSpawner = GetComponentInChildren<FireBallSpawner>();
+
         _timeBtwShoot = _startTimeBtwShoot;
         _timeBtwIdle = _startTimeBtwIdle;
         _timeBtwFallFloor = _startTimeBtwFallFloor;
         _timeBtwSpawnEnemy = _startTimeBtwSpawnEnemy;
+
         //enemySoundsManager = new EnemySoundsManager(_bossAudioSource, _bossAClip);
         _bossAnimController = new BossAnimController(_bossAnim);
-        _bossState = new BossState(_stateBoss, _bossAnimController,_bossAClip,_bossAudioSource, this, _timeBtwShoot, _startTimeBtwShoot,_enemySpawnPos,_roomEntity,_maxHealth,_startTimeBtwIdle,_timeBtwIdle,_startTimeBtwFallFloor,_timeBtwFallFloor,_startTimeBtwSpawnEnemy,_timeBtwSpawnEnemy,_fallFloorSpawner, _fireball, _fireBallSpawner,_inmolateEnemy,_bridge,_wall);
-        _bossBase = new BossBase(_name, _maxHealth, _attackPower, _armor, this, _bossAudioSource, _bossAClip, _particleSystem, _bossAnimController,_bossState);
-        _name = this.gameObject.name;
-        
 
+        _bossState = new BossState(_stateBoss, _bossAnimController,_bossAClip,_bossAudioSource, this, _timeBtwShoot, _startTimeBtwShoot,_enemySpawnPos,_roomEntity,_maxHealth,_startTimeBtwIdle,_timeBtwIdle,_startTimeBtwFallFloor,_timeBtwFallFloor,_startTimeBtwSpawnEnemy,_timeBtwSpawnEnemy,_fallFloorSpawner, _fireball, _fireBallSpawner,_inmolateEnemy,_bridge,_wall, _bossUI);
+        
+        _bossBase = new BossBase(_name, _maxHealth, _attackPower, _armor, this, _bossAudioSource, _bossAClip, _particleSystem, _bossAnimController,_bossState);
+
+        _uiBoss = new UIBoss(_sliderHeathBar);
+        
+        _name = this.gameObject.name;
     }
     //GETTERS
     public float GetCurrentHealth() {return _currentHealth;}
@@ -79,6 +91,7 @@ public class Boss : MonoBehaviour , IDamage
         _stateBoss = _bossState.CurrentStateGetter();
         _currentHealth = _bossBase.GetCurrentHealth();
         _bossState.BossStateUpdate();
+        _uiBoss.UIBossArtifitialUptade(_maxHealth, _currentHealth);
     }
 
     //Other Funtions

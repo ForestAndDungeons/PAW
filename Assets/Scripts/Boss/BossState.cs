@@ -16,6 +16,7 @@ public class BossState
     FireBallSpawner _fireBallSpawner;
     Fireball _fireball;
     InmolateEnemy _inmolateEnemy;
+    GameObject _bossUI;
     //Variables
     bool _isFireBall = false;
     bool _rageMode = false;
@@ -43,7 +44,7 @@ public class BossState
     GameObject _wall;
     Animator _bridge;
 
-    public BossState(StateBoss Bossstate, BossAnimController bossAnimController, AudioClip[] bossAudioClip, AudioSource bossAudioSource, Boss boss, float timeBtwShoot, float startTimeBtwShoot, List<Transform> enemySpawnPos,RoomEntity roomEntity,float maxHeath,float startTimeBtwIdle, float timeBtwIdle, float startTimeBtwFallFloor, float timeBtwFallFloor, float startTimeBtwSpawnEnemy, float timeBtwSpawnEnemy, FallFloorSpawner fallFloorSpawner, Fireball fireball,FireBallSpawner fireBallSpawner, InmolateEnemy inmolateEnemy, Animator bridge, GameObject wall)
+    public BossState(StateBoss Bossstate, BossAnimController bossAnimController, AudioClip[] bossAudioClip, AudioSource bossAudioSource, Boss boss, float timeBtwShoot, float startTimeBtwShoot, List<Transform> enemySpawnPos,RoomEntity roomEntity,float maxHeath,float startTimeBtwIdle, float timeBtwIdle, float startTimeBtwFallFloor, float timeBtwFallFloor, float startTimeBtwSpawnEnemy, float timeBtwSpawnEnemy, FallFloorSpawner fallFloorSpawner, Fireball fireball,FireBallSpawner fireBallSpawner, InmolateEnemy inmolateEnemy, Animator bridge, GameObject wall, GameObject bossUi)
     {
         _currentState = Bossstate;
         _bossAnimController = bossAnimController;
@@ -70,6 +71,7 @@ public class BossState
         _20Porvit = (maxHeath * 20) / 100;
         _bridge = bridge;
         _wall = wall;
+        _bossUI = bossUi;
     }
 
     public void BossStateUpdate()
@@ -241,6 +243,7 @@ public class BossState
                 break;
             case StateBoss.die:
                 _bossAnimController.OnDeath();
+                _bossUI.SetActive(false);
                 _wall.SetActive(false);
                 _bridge.SetBool("Bridge", true);
                 break;
