@@ -69,10 +69,11 @@ public class Player : MonoBehaviour, IDamage
     [Header("Animation")]
     [SerializeField] Animator _myAnimator;
 
+    //Interface.
     [Header("Pause")]
     [SerializeField] PauseManager _pauseManager;
     [SerializeField] GameObject _resumeButton;
-
+    [SerializeField] GameObject _stats;
 
     //Clases Variables.
     Control _control;
@@ -143,6 +144,15 @@ public class Player : MonoBehaviour, IDamage
         {
             _animationController.InputUpdate(_control._verticalInput, _control._horizontalInput);
             _controlDelegate(_isGrounded);
+        }
+
+        if(Input.GetKey(KeyCode.Tab))
+        {
+            _stats.SetActive(true);
+        }
+        else
+        {
+            _stats.SetActive(false);
         }
     }
 
