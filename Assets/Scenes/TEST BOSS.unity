@@ -8173,11 +8173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7067903524634968618, guid: efa87cc0e48b33d4fbdd974f1309b891, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -212.99998
+      value: -212.99997
       objectReference: {fileID: 0}
     - target: {fileID: 8147644140866813876, guid: efa87cc0e48b33d4fbdd974f1309b891, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -185.49998
+      value: -185.49997
       objectReference: {fileID: 0}
     - target: {fileID: 8147644142148603379, guid: efa87cc0e48b33d4fbdd974f1309b891, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8853,6 +8853,10 @@ PrefabInstance:
       propertyPath: _myAudioSource
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 381163651025098843, guid: 108490af78d03d348b613072816404be, type: 3}
+      propertyPath: _bossLifeSlider
+      value: 
+      objectReference: {fileID: 429994149}
     - target: {fileID: 381163651025098843, guid: 108490af78d03d348b613072816404be, type: 3}
       propertyPath: _doorList.Array.size
       value: 1
@@ -12213,7 +12217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7067903524634968618, guid: efa87cc0e48b33d4fbdd974f1309b891, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -212.99998
+      value: -212.99997
       objectReference: {fileID: 0}
     - target: {fileID: 8147644140866813876, guid: efa87cc0e48b33d4fbdd974f1309b891, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12225,7 +12229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147644140866813876, guid: efa87cc0e48b33d4fbdd974f1309b891, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -184.48802
+      value: -184.488
       objectReference: {fileID: 0}
     - target: {fileID: 8147644140866813877, guid: efa87cc0e48b33d4fbdd974f1309b891, type: 3}
       propertyPath: m_Name
