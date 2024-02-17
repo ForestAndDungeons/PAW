@@ -69,7 +69,6 @@ public class RoomEntity : MonoBehaviour
             _enemyList.Add(other.gameObject);
 
         }
-        else { Debug.Log("."); }
     }
 
     //Mientras el jugador siga dentro del RoomEntity pregunta

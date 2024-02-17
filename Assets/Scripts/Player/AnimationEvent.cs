@@ -76,7 +76,7 @@ public class AnimationEvent : MonoBehaviour
             if (!Input.GetKey(_player._sKeyCode[2].key))
             {
                 _player.weapon.ActivateColliderBlock(false);
-                _player._playerBase.SetIsBlocking(false);
+                _player._playerBase.isBlocking = false;
                 _player._animationController.onBlockEnd();
             }
         }

@@ -17,14 +17,14 @@ public class EnemyAttack : MonoBehaviour
 
     public void OnTriggerEnter(Collider player)
     {
-        _attackPower = this.gameObject.GetComponentInParent<Enemy>()._enemyBase.GetAttackPower();
+        _attackPower = this.gameObject.GetComponentInParent<Enemy>()._enemyBase.attackPower;
 
         if (player != null)
         {
             var _player = player.gameObject.GetComponent<Player>();
             if (_player != null)
             {
-                _player._playerBase.onDamage(_attackPower);
+                _player.onDamage(_attackPower);
             }
         }
     }

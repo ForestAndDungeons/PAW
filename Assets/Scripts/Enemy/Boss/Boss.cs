@@ -89,7 +89,7 @@ public class Boss : MonoBehaviour , IDamage
     void Update()
     {
         _stateBoss = _bossState.CurrentStateGetter();
-        _currentHealth = _bossBase.GetCurrentHealth();
+        _currentHealth = _bossBase.currentHealth;
         _bossState.BossStateUpdate();
         _uiBoss.UIBossArtifitialUptade(_maxHealth, _currentHealth);
     }
