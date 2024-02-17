@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour , IDamage
     public bool GetterHaveAKey() {return _haveAKey;}
     void Update()
     {
-        _haveAKey = _enemyBase.haveAKey;
+        _haveAKey = _enemyBase.haveKey;
         _knockbackCounter = _enemyMove.CurrentKnockbackCounterGetter();
         _state = _enemyState.CurrentStateGetter();
         if (_stateDelegate!=null)
@@ -159,7 +159,7 @@ public class Enemy : MonoBehaviour , IDamage
         yield return new WaitForSeconds(1f);
         _enemyBase.isImmune = true;
         yield return new WaitForSeconds(1f);
-        _enemyBase.isImmune = false;
+        _enemyBase.isImmune = true;
 
     }
 

@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     static GameManager _instance;
-    
+
     public static GameManager Instance
     {
         get
@@ -19,10 +17,13 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-    
+
+    [Header("Classes")]
+    SceneTransition _sceneTransition;
+
+    public SceneTransition sceneTransition { get { return _sceneTransition; } private set { } }
+
     public List<Player> _players;
-    bool isPaused;
-    [SerializeField] GameObject _pauseMenu;
 
     void Awake()
     {
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _sceneTransition = GetComponentInChildren<SceneTransition>();
     }
 
     void Start()
@@ -45,27 +48,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void Pause()
-    {
-        if (isPaused)
-        {
-            Time.timeScale = 1f;
-            _pauseMenu.SetActive(false);
-            isPaused = false;
-        }
-        else if (!isPaused)
-        {
-            Time.timeScale = 0f;
-            _pauseMenu.SetActive(true);
-            isPaused = true;
-        }
-    }
-
-    public void ChangeScene(string scene)
-    {
-        SceneManager.LoadScene(scene);
     }
 
     /*IEnumerator LoadSceneTimer()

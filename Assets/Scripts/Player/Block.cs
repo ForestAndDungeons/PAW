@@ -13,7 +13,6 @@ public class Block : MonoBehaviour
         _player._playerBase.isBlocking = true;
 
     }
-
     public IEnumerator TimeOfBlocking()
     {
         yield return new WaitForSeconds(_timeOfBlocking);

@@ -37,13 +37,14 @@ public class RoomEntity : MonoBehaviour
     //Creamos el delegate y event
     public delegate void EventRoom();
     public event EventRoom eventRoom;
+
     private void Start()
     {
         //Co-Rutina que inicia la funcion WaitForFillList
         StartCoroutine(WaitForFillList());
-        _sceneTransition = FindObjectOfType<SceneTransition>();
-        _musicAudioSource = _sceneTransition.GetComponent<AudioSource>();
-        _musicTransition = _sceneTransition.GetComponent<Animator>();
+        
+        _musicAudioSource = GameManager.Instance.sceneTransition.GetComponent<AudioSource>();
+        _musicTransition = GameManager.Instance.sceneTransition.GetComponent<Animator>();
     }
 
     //Funcion OnTrigger que chequea quien entra dentro del area

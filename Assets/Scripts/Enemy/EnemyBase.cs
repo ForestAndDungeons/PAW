@@ -15,14 +15,14 @@ public class EnemyBase : CharacterBase, IDamage
     bool _isInvulerable;
     EnemyAnimatorController _enemyAnimController;
 
-    public EnemyBase(string name, float maxHealth, float attackPower, float armor, bool haveAKey, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState,EnemyAnimatorController enemyAnimController)
+    public EnemyBase(string name, float maxHealth, float attackPower, float armor, bool haveKey, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState,EnemyAnimatorController enemyAnimController)
     {
         _name = name;
         _maxHealth = maxHealth;
         _currentHealth = maxHealth;
         _attackPower = attackPower;
         _armor = armor;
-        _haveKey = haveAKey;
+        _haveKey = haveKey;
         _enemySoundsManager = enemySoundsManager;
         _enemy = enemy;
         _audioSource = audioSource;
@@ -60,7 +60,7 @@ public class EnemyBase : CharacterBase, IDamage
     public override void onAttack(Collision other)
     {
         if (other != null)
-            other.gameObject.GetComponent<Player>().onDamage(_attackPower);
+            other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
     }
 
     public override void HealthUp(float healing)

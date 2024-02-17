@@ -16,6 +16,7 @@ public class UIStats : MonoBehaviour
     {
         _text = GetComponent<TMP_Text>();
         _maxHealth = "\nMAX LIFE: " + _player._playerBase.maxHealth;
+
         _attackPower = "\nATK: " + _player._playerBase.attackPower;
         _speed = "\nSPEED: " + _player._movement.GetSpeed();
 
@@ -28,7 +29,7 @@ public class UIStats : MonoBehaviour
         _attackPower = "\nATK: " + _player._playerBase.attackPower;
         _speed = "\nSPEED: " + _player._movement.GetSpeed();
 
-        if (_player._playerBase.haveAKey)
+        if (_player._playerBase.haveKey)
         {
             _haveKeyText = "\nHAVE KEY";
         }
