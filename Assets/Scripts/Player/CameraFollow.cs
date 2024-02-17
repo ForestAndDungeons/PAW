@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-
     [SerializeField] Transform _targetP1;
     [SerializeField] Transform _targetP2;
     [SerializeField] Player pj;

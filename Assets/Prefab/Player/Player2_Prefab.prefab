@@ -4847,7 +4847,6 @@ GameObject:
   - component: {fileID: 6670248294070730240}
   - component: {fileID: 1325296930917242123}
   - component: {fileID: 3085160242322313296}
-  - component: {fileID: 6047677538942381556}
   m_Layer: 8
   m_Name: Player2_Prefab
   m_TagString: Player
@@ -4920,6 +4919,7 @@ MonoBehaviour:
   _player2Minimap: {fileID: 0}
   _timeOfImmune: 2
   _moneyUI: {fileID: 0}
+  _infoUI: {fileID: 0}
   _sKeyCode:
   - key: 260
     method:
@@ -5043,6 +5043,7 @@ MonoBehaviour:
   _myAnimator: {fileID: 9181917346541944982}
   _pauseManager: {fileID: 0}
   _resumeButton: {fileID: 0}
+  _stats: {fileID: 0}
   weapon: {fileID: 6047677539480297833}
   block: {fileID: 6047677540862408007}
 --- !u!82 &3085160242322313296
@@ -5141,19 +5142,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6047677538942381556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4982810254330413823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92968008349e82b46b2cc414cf8112e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _otherPlayer: {fileID: 0}
 --- !u!1 &5379129408513626766
 GameObject:
   m_ObjectHideFlags: 0

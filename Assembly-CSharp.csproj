@@ -84,7 +84,6 @@
     <Compile Include="Assets\Scripts\Inheritance\IDamage.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossAnimController.cs" />
     <Compile Include="Assets\Scripts\Objects\Trap\SpikeTrap.cs" />
-    <Compile Include="Assets\Scripts\Inheritance\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\Player\AnimationEvent.cs" />
@@ -117,7 +116,6 @@
     <Compile Include="Assets\Scripts\Objects\PickUp\ArmorUp.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\Fireball.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossAnimEvent.cs" />
-    <Compile Include="Assets\Scripts\Inheritance\MonoMethods.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\KeyUp.cs" />

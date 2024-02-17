@@ -2,23 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : MonoBehaviour
+public class Teleport
 {
-    [SerializeField] Player _otherPlayer;
+    Player _player;
+
+    public Teleport(Player player)
+    {
+        _player = player;
+    }
 
     public void TeleportToRoom(List<GameObject> playerList)
     {
-        //Debug.Log("Entre teleport");
         if (playerList.Count > 0)
         {
-            foreach(GameObject room in playerList)
+            foreach(GameObject playerObject in playerList)
             {
-                if(room != null)
+                if(playerObject != null)
                 {
-                    if (room == this.gameObject){}
-                    else
+                    if (playerObject != _player)
                     {
-                        this.transform.position = _otherPlayer.transform.position;
+                        playerObject.GetComponent<Player>().otherPlayer.transform.position = playerObject.transform.position;
                     }
                 }
             }

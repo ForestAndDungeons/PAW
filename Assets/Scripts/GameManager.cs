@@ -50,21 +50,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    /*IEnumerator LoadSceneTimer()
-    {
-        Time.timeScale = 1f;
-
-        yield return new WaitForSeconds(1f);
-        //_myAnimator.SetTrigger("Fade");
-
-        yield return new WaitForSeconds(1f);
-
-        //_player.playerBase.SetCurrentHealth(_player.playerBase.maxHealth);
-        //_player.playerBase.SetIsDead(false);
-
-        SceneManager.LoadScene(($"Level_1 {Random.Range(1, 4)}"));
-    }*/
-
     public void ExitGame()
     {
         Application.Quit();
