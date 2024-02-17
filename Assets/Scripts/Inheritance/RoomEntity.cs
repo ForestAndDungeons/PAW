@@ -6,7 +6,6 @@ using UnityEngine;
 public class RoomEntity : MonoBehaviour
 {
     //Lista de teleports para los players
-    [SerializeField] List<Teleport> _teleport;
     [Header("BossRoom")]
     [SerializeField] bool _isBossRoom;
 
@@ -134,18 +133,15 @@ public class RoomEntity : MonoBehaviour
     }
     public void AddPlayer(GameObject playerGO)
     {
-        
         //playerGO es Player GameObject
         _playerList.Add(playerGO);
 
-        //Recorre la lista de teleports y teletransporta al otro player que no esta en PlayersList a la posicion del primero que entro a la habitacion
-        if (_teleport!=null)
+        //Teletransporta al otro player que no esta en PlayersList a la posicion del primero que entro a la habitacion
+        foreach (Player player in GameManager.Instance._players)
         {
-            foreach (Teleport tp in _teleport)
-            {
-                tp.TeleportToRoom(_playerList);
-            }
+            player._teleport.TeleportToRoom(_playerList);
         }
+
         //Inicia el combate de la habitacion, ejecutamos el eventRoom que usa el CloseDoors
         if (_playerList.Count <= 1)
         {
@@ -155,6 +151,7 @@ public class RoomEntity : MonoBehaviour
                 StartCoroutine(WaitForDoorSound());
             }
         }
+
         if (_playerList.Count >= 2)
         {
             if (_isBossRoom)

@@ -8,7 +8,8 @@ public class Player : MonoBehaviour, IDamage
 {
     Renderer _renderer;
     Collider _collider;
-    [SerializeField] Player _otherPlayer;
+    Player _otherPlayer;
+    public Player otherPlayer { get { return _otherPlayer; } private set { } }
     [SerializeField] Camera _myCamera;
     [SerializeField] Camera _player2Minimap;
     [SerializeField] float _timeOfImmune;
@@ -83,6 +84,7 @@ public class Player : MonoBehaviour, IDamage
     [HideInInspector] public PlayerSoundManager _playerSoundManager;
     [HideInInspector] public AnimationController _animationController;
     [HideInInspector] public PlayerBase _playerBase;
+    [HideInInspector] public Teleport _teleport;
 
     public Weapon weapon;
     public Block block;
@@ -91,6 +93,12 @@ public class Player : MonoBehaviour, IDamage
     private void Awake()
     {
         GameManager.Instance._players.Add(this);
+
+        foreach(Player player in GameManager.Instance._players)
+        {
+            if (player != this)
+                _otherPlayer = player;
+        }
 
         _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();
@@ -109,6 +117,8 @@ public class Player : MonoBehaviour, IDamage
         _playerBase = new PlayerBase(_playerBaseSO, _name, _haveAKey, _playerSoundManager, _audioClip, _audioSource, _particleOnDamage, this, _animationController);
 
         _uiPlayer = new UIPlayer(_imageUIHearts, _spriteHeart, _imageUIArmor, _spriteArmor);
+
+        _teleport = new Teleport(this);
 
         _currentHealth = _playerBase.currentHealth;
         _uiPlayer.UIUpdate(_maxHealth, _currentHealth, _armor);
