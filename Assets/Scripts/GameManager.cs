@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public SceneTransition sceneTransition { get { return _sceneTransition; } private set { } }
 
     public List<Player> _players;
+    public bool isSinglePlayer;
+    public GameObject _player1Prefab;
+    public GameObject _player2Prefab;
 
     void Awake()
     {

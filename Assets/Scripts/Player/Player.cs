@@ -6,9 +6,10 @@ using TMPro;
 
 public class Player : MonoBehaviour, IDamage
 {
-    Renderer _renderer;
+    [SerializeField] bool isPlayer1;
+    [SerializeField] GameObject _model;
     Collider _collider;
-    Player _otherPlayer;
+    [SerializeField] Player _otherPlayer;
     public Player otherPlayer { get { return _otherPlayer; } private set { } }
     [SerializeField] Camera _myCamera;
     [SerializeField] Camera _player2Minimap;
@@ -94,13 +95,12 @@ public class Player : MonoBehaviour, IDamage
     {
         GameManager.Instance._players.Add(this);
 
-        foreach(Player player in GameManager.Instance._players)
+        foreach (Player player in GameManager.Instance._players)
         {
             if (player != this)
                 _otherPlayer = player;
         }
 
-        _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();
         _isDead = false;
 
@@ -128,6 +128,25 @@ public class Player : MonoBehaviour, IDamage
 
         _attackPower = _playerBase.attackPower;
         weapon.SetAttackPower(_attackPower);
+    }
+
+    void Start()
+    {
+        if (GameManager.Instance.isSinglePlayer)
+        {
+            if (!isPlayer1)
+            {
+                GameManager.Instance._players.Remove(this);
+                _isDead = true;
+                _collider.enabled = false;
+                this.gameObject.SetActive(false);
+                _myCamera.enabled = false;
+                _otherPlayer._myCamera.rect = new Rect(0f, 0f, 1f, 1f);
+                _otherPlayer._player2Minimap.enabled = false;
+                //_model.SetActive(false);
+                //DisableThisObject();
+            }
+        }
     }
 
     //Llama a metodos de Artificial Updates.
