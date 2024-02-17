@@ -9876,7 +9876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a91cf9257962f498395aeb030dc493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _otherPlayer: {fileID: 0}
+  isPlayer1: 1
+  _model: {fileID: 860729456849738691}
   _myCamera: {fileID: 0}
   _player2Minimap: {fileID: 0}
   _timeOfImmune: 2

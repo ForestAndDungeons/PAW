@@ -139,7 +139,8 @@ public class RoomEntity : MonoBehaviour
         //Teletransporta al otro player que no esta en PlayersList a la posicion del primero que entro a la habitacion
         foreach (Player player in GameManager.Instance._players)
         {
-            player._teleport.TeleportToRoom(_playerList);
+            if(GameManager.Instance._players.Count > 1)
+                player._teleport.TeleportToRoom(_playerList);
         }
 
         //Inicia el combate de la habitacion, ejecutamos el eventRoom que usa el CloseDoors

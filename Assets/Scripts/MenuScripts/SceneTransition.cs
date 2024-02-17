@@ -111,4 +111,15 @@ public class SceneTransition : MonoBehaviour
         _audioSource.Play();
         _audioSource.volume = 0f;
     }
+
+    public void SinglePlayer()
+    {
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
+
+        GameManager.Instance.isSinglePlayer = true;
+        StartCoroutine(Transition(_sceneToLoad));
+    }
 }
