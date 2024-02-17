@@ -15,8 +15,8 @@ public class UIStats : MonoBehaviour
     private void Start()
     {
         _text = GetComponent<TMP_Text>();
-        _maxHealth = "\nMAX LIFE: " + _player._playerBase.GetMaxHealth();
-        _attackPower = "\nATK: " + _player._playerBase.GetAttackPower();
+        _maxHealth = "\nMAX LIFE: " + _player._playerBase.maxHealth;
+        _attackPower = "\nATK: " + _player._playerBase.attackPower;
         _speed = "\nSPEED: " + _player._movement.GetSpeed();
 
         _text.text = "Stats" + _maxHealth + _attackPower + _speed + _haveKeyText;
@@ -24,11 +24,11 @@ public class UIStats : MonoBehaviour
 
     private void Update()
     {
-        _maxHealth = "\nMAX LIFE: " + _player._playerBase.GetMaxHealth();
-        _attackPower = "\nATK: " + _player._playerBase.GetAttackPower();
+        _maxHealth = "\nMAX LIFE: " + _player._playerBase.maxHealth;
+        _attackPower = "\nATK: " + _player._playerBase.attackPower;
         _speed = "\nSPEED: " + _player._movement.GetSpeed();
 
-        if (_player._playerBase.GetKey())
+        if (_player._playerBase.haveAKey)
         {
             _haveKeyText = "\nHAVE KEY";
         }

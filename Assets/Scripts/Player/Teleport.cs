@@ -8,7 +8,7 @@ public class Teleport : MonoBehaviour
 
     public void TeleportToRoom(List<GameObject> playerList)
     {
-        Debug.Log("Entre teleport");
+        //Debug.Log("Entre teleport");
         if (playerList.Count > 0)
         {
             foreach(GameObject room in playerList)

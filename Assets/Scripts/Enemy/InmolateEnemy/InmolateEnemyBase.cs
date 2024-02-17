@@ -31,7 +31,7 @@ public class InmolateEnemyBase : CharacterBase,IDamage
     public override void onAttack(Collision other)
     {
         if (other != null)
-            other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
+            other.gameObject.GetComponent<Player>().onDamage(_attackPower);
     }
 
     public override void HealthUp(float healing)
@@ -41,6 +41,6 @@ public class InmolateEnemyBase : CharacterBase,IDamage
 
     public void EnemyWithKey(bool checker)
     {
-        _haveAKey = checker;
+        _haveKey = checker;
     }
 }

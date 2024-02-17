@@ -78,14 +78,14 @@ public class Enemy : MonoBehaviour , IDamage
     public bool GetterHaveAKey() {return _haveAKey;}
     void Update()
     {
-        _haveAKey = _enemyBase.GetKey();
+        _haveAKey = _enemyBase.haveAKey;
         _knockbackCounter = _enemyMove.CurrentKnockbackCounterGetter();
         _state = _enemyState.CurrentStateGetter();
         if (_stateDelegate!=null)
         {
             _stateDelegate();
         }
-        _currentHealth = _enemyBase.GetCurrentHealth();
+        _currentHealth = _enemyBase.currentHealth;
         if (_targets.Count > 0)
         {
             if (_targets[0].gameObject.activeSelf == false)
@@ -157,9 +157,9 @@ public class Enemy : MonoBehaviour , IDamage
     IEnumerator OnInvulnerable(float damage)
     {
         yield return new WaitForSeconds(1f);
-        _enemyBase.SetIsImmune(true);
+        _enemyBase.isImmune = true;
         yield return new WaitForSeconds(1f);
-        _enemyBase.SetIsImmune(false);
+        _enemyBase.isImmune = false;
 
     }
 

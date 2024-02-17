@@ -5,70 +5,41 @@ using UnityEngine;
 public abstract class CharacterBase
 {
     protected string _name;
+    
     protected float _maxHealth;
+    public float maxHealth { get { return this._maxHealth; } set { this._maxHealth = value; } }
+
     protected float _currentHealth;
+    public float currentHealth { get { return this._currentHealth; } set { this._currentHealth = value; } }
+
     protected float _attackPower;
+    public float attackPower { get { return this._attackPower; } set { this._attackPower = value; } }
+
     protected float _armor;
+    public float armor { get { return this._armor; } set { this._armor = value; } }
+
     protected float _money;
-    protected bool _haveAKey;
+    public float money { get { return this._money; } set { this._money = value; } }
+
+    protected bool _haveKey;
+    public bool haveAKey { get { return this._haveKey; } set { this._haveKey = value; } }
+
     protected bool _isBlocking;
+    public bool isBlocking { get { return this._isBlocking; } set { this._isBlocking = value; } }
+
     protected bool _isImmune;
+    public bool isImmune { get { return this._isImmune; } set { this._isImmune = value; } }
+
     protected float _immuneTime;
     protected float _forceJump;
 
     public abstract void onAttack(Collision other);
     public abstract void HealthUp(float healing);
 
-    public float GetMaxHealth()
-    {
-        return _maxHealth;
-    }
-
-    public float GetCurrentHealth()
-    {
-        return _currentHealth;
-    }
-
-    public float GetAttackPower()
-    {
-        return _attackPower;
-    }
-
-    public float GetArmor()
-    {
-        return _armor;
-    }
-
-    public float GetMoney()
-    {
-        return _money;
-    }
-
-    public void SetMoney(float money)
-    {
-        _money = money;
-    }
-
-    public bool GetKey()
-    {
-        return _haveAKey;
-    }
-
     public void SetKey(float haveAKey)
     {
-        _haveAKey = System.Convert.ToBoolean(haveAKey);
+        _haveKey = System.Convert.ToBoolean(haveAKey);
     }
-
-    public void SetIsBlocking(bool isBlocking)
-    {
-        _isBlocking = isBlocking;
-    }
-
-    public void SetIsImmune(bool isImmune)
-    {
-        _isImmune = isImmune;
-    }
-
     public void AttackUp(float add)
     {
         _attackPower += add;

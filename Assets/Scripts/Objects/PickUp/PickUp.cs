@@ -38,11 +38,11 @@ public abstract class PickUp : MonoBehaviour
     {
         if (_isPurchasable)
         {
-            var money = playerBase.GetMoney();
+            var money = playerBase.money;
 
             if (money >= _price)
             {
-                playerBase.SetMoney(money -= _price);
+                playerBase.money -= _price;
                 _audioSource.PlayOneShot(_audioClip);
                 _pickUpDelegate(_number);
                 Activate();

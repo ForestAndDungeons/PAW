@@ -10,12 +10,13 @@ public class Block : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _player._playerBase.SetIsBlocking(true);
+        _player._playerBase.isBlocking = true;
 
     }
+
     public IEnumerator TimeOfBlocking()
     {
         yield return new WaitForSeconds(_timeOfBlocking);
-        _player._playerBase.SetIsBlocking(true);
+        _player._playerBase.isBlocking = true;
     }
 }
