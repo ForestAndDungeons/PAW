@@ -22,27 +22,28 @@ public class SceneTransition : MonoBehaviour
     [SerializeField] Animator musicAnim;
 
     AudioSource _audioSource;
+    public AudioSource audioSource { get { return _audioSource; } private set { } }
     [SerializeField] AudioClip _mainMenuMusic;
     [SerializeField] AudioClip _levelMusic;
     [SerializeField] AudioClip _victoryMusic;
 
     public void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         RestartList();
     }
 
     public void Start()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
 
         if (_scenes.Count > 0)
         {
             UpdateList();
         }
 
-        _audioSource = GetComponent<AudioSource>();
+        if(_audioSource == null) _audioSource = GetComponent<AudioSource>();
     }
 
     public void ChangeScene()
@@ -79,11 +80,6 @@ public class SceneTransition : MonoBehaviour
         _audioSource.clip = _mainMenuMusic;
         _audioSource.Play();
         Destroy(this.gameObject);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 
     public void RestartList()

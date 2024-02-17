@@ -30,7 +30,7 @@ public class Fireball : MonoBehaviour
         }
         if (_pjCol != null)
         {
-            _pjCol.onDamage(1);
+            _pjCol._playerBase.onDamage(1);
         }
         Destroy(this.gameObject, 0.1f);
 

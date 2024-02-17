@@ -8,8 +8,6 @@ public class Player : MonoBehaviour, IDamage
 {
     Renderer _renderer;
     Collider _collider;
-    Rigidbody _rigidBody;
-
     [SerializeField] Player _otherPlayer;
     [SerializeField] Camera _myCamera;
     [SerializeField] Camera _player2Minimap;
@@ -24,6 +22,7 @@ public class Player : MonoBehaviour, IDamage
     [Header("Movement Variables")]
     [SerializeField] MovementSO _dataMovement;
     [SerializeField] float _turnSpeed;
+    [SerializeField] Rigidbody _myRigidBody;
     public delegate void MovementDelegate();
     public MovementDelegate _movementDelegate;
     
@@ -50,7 +49,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] float _armor;
     [SerializeField] float _forceJump;
     [SerializeField] float _money;
-    [SerializeField] bool _haveKey;
+    [SerializeField] bool _haveAKey;
     [SerializeField] ParticleSystem _particleOnDamage;
     [SerializeField] ParticleSystem _particleWalk;
 
@@ -95,12 +94,11 @@ public class Player : MonoBehaviour, IDamage
 
         _renderer = this.GetComponent<MeshRenderer>();
         _collider = this.GetComponent<Collider>();
-        _rigidBody = this.GetComponent<Rigidbody>();
         _isDead = false;
 
         _playerSoundManager = new PlayerSoundManager(_audioSource, _audioClip);
 
-        _movement = new Movement(_dataMovement, _rigidBody, transform);
+        _movement = new Movement(_dataMovement, _myRigidBody, transform);
 
         _animationController = new AnimationController(_myAnimator);
 
@@ -108,12 +106,12 @@ public class Player : MonoBehaviour, IDamage
 
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
 
-        _playerBase = new PlayerBase(_playerBaseSO, _name, _haveKey, this);
+        _playerBase = new PlayerBase(_playerBaseSO, _name, _haveAKey, _playerSoundManager, _audioClip, _audioSource, _particleOnDamage, this, _animationController);
 
         _uiPlayer = new UIPlayer(_imageUIHearts, _spriteHeart, _imageUIArmor, _spriteArmor);
 
         _currentHealth = _playerBase.currentHealth;
-        _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
+        _uiPlayer.UIUpdate(_maxHealth, _currentHealth, _armor);
 
         _controlDelegate = _control.Movements;
         _movementDelegate = _control.IsometricMovement;
@@ -130,7 +128,7 @@ public class Player : MonoBehaviour, IDamage
         _currentHealth = _playerBase.currentHealth;
         _attackPower = _playerBase.attackPower;
         _armor = _playerBase.armor;
-        _haveKey = _playerBase.haveAKey;
+        _haveAKey = _playerBase.haveKey;
         _isGrounded = _groundSensor.GroundSensorUpdate();
         _forceJump = _movement.GetForceJump();
 
@@ -167,47 +165,10 @@ public class Player : MonoBehaviour, IDamage
 
     public void onDamage(float damage)
     {
-        if (!_playerBase.isImmune)
-        {
-            if (!_playerBase.isBlocking)
-            {
-                if (_currentHealth > 0)
-                {
-                    if (_armor > 0)
-                    {
-                        _armor -= damage;
-
-                        if (_armor <= 0)
-                        {
-                            _currentHealth += _armor;
-                            _armor = 0;
-                        }
-                    }
-                    else
-                    {
-                        _currentHealth -= damage;
-                    }
-                }
-
-                _animationController.onHit();
-                _playerSoundManager.playOnCollision(_audioSource, _audioClip[0]);
-                _particleOnDamage.Play();
-                _uiPlayer.UIArtificialUpdate(_maxHealth, _currentHealth, _armor);
-                _playerBase.isImmune = true;
-                _playerSoundManager.playOnHit();
-                StartCoroutine(TimeOfImmune());
-
-                if (_currentHealth <= 0)
-                {
-                    _playerSoundManager.playOnDeath();
-                    _animationController.onDeath();
-                    DisableThisObject();
-                }
-            }
-        }
+        _playerBase.onDamage(damage);
     }
 
-    /*public void onAttack(Collision other)
+    public void onAttack(Collision other)
     {
         _playerBase.onAttack(other);
     }
@@ -215,7 +176,7 @@ public class Player : MonoBehaviour, IDamage
     public void HealthUp(float add)
     {
         _playerBase.HealthUp(add);
-    }*/
+    }
 
     public void AttackSpeedUp()
     {

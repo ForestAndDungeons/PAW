@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class CharacterBase
 {
     protected string _name;
-    
+
     protected float _maxHealth;
     public float maxHealth { get { return this._maxHealth; } set { this._maxHealth = value; } }
 
@@ -22,7 +22,7 @@ public abstract class CharacterBase
     public float money { get { return this._money; } set { this._money = value; } }
 
     protected bool _haveKey;
-    public bool haveAKey { get { return this._haveKey; } set { this._haveKey = value; } }
+    public bool haveKey { get { return this._haveKey; } set { this._haveKey = value; } }
 
     protected bool _isBlocking;
     public bool isBlocking { get { return this._isBlocking; } set { this._isBlocking = value; } }

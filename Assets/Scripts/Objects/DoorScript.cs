@@ -35,7 +35,7 @@ public class DoorScript : MonoBehaviour
             if (_isSecretDoor)
             {
                 //Preguntamos si el player posee una llave, preguntando si el booleano es true
-                if (pj._playerBase.haveAKey)
+                if (pj._playerBase.haveKey)
                 {
                     //Preguntamos si el roomEntity esta desactivado (Que no haya un combate activo)
                     if (_roomEntity == null)

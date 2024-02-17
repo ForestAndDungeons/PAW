@@ -24,7 +24,7 @@ public class EnemyAttack : MonoBehaviour
             var _player = player.gameObject.GetComponent<Player>();
             if (_player != null)
             {
-                _player.onDamage(_attackPower);
+                _player._playerBase.onDamage(_attackPower);
             }
         }
     }

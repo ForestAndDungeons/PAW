@@ -20,7 +20,7 @@ public class UIPlayer
         _spriteArmor = spriteArmor;
     }
 
-    public void UIArtificialUpdate(float maxHealth, float currentHealth, float armor)
+    public void UIUpdate(float maxHealth, float currentHealth, float armor)
     {
         var _maxHealth = maxHealth;
         var _currentHealth = currentHealth;

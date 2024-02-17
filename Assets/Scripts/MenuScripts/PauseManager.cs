@@ -22,7 +22,7 @@ public class PauseManager : MonoBehaviour
     {
         _isPaused = false;
         _audioSource = GetComponent<AudioSource>();
-        _sceneTransition = FindObjectOfType<SceneTransition>();
+        //_sceneTransition = FindObjectOfType<SceneTransition>();
     }
 
     void Update()
@@ -67,6 +67,7 @@ public class PauseManager : MonoBehaviour
 
     public void SceneTransitionGoToMenu()
     {
-        _sceneTransition.GoToMenu();
+        GameManager.Instance.sceneTransition.GoToMenu();
+        //_sceneTransition.GoToMenu();
     }
 }
