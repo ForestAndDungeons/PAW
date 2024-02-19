@@ -9,7 +9,7 @@ public class NextLevel : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.sceneTransition.UpdateList();
+        GameManager.Instance.ChooseRandomScene();
         GameManager.Instance.sceneTransition.Victory(_victoryScreen);
         //_sceneManager.ChangeScene();
     }
