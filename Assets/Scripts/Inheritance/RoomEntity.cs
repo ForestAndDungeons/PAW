@@ -42,8 +42,8 @@ public class RoomEntity : MonoBehaviour
         //Co-Rutina que inicia la funcion WaitForFillList
         StartCoroutine(WaitForFillList());
         
-        _musicAudioSource = GameManager.Instance.sceneTransition.GetComponent<AudioSource>();
-        _musicTransition = GameManager.Instance.sceneTransition.GetComponent<Animator>();
+        _musicAudioSource = GameManager.Instance.audioSource;
+        _musicTransition = GameManager.Instance.musicAnim;
     }
 
     //Funcion OnTrigger que chequea quien entra dentro del area

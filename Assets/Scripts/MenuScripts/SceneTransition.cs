@@ -9,42 +9,12 @@ public class SceneTransition : MonoBehaviour
 {
     [SerializeField] float waitTime;
 
-    [SerializeField] SceneTransitionOS _sceneTransitionOS;
-    [SerializeField] List<string> _scenes;
-    [SerializeField] List<string> _scenesLoaded;
-    string _sceneToLoad;
-    int _scenesIndex;
-
     [SerializeField] string _mainMenu;
     [SerializeField] string _victoryScreen;
 
-    [SerializeField] Animator transitionAnim;
-    [SerializeField] Animator musicAnim;
-
-    AudioSource _audioSource;
-    public AudioSource audioSource { get { return _audioSource; } private set { } }
     [SerializeField] AudioClip _mainMenuMusic;
     [SerializeField] AudioClip _levelMusic;
     [SerializeField] AudioClip _victoryMusic;
-
-    public void Awake()
-    {
-        //DontDestroyOnLoad(this.gameObject);
-
-        RestartList();
-    }
-
-    public void Start()
-    {
-        //Time.timeScale = 1f;
-
-        if (_scenes.Count > 0)
-        {
-            UpdateList();
-        }
-
-        if(_audioSource == null) _audioSource = GetComponent<AudioSource>();
-    }
 
     public void ChangeScene()
     {
@@ -53,63 +23,24 @@ public class SceneTransition : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        StartCoroutine(Transition(_sceneToLoad));
+        GameManager.Instance.ChooseRandomScene();
+        StartCoroutine(Transition(GameManager.Instance.sceneToLoad));
     }
-
-    public void UpdateList()
-    {
-        if(_scenes.Count > 0)
-        { 
-            _scenesIndex = Random.Range(0, _scenes.Count);
-            _sceneToLoad = _scenes[_scenesIndex];
-            _scenesLoaded.Add(_scenes[_scenesIndex]);
-            _scenes.Remove(_scenes[_scenesIndex]); 
-        }
-        else
-            SceneManager.LoadScene(_victoryScreen);
-    }
-
-    public void GoToMenu()
-    {
-        SceneManager.LoadScene(_mainMenu);
-        _scenesLoaded.Clear();
-        RestartList();
-
-        _audioSource.Stop();
-        _audioSource.volume = 0f;
-        _audioSource.clip = _mainMenuMusic;
-        _audioSource.Play();
-        Destroy(this.gameObject);
-    }
-
-    public void RestartList()
-    {
-        foreach (var scene in _sceneTransitionOS._allLevels)
-            _scenes.Add(scene);
-    }
-
-    /*public void OnTriggerEnter(Collider other)
-    {
-        UpdateList();
-        ChangeScene();
-    }*/
 
     public void Victory(string victoryScreen)
     {
         SceneManager.LoadScene(_victoryScreen);
-        _audioSource.enabled = false;
     }
 
     IEnumerator Transition(string sceneToLoad)
     {
-        transitionAnim.SetTrigger("End");
-        musicAnim.SetTrigger("fadeOut");
-        _scenes.Remove(_sceneToLoad);
+        GameManager.Instance.transitionAnim.SetTrigger("End");
+        GameManager.Instance.musicAnim.SetTrigger("fadeOut");
+        GameManager.Instance.scenes.Remove(GameManager.Instance.sceneToLoad);
         yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene(_sceneToLoad);
-        _audioSource.clip = _levelMusic;
-        _audioSource.Play();
-        _audioSource.volume = 0f;
+        SceneManager.LoadScene(GameManager.Instance.sceneToLoad);
+        
+        GameManager.Instance.ChangeMusic(_levelMusic);
     }
 
     public void SinglePlayer()
@@ -120,6 +51,20 @@ public class SceneTransition : MonoBehaviour
         }
 
         GameManager.Instance.isSinglePlayer = true;
-        StartCoroutine(Transition(_sceneToLoad));
+        StartCoroutine(Transition(GameManager.Instance.sceneToLoad));
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene(_mainMenu);
+        GameManager.Instance.scenesLoaded.Clear();
+        GameManager.Instance.RestartList();
+
+        GameManager.Instance.ChangeMusic(_mainMenuMusic);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
