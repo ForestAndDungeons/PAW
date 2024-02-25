@@ -28,7 +28,6 @@ public class EnemieBase
         _knockBackDuration = enemySO.knockBackDuration;
         _knockBackColor = enemySO.knockBackColor;
         _attackPower = enemySO.attackPower;
-        target = GameManager.Instance._player1Prefab;
         _wall = enemySO.walls;
     }
 

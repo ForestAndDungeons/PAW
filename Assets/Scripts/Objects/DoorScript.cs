@@ -2,29 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Juan Barrientos Picasso - P.A.W
 public class DoorScript : MonoBehaviour
 {
     [Header ("Variables")]
+    [SerializeField] bool _isClose;
     [SerializeField] bool _isSecretDoor;
+    [SerializeField] GameObject _locket;
     [SerializeField] Collider _collider;
     [SerializeField] RoomEntity _roomEntity;
-    [SerializeField] bool _isOpen;
-
+    
     [Header("Animator")]
     [SerializeField] Animator _animator;
 
     [Header("Audio")]
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip[] _audioClip;
+    [SerializeField] AudioClip _audioOpening;
+    [SerializeField] AudioClip _audioClosing;
+    [SerializeField] AudioClip _audioUnlocking;
+    [SerializeField] AudioClip _audioLocked;
 
-    private void Awake()
+    void OnValidate()
+    {
+        _locket.SetActive(_isSecretDoor);
+    }
+
+    void Awake()
     {
         //Iniciamos la funcion Ienumerator en el awake
         StartCoroutine(WaitForOpenFirstTime());
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         //Chequeamos si quien choca la puerta tenga el script de player (sea un player)
         Player pj =  collision.gameObject.GetComponent<Player>();
@@ -45,10 +53,11 @@ public class DoorScript : MonoBehaviour
                         {
                             //Booleano de que el player posee una llave lo ponemos en falso (USAS LA LLAVE)
                             pj._playerBase.SetKey(0);
-                            //Se reproduce el audio de que se abre la puerta
-                            _audioSource.PlayOneShot(_audioClip[1]);
+
+                            OpenDoor();
+
                             //Se destruye la puerta
-                            DestroyDoor();
+                            //DestroyDoor();
                         }
                     }
                 }
@@ -56,7 +65,7 @@ public class DoorScript : MonoBehaviour
                 else
                 {
                     //Se reproduce sonido de puerta que no se puede abrir
-                    _audioSource.PlayOneShot(_audioClip[0]);
+                    _audioSource.PlayOneShot(_audioLocked);
                     Debug.Log("Esta puerta requiere de una llave para abrise");
                 }
             }
@@ -66,17 +75,14 @@ public class DoorScript : MonoBehaviour
     //Funcion para abrir puertas
     public void OpenDoor()
     {
-        //Preguntamos si no es una SecretDoor
-        if (!_isSecretDoor)
-        {
-            //Desactivamos los GameObjects
-            _isOpen = true;
-            _animator.SetBool("isClose", false);
-            _collider.enabled = false;
-            //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
-            _roomEntity.eventRoom -= OpenDoor;
-            _roomEntity.eventRoom += CloseDoor;
-        }
+        //Desactivamos los GameObjects
+        _isClose = false;
+        _animator.SetBool("isClose", false);
+        _collider.enabled = false;
+        //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
+        _roomEntity.eventRoom -= OpenDoor;
+        _roomEntity.eventRoom += CloseDoor;
+        _audioSource.PlayOneShot(_audioOpening);
     }
 
     //Funcion para cerrar puertas
@@ -85,21 +91,17 @@ public class DoorScript : MonoBehaviour
         //Preguntamos si no es una SecretDoor
         if (!_isSecretDoor)
         {
-            _isOpen = false;
+            _isClose = true;
             //Activamos los GameObjects
             _collider.enabled = true;
             _animator.SetBool("isClose", true);
             //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
             _roomEntity.eventRoom -= CloseDoor;
             _roomEntity.eventRoom += OpenDoor;
+            _audioSource.PlayOneShot(_audioClosing);
         }
     }
 
-    //Funcion para destruir puerta
-    public void DestroyDoor()
-    {
-        Destroy(this.gameObject, 0.7f);
-    }
     //Ienumerator que espera 2 segundos para abrir todas las puertas al inicio del juego, excepto las SecretDoors
     IEnumerator WaitForOpenFirstTime()
     {
@@ -107,7 +109,7 @@ public class DoorScript : MonoBehaviour
 
         if (!_isSecretDoor)
         {
-            if (!_isOpen)
+            if (!_isClose)
             {
                 OpenDoor();
             }
