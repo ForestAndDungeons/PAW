@@ -43,15 +43,9 @@ public class SceneTransition : MonoBehaviour
         GameManager.Instance.ChangeMusic(_levelMusic);
     }
 
-    public void SinglePlayer()
+    public void IsSinglePlayer(bool value)
     {
-        if (Time.timeScale == 0f)
-        {
-            Time.timeScale = 1f;
-        }
-
-        GameManager.Instance.isSinglePlayer = true;
-        StartCoroutine(Transition(GameManager.Instance.sceneToLoad));
+        GameManager.Instance.isSinglePlayer = value;
     }
 
     public void GoToMenu()

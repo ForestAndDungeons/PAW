@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     static GameManager _instance;
@@ -31,8 +32,6 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     public List<Player> _players;
     public bool isSinglePlayer;
-    public GameObject _player1Prefab;
-    public GameObject _player2Prefab;
 
     [Header("SceneTransition")]
     SceneTransition _sceneTransition;
@@ -42,7 +41,7 @@ public class GameManager : MonoBehaviour
     public SceneTransitionOS sceneTransitionOS { get { return _sceneTransitionOS; } private set { } }
 
     [SerializeField] List<string> _scenes;
-    public List<string> scenes {get { return _scenes; } private set { } }
+    public List<string> scenes { get { return _scenes; } private set { } }
 
     [SerializeField] List<string> _scenesLoaded;
     public List<string> scenesLoaded { get { return _scenesLoaded; } private set { } }
@@ -63,7 +62,6 @@ public class GameManager : MonoBehaviour
         }
 
         _sceneTransition = GetComponentInChildren<SceneTransition>();
-        //_sceneTransition = new SceneTransition();
 
         RestartList();
     }

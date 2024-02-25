@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour , IDamage
                      float _timeBtwShoot;
     [SerializeField] float _startTimeBtwShoot;
     [SerializeField] List<Transform> _targets = new List<Transform>();
-    
 
     [Header("Animator Controller")]
     [SerializeField] Animator _enemyAnim;
@@ -45,8 +44,6 @@ public class Enemy : MonoBehaviour , IDamage
     [Header("Sounds Manager")]
     [SerializeField] AudioSource _enemyAudioSource;
     [SerializeField] AudioClip[] _enemyAClip;
-
-
 
     EnemyMovement _enemyMove;
     EnemyAnimatorController _enemyAnimController;
@@ -58,7 +55,6 @@ public class Enemy : MonoBehaviour , IDamage
 
     public delegate void StateDelegate();
     public StateDelegate _stateDelegate;
-
 
     void Awake()
     {
@@ -72,6 +68,7 @@ public class Enemy : MonoBehaviour , IDamage
         _enemyState.StateStart();
   
     }
+
     //GETTERS
     public List<Transform> GetColliders() {return _targets;}
     public List<GameObject> GetDropeables() {return _DropleableList;}
@@ -122,7 +119,6 @@ public class Enemy : MonoBehaviour , IDamage
     }
 
     //Instantiate
-
     public void InstantiateArrow()
     {
         if (_shootPoint != null && _ArrowPref !=null)
@@ -140,6 +136,7 @@ public class Enemy : MonoBehaviour , IDamage
     {
         enemySoundsManager.playOnAttack();      
     }
+
     public void DestroyThisObject()
     {
         if (_roomEntity !=null)

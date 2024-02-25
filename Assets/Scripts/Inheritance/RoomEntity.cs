@@ -39,6 +39,17 @@ public class RoomEntity : MonoBehaviour
 
     private void Start()
     {
+        //
+        if (_enemyList.Count <= 0)
+        {
+            if (eventRoom != null)
+            {
+                _audioSourceDoor.PlayOneShot(_doorsClips[0]);
+                eventRoom();
+            }
+            DestroyRoomEntity();
+        }
+        //
         //Co-Rutina que inicia la funcion WaitForFillList
         StartCoroutine(WaitForFillList());
         
