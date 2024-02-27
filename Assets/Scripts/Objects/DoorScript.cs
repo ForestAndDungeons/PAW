@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
+    public RoomEntity _roomEntity;
+    //public RoomEntity roomEntity { set { _roomEntity = value; } }
+
     [Header ("Variables")]
     [SerializeField] bool _isClose;
     [SerializeField] bool _isSecretDoor;
     [SerializeField] GameObject _locket;
     [SerializeField] Collider _collider;
-    [SerializeField] RoomEntity _roomEntity;
     
     [Header("Animator")]
     [SerializeField] Animator _animator;
@@ -21,9 +23,16 @@ public class DoorScript : MonoBehaviour
     [SerializeField] AudioClip _audioUnlocking;
     [SerializeField] AudioClip _audioLocked;
 
-    void OnValidate()
+    public void IsSecretDoor(bool value)
     {
+        _isSecretDoor = value;
+    }
+
+    public void OnValidate(bool value)
+    {
+        _isSecretDoor = value;
         _locket.SetActive(_isSecretDoor);
+        //IsSecretDoor(_isSecretDoor);
     }
 
     void Awake()

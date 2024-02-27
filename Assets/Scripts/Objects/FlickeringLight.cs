@@ -11,6 +11,7 @@ public class FlickeringLight : MonoBehaviour
     void Start()
     {
         testLight = GetComponent<Light>();
+        //testLight.intensity
         //StartCoroutine(Flashing());
     }
 

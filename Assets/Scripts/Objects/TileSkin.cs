@@ -17,17 +17,13 @@ public class TileSkin : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
     }*/
 
-    public void ChangeSkin(int n, bool b)
+    public void ChangeSkin(int n)
     {
         if (n > 0)
         {
             this.gameObject.SetActive(true);
             _meshFilter.mesh = _mesh[n-1];
             _meshRenderer.material = _material[n-1];
-
-            if (_torch.Length > 0)
-                foreach (GameObject torch in _torch)
-                    torch.SetActive(b);
         }
         else
             this.gameObject.SetActive(false);
