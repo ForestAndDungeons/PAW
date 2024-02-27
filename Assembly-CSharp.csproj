@@ -129,12 +129,13 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyAnimatorController.cs" />
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\KeyUp.cs" />
+    <Compile Include="Assets\Scripts\Objects\LightFlickerEffect.cs" />
     <Compile Include="Assets\Scripts\Objects\Tile.cs" />
     <Compile Include="Assets\Scripts\Objects\DoorScript.cs" />
     <Compile Include="Assets\Scripts\Inheritance\SoundsManager.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\Price.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\FallFloorSpawner.cs" />
-    <Compile Include="Assets\Scripts\Objects\LightFlickerEffect.cs" />
+    <Compile Include="Assets\DisconectChild.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -8,31 +8,36 @@ public enum Hole { None, Shape_ll, Shape_L, Shape_U, Shape_O };
 public class Tile : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] TileSkin _wall1;
-    [SerializeField] TileSkin _torch1;
-    [SerializeField] TileSkin _wall2;
-    [SerializeField] TileSkin _torch2;
+    [SerializeField] GameObject[] _parents;
+    [SerializeField] TileSkin[] _walls;
+    [SerializeField] TileSkin[] _torches;
     [SerializeField] TileSkin _floor;
     [SerializeField] GameObject[] _halfWall;
     [SerializeField] GameObject[] _door;
-    [SerializeField] GameObject[] _blackWall;
+    [SerializeField] GameObject _blackWall1;
+    [SerializeField] GameObject _blackWall2;
 
     [Space(20)]
     [Header("Wall 1")]
-    
-    [SerializeField] [Range(0, 3)] int _wall1Slider = 1;
-    [SerializeField] [Range(0, 2)] int _torch1Slider = 0;
+    [SerializeField] [Range(0, 4)] int _wall1Position = 1;
+
+    [SerializeField] [Range(1, 3)] int _wall1Skin = 1;
+    [SerializeField] [Range(0, 2)] int _torch1Skin = 0;
+
+    [SerializeField] [Range(0, 4)] int _blackWall1Position = 0;
     [SerializeField] bool _door1;
     [SerializeField] bool _isSecret1;
-    [SerializeField] bool _blackWall1;
 
     [Space(20)]
     [Header("Wall 2")]
-    [SerializeField] [Range(0, 3)] int _wall2Slider = 0;
-    [SerializeField] [Range(0, 2)] int _torch2Slider = 0;
+    [SerializeField] [Range(0, 4)] int _wall2Position = 2;
+
+    [SerializeField] [Range(1, 3)] int _wall2Skin = 1;
+    [SerializeField] [Range(0, 2)] int _torch2Skin = 0;
+
+    [SerializeField] [Range(0, 4)] int _blackWall2Position = 0;
     [SerializeField] bool _door2;
     [SerializeField] bool _isSecret2;
-    [SerializeField] bool _blackWall2;
 
     [Header("Floor")]
     [SerializeField] [Range(0, 4)] int _floorSlider = 1;
@@ -42,30 +47,23 @@ public class Tile : MonoBehaviour
     [SerializeField] Hole _hole;
 
     void OnValidate()
-    {        
-        if (_door1 || _blackWall1)
-        {
-            _wall1Slider = 0;
-            if (_door1)
-                _blackWall1 = false;
-            else
-                _door1 = false;
-        }
-        if (_door2 || _blackWall2)
-        {
-            _wall2Slider = 0;
+    {
+        if (_door1)
+            _wall1Skin = 0;
         if (_door2)
-            _blackWall2 = false;
-        else
-            _door2 = false;
-        }
+            _wall2Skin = 0;
 
-        _wall1.ChangeSkin(_wall1Slider);
-        _torch1.ChangeSkin(_torch1Slider);
-
-        _wall2.ChangeSkin(_wall2Slider);
-        _torch2.ChangeSkin(_torch2Slider);
         _floor.ChangeSkin(_floorSlider);
+        
+        _walls[0].ChangeSkin(_wall1Skin);
+        _walls[1].ChangeSkin(_wall2Skin);
+        _torches[0].ChangeSkin(_torch1Skin);
+        _torches[1].ChangeSkin(_torch2Skin);
+
+        ChangeWallPosition(_parents[0], _wall1Position, 2);
+        ChangeWallPosition(_parents[1], _wall2Position, 2);
+        ChangeWallPosition(_blackWall1.gameObject, _blackWall1Position, -1);
+        ChangeWallPosition(_blackWall2.gameObject, _blackWall2Position, -1);
 
         ChangeHole();
         
@@ -73,10 +71,67 @@ public class Tile : MonoBehaviour
         _door[0].GetComponent<DoorScript>().OnValidate(_isSecret1);
         _door[1].SetActive(_door2);
         _door[1].GetComponent<DoorScript>().OnValidate(_isSecret2);
-
-        _blackWall[0].SetActive(_blackWall1);
-        _blackWall[1].SetActive(_blackWall2);
     }
+
+    void ChangeWallPosition(GameObject obj, int slider, float Y)
+    {
+        switch(slider)
+        {
+            case 0:
+                obj.SetActive(false);
+                break;
+            case 1:
+                obj.SetActive(true);
+                obj.transform.localPosition = new Vector3(0f, Y, 2.75f);
+                obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case 2:
+                obj.SetActive(true);
+                obj.transform.localPosition = new Vector3(2.75f, Y, 0f);
+                obj.transform.localRotation = Quaternion.Euler(0, 90, 0);
+                break;
+            case 3:
+                obj.SetActive(true);
+                obj.transform.localPosition = new Vector3(0f, Y, -2.75f);
+                obj.transform.localRotation = Quaternion.Euler(0, -180, 0);
+                break;
+            case 4:
+                obj.SetActive(true);
+                obj.transform.localPosition = new Vector3(-2.75f, Y, 0f);
+                obj.transform.localRotation = Quaternion.Euler(0, -90, 0);
+                break;
+        }
+    }
+
+    /*void ChangeBlackWallPosition(GameObject obj, int slider)
+    {
+        switch (_blackWall2Position)
+        {
+            case 0:
+                _blackWall[1].SetActive(false);
+                break;
+            case 1:
+                _blackWall[1].SetActive(true);
+                _blackWall[1].transform.position = new Vector3(0f, -1f, 2.75f);
+                _blackWall[1].transform.rotation = Quaternion.Euler(0, -90, 0);
+                break;
+            case 2:
+                _blackWall[1].SetActive(true);
+                _blackWall[1].transform.position = new Vector3(2.75f, -1f, 0f);
+                _blackWall[1].transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case 3:
+                _blackWall[1].SetActive(true);
+                _blackWall[1].transform.position = new Vector3(0f, -1f, -2.75f);
+                _blackWall[1].transform.rotation = Quaternion.Euler(0, -90, 0);
+                break;
+            case 4:
+                _blackWall[1].SetActive(true);
+                _blackWall[1].transform.position = new Vector3(-2.75f, -1f, 0f);
+                _blackWall[1].transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+        }
+    }*/
 
     void ChangeHole()
     {
