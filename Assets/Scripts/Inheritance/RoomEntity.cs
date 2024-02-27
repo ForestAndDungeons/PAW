@@ -39,7 +39,7 @@ public class RoomEntity : MonoBehaviour
 
     private void Start()
     {
-        //
+        /*
         if (_enemyList.Count <= 0)
         {
             if (eventRoom != null)
@@ -49,7 +49,7 @@ public class RoomEntity : MonoBehaviour
             }
             DestroyRoomEntity();
         }
-        //
+        */
         //Co-Rutina que inicia la funcion WaitForFillList
         StartCoroutine(WaitForFillList());
         
@@ -71,15 +71,22 @@ public class RoomEntity : MonoBehaviour
             StartCoroutine(WaitForMusicTransition(2));
             _musicFlag = true;
         }
+
         //Chequeamos si colisiono con un Enemigo
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
-        if (enemy)
+        if(enemy != null)
         {
             //Se llena la lista con enemigos
             _enemyList.Add(other.gameObject);
 
         }
+
+        //Add room entity to door
+        DoorScript door = other.GetComponent<DoorScript>();
+
+        if (door != null)
+            door._roomEntity = this;
     }
 
     //Mientras el jugador siga dentro del RoomEntity pregunta

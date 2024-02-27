@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 381163651025098842}
   - component: {fileID: 381163651025098840}
   - component: {fileID: 381163651025098843}
+  - component: {fileID: 1078310531244527567}
   m_Layer: 18
   m_Name: EntityRoom_Prefab
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381163651025098853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.2, y: 1.38, z: -42.9}
-  m_LocalScale: {x: 1.1229, y: 1, z: 0.78579}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +44,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 78, y: 2, z: 78}
+  m_Size: {x: 25, y: 2, z: 25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &381163651025098843
 MonoBehaviour:
@@ -57,7 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b4ae7388868a148b73e9fd892c19be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _teleport: []
+  _isBossRoom: 0
+  _bossLifeSlider: {fileID: 0}
   _randomEnemy: 0
   _audioClips:
   - {fileID: 8300000, guid: 4024831f53932b54abea4a6a47802c9e, type: 3}
@@ -69,3 +71,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e43500221c78b964b80982dd8ea3654d, type: 3}
   _enemyList: []
   _playerList: []
+--- !u!54 &1078310531244527567
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381163651025098853}
+  serializedVersion: 2
+  m_Mass: 0.01
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
