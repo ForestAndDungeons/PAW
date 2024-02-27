@@ -9,14 +9,6 @@ public class TileSkin : MonoBehaviour
     [SerializeField] Mesh[] _mesh;
     [SerializeField] Material[] _material;
 
-    [SerializeField] GameObject[] _torch;
-
-    /*void Awake()
-    {
-        _meshFilter = GetComponent<MeshFilter>();
-        _meshRenderer = GetComponent<MeshRenderer>();
-    }*/
-
     public void ChangeSkin(int n)
     {
         if (n > 0)
