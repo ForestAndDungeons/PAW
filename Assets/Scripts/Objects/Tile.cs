@@ -21,7 +21,7 @@ public class Tile : MonoBehaviour
     [Header("Wall 1")]
     [SerializeField] [Range(0, 4)] int _wall1Position = 1;
 
-    [SerializeField] [Range(1, 3)] int _wall1Skin = 1;
+    [SerializeField] [Range(1, 4)] int _wall1Skin = 1;
     [SerializeField] [Range(0, 2)] int _torch1Skin = 0;
 
     [SerializeField] [Range(0, 4)] int _blackWall1Position = 0;
@@ -32,7 +32,7 @@ public class Tile : MonoBehaviour
     [Header("Wall 2")]
     [SerializeField] [Range(0, 4)] int _wall2Position = 2;
 
-    [SerializeField] [Range(1, 3)] int _wall2Skin = 1;
+    [SerializeField] [Range(1, 4)] int _wall2Skin = 1;
     [SerializeField] [Range(0, 2)] int _torch2Skin = 0;
 
     [SerializeField] [Range(0, 4)] int _blackWall2Position = 0;
@@ -52,6 +52,14 @@ public class Tile : MonoBehaviour
             _wall1Skin = 0;
         if (_door2)
             _wall2Skin = 0;
+        if (_wall1Skin == 4)
+            _walls[0].GetComponent<BoxCollider>().enabled = false;
+        else
+            _walls[0].GetComponent<BoxCollider>().enabled = true;
+        if (_wall2Skin == 4)
+            _walls[1].GetComponent<BoxCollider>().enabled = false;
+        else
+            _walls[1].GetComponent<BoxCollider>().enabled = true;
 
         _floor.ChangeSkin(_floorSlider);
         
