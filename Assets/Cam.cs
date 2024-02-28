@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Cam : MonoBehaviour
 {
-    [SerializeField] List<ObjectFader> _faders;
+    [SerializeField] Cam _otherCam;
+    bool isInOther;
+    public List<ObjectFader> _faders;
     [SerializeField] GameObject _player;
     [SerializeField] LayerMask IgnoreLayer;
     bool check;
@@ -31,7 +33,15 @@ public class Cam : MonoBehaviour
                     {
                         foreach (ObjectFader fader in _faders)
                         {
-                            fader.doFade = false;
+                            foreach(ObjectFader fader2 in _otherCam._faders)
+                            {
+                                if (fader == fader2)
+                                    isInOther = true;
+                            }
+                            if (isInOther == false)
+                                fader.doFade = false;
+                            else
+                                isInOther = false;
                         }
                         _faders.Clear();
                     }
