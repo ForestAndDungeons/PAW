@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
-    public RoomEntity _roomEntity;
-    //public RoomEntity roomEntity { set { _roomEntity = value; } }
+    [SerializeField] RoomEntity _roomEntity;
+    public RoomEntity roomEntity { get { return _roomEntity; } set { _roomEntity = value; } }
 
     [Header ("Variables")]
-    [SerializeField] bool _isClose;
+    [SerializeField] bool _isOpen = true;
     [SerializeField] bool _isSecretDoor;
     [SerializeField] GameObject _locket;
     [SerializeField] Collider _collider;
@@ -23,22 +23,15 @@ public class DoorScript : MonoBehaviour
     [SerializeField] AudioClip _audioUnlocking;
     [SerializeField] AudioClip _audioLocked;
 
-    public void IsSecretDoor(bool value)
-    {
-        _isSecretDoor = value;
-    }
-
     public void OnValidate(bool value)
     {
-        _isSecretDoor = value;
-        _locket.SetActive(_isSecretDoor);
-        //IsSecretDoor(_isSecretDoor);
+        IsSecretDoor(value);
     }
 
     void Awake()
     {
         //Iniciamos la funcion Ienumerator en el awake
-        StartCoroutine(WaitForOpenFirstTime());
+        StartCoroutine(Wait());
     }
 
     void OnCollisionEnter(Collision collision)
@@ -52,22 +45,25 @@ public class DoorScript : MonoBehaviour
             if (_isSecretDoor)
             {
                 //Preguntamos si el player posee una llave, preguntando si el booleano es true
-                if (pj._playerBase.haveKey)
+                if (pj._playerBase.keysCollected > 0)
                 {
                     //Preguntamos si el roomEntity esta desactivado (Que no haya un combate activo)
-                    if (_roomEntity == null)
+                    if (roomEntity != null)
                     {
                         //Preguntamos si la lista de enemigos es <= 0
-                        if (_roomEntity._enemyList.Count <= 0)
+                        if (roomEntity._enemyList.Count <= 0)
                         {
-                            //Booleano de que el player posee una llave lo ponemos en falso (USAS LA LLAVE)
-                            pj._playerBase.SetKey(0);
-
-                            OpenDoor();
-
-                            //Se destruye la puerta
-                            //DestroyDoor();
+                            //Booleano de que el player posee una llave la restamos (USAS LA LLAVE)
+                            pj._playerBase.keysCollected--;
+                            IsSecretDoor(false);
+                            StartCoroutine(Wait());
                         }
+                    }
+                    else
+                    {
+                        pj._playerBase.keysCollected--;
+                        IsSecretDoor(false);
+                        StartCoroutine(Wait());
                     }
                 }
                 //Si el player no posee una llave
@@ -80,48 +76,54 @@ public class DoorScript : MonoBehaviour
             }
         }
     }
-    
+
+    public void IsSecretDoor(bool value)
+    {
+        _isSecretDoor = value;
+        _locket.SetActive(_isSecretDoor);
+    }
+
     //Funcion para abrir puertas
     public void OpenDoor()
     {
-        //Desactivamos los GameObjects
-        _isClose = false;
-        _animator.SetBool("isClose", false);
-        _collider.enabled = false;
-        //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
-        _roomEntity.eventRoom -= OpenDoor;
-        _roomEntity.eventRoom += CloseDoor;
-        _audioSource.PlayOneShot(_audioOpening);
+        if(!_isSecretDoor)
+        {
+            //Desactivamos los GameObjects
+            _isOpen = true;
+            _animator.SetBool("isOpen", true);
+            _collider.enabled = false;
+
+            //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
+            roomEntity.eventRoom -= OpenDoor;
+            roomEntity.eventRoom += CloseDoor;
+            _audioSource.PlayOneShot(_audioOpening);
+        }
     }
 
     //Funcion para cerrar puertas
     public void CloseDoor()
     {
-        //Preguntamos si no es una SecretDoor
-        if (!_isSecretDoor)
-        {
-            _isClose = true;
-            //Activamos los GameObjects
-            _collider.enabled = true;
-            _animator.SetBool("isClose", true);
-            //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
-            _roomEntity.eventRoom -= CloseDoor;
-            _roomEntity.eventRoom += OpenDoor;
-            _audioSource.PlayOneShot(_audioClosing);
-        }
+        _isOpen = false;
+        //Activamos los GameObjects
+        _collider.enabled = true;
+        _animator.SetBool("isOpen", false);
+
+        //Le subscribimos y desubscribimos las funciones necesarias al EventRoom
+        roomEntity.eventRoom += OpenDoor;
+        roomEntity.eventRoom -= CloseDoor;
+        _audioSource.PlayOneShot(_audioClosing);
     }
 
     //Ienumerator que espera 2 segundos para abrir todas las puertas al inicio del juego, excepto las SecretDoors
-    IEnumerator WaitForOpenFirstTime()
+    IEnumerator Wait()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
-        if (!_isSecretDoor)
+        if (_isOpen)
         {
-            if (!_isClose)
-            {
-                OpenDoor();
-            }
+            OpenDoor();
         }
+        else
+            CloseDoor();
     }
 }

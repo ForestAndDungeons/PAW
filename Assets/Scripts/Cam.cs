@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class Cam : MonoBehaviour
 {
-    [SerializeField] Cam _otherCam;
+    GameObject _player;
+    public GameObject player { get { return _player; } }
+
+    Cam _otherCam;
+    bool check;
     bool isInOther;
     public List<ObjectFader> _faders;
-    [SerializeField] GameObject _player;
+
+    [SerializeField] bool _player1Camera;
     [SerializeField] LayerMask IgnoreLayer;
-    bool check;
+
+    void Start()
+    {
+        foreach(Player player in GameManager.Instance._players)
+        {
+            if (_player1Camera && player.isPlayer1)
+            {
+                _player = player.gameObject;
+                player.myCamera = this.GetComponent<Camera>();
+                _otherCam = player.otherPlayer.myCamera.GetComponent<Cam>();
+            }
+            else if(!_player1Camera && !player.isPlayer1)
+            {
+                _player = player.gameObject;
+                player.myCamera = this.GetComponent<Camera>();
+                _otherCam = player.otherPlayer.myCamera.GetComponent<Cam>();
+            }
+        }
+    }
 
     void Update()
     {
@@ -22,7 +45,7 @@ public class Cam : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 1000f, ~IgnoreLayer))
             {
-                Debug.Log(hit.collider.name);
+                //Debug.Log(hit.collider.name);
                 if (hit.collider == null)
                     return;
 

@@ -85,7 +85,7 @@ public class RoomEntity : MonoBehaviour
         DoorScript door = other.GetComponent<DoorScript>();
 
         if (door != null)
-            door._roomEntity = this;
+            door.roomEntity = this;
     }
 
     //Mientras el jugador siga dentro del RoomEntity pregunta
@@ -117,8 +117,10 @@ public class RoomEntity : MonoBehaviour
             DestroyRoomEntity();
         }
     }
+
     //Funcion que le otorga un drop de llave a un enemigo de manera random
-    public void EnemyWithKey(int enemyRandom)
+    //Actualizada variable de key, ahora es int no bool, enemigos no tienen esta variable, usar el sistema de loot generico.
+    /*public void EnemyWithKey(int enemyRandom)
     {
         for (int i = 0; i < _enemyList.Count; i++)
         {
@@ -130,7 +132,7 @@ public class RoomEntity : MonoBehaviour
                 
             }
         }
-    }
+    }*/
 
     public void DestroyRoomEntity()
     {
@@ -146,7 +148,7 @@ public class RoomEntity : MonoBehaviour
         //Asignamos al int randonEnemy un enemigo random de la lista de enemigos
         _randomEnemy = Random.Range(0, _enemyList.Count);
         //Le mandamos a la funcion EnemyWithKey el enemigo elegido para que se le de el drop de llave
-        EnemyWithKey(_randomEnemy);
+        //EnemyWithKey(_randomEnemy);
     }
     public void AddPlayer(GameObject playerGO)
     {
