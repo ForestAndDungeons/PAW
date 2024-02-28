@@ -34,24 +34,12 @@ public class EnemyAnimEvent : MonoBehaviour
     {
         if (_enemy != null)
         {
-            if (_enemy.GetterHaveAKey())
+            var drop = PorcentajeDrop();
+            if (drop!= null)
             {
-                if (_enemy.keyPrefab !=null)
-                {
-                    Instantiate(_enemy.keyPrefab, (transform.position + new Vector3(0, 0.7f, 0)), _enemy.keyPrefab.transform.rotation);
-                }
-            }
-            else
-            {
-                var drop = PorcentajeDrop();
-                if (drop!= null)
-                {
-                    Instantiate(drop, (transform.position + new Vector3(0, 0.7f, 0)), drop.transform.rotation);
-                }
-
+                Instantiate(drop, (transform.position + new Vector3(0, 0.7f, 0)), drop.transform.rotation);
             }
         }
-
     }
 
     public GameObject PorcentajeDrop()

@@ -8,8 +8,10 @@ public class Movement
     Rigidbody _myRigidBody;
     Transform _transform;
     float _speed;
+    public float speed { get { return _speed; } }
     float _speedNormal;
     float _forceJump;
+    public float forceJump { get { return _forceJump; } set { _forceJump = value; } }
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
     public Movement(MovementSO dataMovement, Rigidbody myRigidBody, Transform transform)
@@ -53,20 +55,5 @@ public class Movement
     public void SetNormalSpeed()
     {
         _speed = _speedNormal;
-    }
-
-    public void SetForceJump(float forceJump)
-    {
-        _forceJump = forceJump;
-    }
-
-    public float GetSpeed()
-    {
-        return _speed;
-    }
-
-    public float GetForceJump()
-    {
-        return _forceJump;
     }
 }

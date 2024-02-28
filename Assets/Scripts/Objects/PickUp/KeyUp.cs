@@ -6,7 +6,7 @@ public class KeyUp : PickUp
 {
     public override void Pick(PlayerBase playerBase)
     {
-        _pickUpDelegate = playerBase.SetKey;
+        _pickUpDelegate = playerBase.AddKey;
         OnPickUp(playerBase);
     }
 }

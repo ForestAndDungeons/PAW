@@ -15,14 +15,13 @@ public class EnemyBase : CharacterBase, IDamage
     bool _isInvulerable;
     EnemyAnimatorController _enemyAnimController;
 
-    public EnemyBase(string name, float maxHealth, float attackPower, float armor, bool haveKey, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState,EnemyAnimatorController enemyAnimController)
+    public EnemyBase(string name, float maxHealth, float attackPower, float armor, EnemySoundsManager enemySoundsManager, Enemy enemy, AudioSource audioSource, AudioClip[] audioClip, ParticleSystem particleSystem, EnemyMovement enemyMove,List<Transform> targets,EnemyState enemyState,EnemyAnimatorController enemyAnimController)
     {
         _name = name;
         _maxHealth = maxHealth;
         _currentHealth = maxHealth;
         _attackPower = attackPower;
         _armor = armor;
-        _haveKey = haveKey;
         _enemySoundsManager = enemySoundsManager;
         _enemy = enemy;
         _audioSource = audioSource;
@@ -66,10 +65,5 @@ public class EnemyBase : CharacterBase, IDamage
     public override void HealthUp(float healing)
     {
         //Sistema preparado para futuro feature
-    }
-   
-    public void EnemyWithKey(bool checker)
-    {
-        _haveKey = checker;
     }
 }

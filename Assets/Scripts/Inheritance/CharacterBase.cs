@@ -21,8 +21,8 @@ public abstract class CharacterBase
     protected float _money;
     public float money { get { return this._money; } set { this._money = value; } }
 
-    protected bool _haveKey;
-    public bool haveKey { get { return this._haveKey; } set { this._haveKey = value; } }
+    /*protected int _keysCollected;
+    public int keysCollected { get { return this._keysCollected; } set { this._keysCollected = value; } }*/
 
     protected bool _isBlocking;
     public bool isBlocking { get { return this._isBlocking; } set { this._isBlocking = value; } }
@@ -36,10 +36,11 @@ public abstract class CharacterBase
     public abstract void onAttack(Collision other);
     public abstract void HealthUp(float healing);
 
-    public void SetKey(float haveAKey)
+    /*public void SetKey(float haveAKey)
     {
-        _haveKey = System.Convert.ToBoolean(haveAKey);
-    }
+        _keysCollected = System.Convert.ToBoolean(haveAKey);
+    }*/
+
     public void AttackUp(float add)
     {
         _attackPower += add;

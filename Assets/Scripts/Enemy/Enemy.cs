@@ -6,7 +6,6 @@ public enum State { idle, persuit, attack, die, escape };
 public class Enemy : MonoBehaviour , IDamage
 {
     [Header("Variables Enemy")]
-    public GameObject keyPrefab;
     [SerializeField] List<GameObject> _DropleableList = new List<GameObject>();
 
     [SerializeField] bool _isInvulerable;
@@ -23,7 +22,7 @@ public class Enemy : MonoBehaviour , IDamage
     [SerializeField] float _currentHealth;
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
-    [SerializeField] bool _haveAKey;
+    [SerializeField] int _keys;
     [SerializeField] ParticleSystem _particleSystem;
 
     [Header("Variables Move")]
@@ -63,7 +62,7 @@ public class Enemy : MonoBehaviour , IDamage
         _enemyAnimController = new EnemyAnimatorController(_enemyAnim);
         _enemyMove = new EnemyMovement(_speed, _rb, transform, _distanceBrake, _enemyAnimController, _knockbackForce,_knockbackTime,_knockbackCounter);
         _enemyState = new EnemyState(_state,_enemyAnimController,_enemyMove,_targets,enemySoundsManager,this, _isRangeEnemy,_timeBtwShoot, _startTimeBtwShoot, _distanceFollow);
-        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, _haveAKey, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState, _enemyAnimController);
+        _enemyBase = new EnemyBase(_name, _maxHealth, _attackPower, _armor, enemySoundsManager, this,_enemyAudioSource,_enemyAClip, _particleSystem,_enemyMove, _targets,_enemyState, _enemyAnimController);
         _name = this.gameObject.name;
         _enemyState.StateStart();
   
@@ -72,10 +71,9 @@ public class Enemy : MonoBehaviour , IDamage
     //GETTERS
     public List<Transform> GetColliders() {return _targets;}
     public List<GameObject> GetDropeables() {return _DropleableList;}
-    public bool GetterHaveAKey() {return _haveAKey;}
+    
     void Update()
     {
-        _haveAKey = _enemyBase.haveKey;
         _knockbackCounter = _enemyMove.CurrentKnockbackCounterGetter();
         _state = _enemyState.CurrentStateGetter();
         if (_stateDelegate!=null)

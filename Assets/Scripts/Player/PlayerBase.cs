@@ -14,14 +14,17 @@ public class PlayerBase : CharacterBase, IDamage
     ParticleSystem _particleSystem;
     AnimationController _animationController;
 
-    public PlayerBase(PlayerBaseSO playerBaseSO, string name, bool haveKey ,PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
+    protected float _keysCollected;
+    public float keysCollected { get { return this._keysCollected; } set { this._keysCollected = value; } }
+
+    public PlayerBase(PlayerBaseSO playerBaseSO, string name, float keysCollected, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
     {
         _data = playerBaseSO;
         _name = name;
         _maxHealth = _data.maxHealth;
         _currentHealth = _maxHealth;
         _attackPower = _data.attackPower;
-        _haveKey = haveKey;
+        _keysCollected = keysCollected;
         _playerSoundManager = playerSoundManager;
         _audioClip = audioClip;
         _audioSource = audioSource;
@@ -93,6 +96,11 @@ public class PlayerBase : CharacterBase, IDamage
         _player._uiPlayer.UIUpdate(_maxHealth, _currentHealth, _armor);
     }
 
+    public void AddKey(float add)
+    {
+        _keysCollected += add;
+    }
+
     public void AttackSpeedUp(float add)
     {
         _player.AttackSpeedUp();
@@ -101,7 +109,7 @@ public class PlayerBase : CharacterBase, IDamage
     public void SetForceJump(float forceJump)
     {
         _forceJump = forceJump;
-        _player._movement.SetForceJump(_forceJump);
+        _player._movement.forceJump = _forceJump;
     }
 
     public void SpeedUp(float add)

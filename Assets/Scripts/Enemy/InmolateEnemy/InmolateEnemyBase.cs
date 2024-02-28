@@ -39,8 +39,8 @@ public class InmolateEnemyBase : CharacterBase,IDamage
         //Sistema preparado para futuro feature
     }
 
-    public void EnemyWithKey(bool checker)
+    /*public void EnemyWithKey(bool checker)
     {
-        _haveKey = checker;
-    }
+        _keysCollected = checker;
+    }*/
 }

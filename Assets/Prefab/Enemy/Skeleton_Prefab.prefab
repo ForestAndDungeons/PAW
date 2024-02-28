@@ -145,6 +145,7 @@ MonoBehaviour:
   _DropleableList:
   - {fileID: 5365547559676901595, guid: 4aacee79dc73d4a48a66e6bba1dd0072, type: 3}
   - {fileID: 5858323033465408276, guid: ce7adb9090f9f9249ba074d69714d922, type: 3}
+  - {fileID: 7956874207726150469, guid: 306f26a8ec25998478a3c8374146545e, type: 3}
   _isInvulerable: 0
   _isRangeEnemy: 0
   _ArrowPref: {fileID: 0}
@@ -155,7 +156,7 @@ MonoBehaviour:
   _currentHealth: 0
   _attackPower: 1
   _armor: 0
-  _haveAKey: 0
+  _keys: 0
   _particleSystem: {fileID: 1938268371}
   _speed: 3
   _rb: {fileID: 7372105791957241239}
