@@ -17,21 +17,20 @@ public class Cam : MonoBehaviour
 
     void Start()
     {
-        foreach(Player player in GameManager.Instance._players)
+        foreach (Player player in GameManager.Instance._players)
         {
-            if (_player1Camera && player.isPlayer1)
+            if (_player == null && _player1Camera && player.isPlayer1)
             {
                 _player = player.gameObject;
                 player.myCamera = this.GetComponent<Camera>();
-                _otherCam = player.otherPlayer.myCamera.GetComponent<Cam>();
             }
-            else if(!_player1Camera && !player.isPlayer1)
+            else if (_player == null && !_player1Camera && !player.isPlayer1)
             {
                 _player = player.gameObject;
                 player.myCamera = this.GetComponent<Camera>();
-                _otherCam = player.otherPlayer.myCamera.GetComponent<Cam>();
             }
         }
+        StartCoroutine(WaitToAssign());
     }
 
     void Update()
@@ -97,6 +96,17 @@ public class Cam : MonoBehaviour
                         check = false;
                 }
             }
+        }
+    }
+
+    public IEnumerator WaitToAssign()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (Player player in GameManager.Instance._players)
+        {
+            if (_player != null && _player != player.gameObject)
+                _otherCam = player.myCamera.GetComponent<Cam>();
         }
     }
 }

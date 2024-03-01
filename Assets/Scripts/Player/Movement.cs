@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class Movement
 {
-    MovementSO _data;
     Rigidbody _myRigidBody;
     Transform _transform;
     float _speed;
     public float speed { get { return _speed; } }
     float _speedNormal;
-    float _forceJump;
-    public float forceJump { get { return _forceJump; } set { _forceJump = value; } }
+    float _jumpForce;
+    public float jumpForce { get { return _jumpForce; } set { _jumpForce = value; } }
 
     //Contructor; Player instancia esta clase y le pasa los parametros.
-    public Movement(MovementSO dataMovement, Rigidbody myRigidBody, Transform transform)
+    public Movement(float speed, float jumpForce , Rigidbody myRigidBody, Transform transform)
     {
-        _data = dataMovement;
-        _speed = _data.speed;
-        _forceJump = _data.forceJump;
+        _speed = speed;
+        _jumpForce = jumpForce;
         _myRigidBody = myRigidBody;
         _transform = transform;
     }
@@ -33,7 +31,7 @@ public class Movement
 
     public void Jump()
     {
-        _myRigidBody.AddForce(Vector3.up * _forceJump, ForceMode.Impulse);
+        _myRigidBody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
     public void IsometricMove(Vector3 input)
@@ -41,7 +39,7 @@ public class Movement
         _myRigidBody.MovePosition(_transform.position + (_transform.forward * input.magnitude) * _speed * Time.deltaTime);
     }
 
-    public void SetSpeedBonus(float add)
+    public void AddSpeed(float add)
     {
         _speed += add;
     }

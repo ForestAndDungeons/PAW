@@ -9839,9 +9839,10 @@ GameObject:
   - component: {fileID: 8581136628619377969}
   - component: {fileID: 4663910457507869332}
   - component: {fileID: 7448248516384425566}
+  - component: {fileID: 3403200283014015792}
+  - component: {fileID: 8154448231473654031}
   - component: {fileID: 504559622766190540}
   - component: {fileID: -5066632559220654859}
-  - component: {fileID: 8154448231473654031}
   m_Layer: 0
   m_Name: Torch_Prefab 1
   m_TagString: Untagged
@@ -9916,6 +9917,122 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!82 &3403200283014015792
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961462732645934987}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 0699aeb726883a84e82efc0a1f09d631, type: 2}
+  m_audioClip: {fileID: 8300000, guid: e2f86fa97efba9942916c92cb87b1ea5, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 2
+  MaxDistance: 4
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8154448231473654031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961462732645934987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcc5c0f0f3533c49b49ed56d4ba7db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshFilter: {fileID: 4663910457507869332}
+  _meshRenderer: {fileID: 7448248516384425566}
+  _mesh:
+  - {fileID: 8321685774571456786, guid: 40e013d37df2c124a8d61ba3aa3fbcdc, type: 3}
+  - {fileID: 6606501483488557099, guid: a37353f027ac6b9499b73481fde59979, type: 3}
+  _material:
+  - {fileID: 2100000, guid: 7e87b613768686940adc1c7d517e2a6f, type: 2}
+  - {fileID: 2100000, guid: 8716ff583f880704b97c29744cdfd3d9, type: 2}
 --- !u!199 &504559622766190540
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -14697,24 +14814,3 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &8154448231473654031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8961462732645934987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bcc5c0f0f3533c49b49ed56d4ba7db1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshFilter: {fileID: 4663910457507869332}
-  _meshRenderer: {fileID: 7448248516384425566}
-  _mesh:
-  - {fileID: 8321685774571456786, guid: 40e013d37df2c124a8d61ba3aa3fbcdc, type: 3}
-  - {fileID: 6606501483488557099, guid: a37353f027ac6b9499b73481fde59979, type: 3}
-  _material:
-  - {fileID: 2100000, guid: 7e87b613768686940adc1c7d517e2a6f, type: 2}
-  - {fileID: 2100000, guid: 8716ff583f880704b97c29744cdfd3d9, type: 2}
-  _torch: []

@@ -20,7 +20,7 @@ public class EnemyBase : CharacterBase, IDamage
         _name = name;
         _maxHealth = maxHealth;
         _currentHealth = maxHealth;
-        _attackPower = attackPower;
+        _attackDamage = attackPower;
         _armor = armor;
         _enemySoundsManager = enemySoundsManager;
         _enemy = enemy;
@@ -59,7 +59,7 @@ public class EnemyBase : CharacterBase, IDamage
     public override void onAttack(Collision other)
     {
         if (other != null)
-            other.gameObject.GetComponent<Player>()._playerBase.onDamage(_attackPower);
+            other.gameObject.GetComponent<Player>().onDamage(_attackDamage);
     }
 
     public override void HealthUp(float healing)

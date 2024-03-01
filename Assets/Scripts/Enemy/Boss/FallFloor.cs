@@ -20,7 +20,7 @@ public class FallFloor : MonoBehaviour
         _pj = collision.gameObject.GetComponent<Player>();
         if (_pj != null)
         {
-            _pj._playerBase.onDamage(1);
+            _pj.onDamage(1);
             Destroy(this.gameObject, 0.1f);
         }
         Destroy(this.gameObject,0.1f);
