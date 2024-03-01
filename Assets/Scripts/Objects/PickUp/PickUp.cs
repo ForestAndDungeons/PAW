@@ -6,14 +6,14 @@ public abstract class PickUp : MonoBehaviour
 {
     [Header("Text")]
     protected ItemUI _itemUI;
+    [SerializeField] protected float _value;
     [SerializeField] protected string _title;
     [SerializeField] protected string _description;
 
     [SerializeField] protected bool _isConsumable;
     [SerializeField] protected bool _isPurchasable;
 
-    [SerializeField] protected float _number;
-    [SerializeField] protected float _price;
+    [SerializeField] protected float _shopPrice;
 
     AudioSource _audioSource;
     [SerializeField] AudioClip _audioClip;
@@ -38,20 +38,20 @@ public abstract class PickUp : MonoBehaviour
     {
         if (_isPurchasable)
         {
-            var money = playerBase.money;
+            var money = playerBase.coins;
 
-            if (money >= _price)
+            if (money >= _shopPrice)
             {
-                playerBase.money -= _price;
+                playerBase.coins -= _shopPrice;
                 _audioSource.PlayOneShot(_audioClip);
-                _pickUpDelegate(_number);
+                _pickUpDelegate(_value);
                 Activate();
             }
         }
         else
         {
             _audioSource.PlayOneShot(_audioClip);
-            _pickUpDelegate(_number);
+            _pickUpDelegate(_value);
             Activate();
         }
     }
@@ -81,7 +81,7 @@ public abstract class PickUp : MonoBehaviour
     }
     public float GetPrice()
     {
-        return _price;
+        return _shopPrice;
     }
     public bool GetIsPurchasable()
     {

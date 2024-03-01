@@ -20,7 +20,6 @@ public class InmolateEnemy : MonoBehaviour, IDamage
     {
         _inmolateEnemyBase = new InmolateEnemyBase(_name, _maxHealth, _attackPower, _armor, this);
         _name = this.gameObject.name;
-
     }
 
     private void Update()
@@ -36,7 +35,7 @@ public class InmolateEnemy : MonoBehaviour, IDamage
         Player _pj = collision.gameObject.GetComponent<Player>();
         if (_pj != null)
         {
-            _pj._playerBase.onDamage(_attackPower);
+            _pj.onDamage(_attackPower);
             Destroy(this.gameObject);
             Debug.Log("Colisione con el Player");
         }

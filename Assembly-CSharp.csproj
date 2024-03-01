@@ -84,10 +84,10 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyState.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Player\SO\PlayerBaseSO.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerBaseSO.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Objects\Trap\RotatingTrap.cs" />
-    <Compile Include="Assets\Scripts\Objects\PickUp\SpeedUp.cs" />
+    <Compile Include="Assets\Scripts\Objects\PickUp\MovementSpeedUp.cs" />
     <Compile Include="Assets\Scripts\Inheritance\IDamage.cs" />
     <Compile Include="Assets\Scripts\Enemy\Boss\BossAnimController.cs" />
     <Compile Include="Assets\Scripts\Objects\Trap\SpikeTrap.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="Assets\Scripts\Objects\TileSkin.cs" />
     <Compile Include="Assets\Scripts\Player\Block.cs" />
     <Compile Include="Assets\Scripts\Player\SKeyCode.cs" />
-    <Compile Include="Assets\Scripts\Player\SO\ControlSO.cs" />
+    <Compile Include="Assets\Scripts\Player\ControlSO.cs" />
     <Compile Include="Assets\Scripts\NewEnemys\States\MeleEnemyStates\MeleEnemyIdle.cs" />
     <Compile Include="Assets\Scripts\Objects\ObjectFader.cs" />
     <Compile Include="Assets\Scripts\MenuScripts\SceneTransitionOS.cs" />
@@ -108,7 +108,6 @@
     <Compile Include="Assets\Scripts\Player\UIStats.cs" />
     <Compile Include="Assets\Scripts\Inheritance\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\JumpUp.cs" />
-    <Compile Include="Assets\Scripts\Player\SO\MovementSO.cs" />
     <Compile Include="Assets\Scripts\Inheritance\RoomEntity.cs" />
     <Compile Include="Assets\Scripts\NewEnemys\States\MeleEnemyStates\MeleEnemyPersuit.cs" />
     <Compile Include="Assets\Scripts\Objects\PickUp\AttackUp.cs" />

@@ -3,38 +3,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBase : CharacterBase, IDamage
+public class PlayerBase : CharacterBase
 {
     PlayerBaseSO _data;
+    Player _player;
+
+    //
     AudioSource _audioSource;
     AudioClip[] _audioClip;
-
-    Player _player;
     PlayerSoundManager _playerSoundManager;
     ParticleSystem _particleSystem;
     AnimationController _animationController;
 
     protected float _keysCollected;
-    public float keysCollected { get { return this._keysCollected; } set { this._keysCollected = value; } }
+    public float keysCollected
+    {
+        get { return this._keysCollected; }
+        set { this._keysCollected = value; }
+    }
 
     public PlayerBase(PlayerBaseSO playerBaseSO, string name, float keysCollected, PlayerSoundManager playerSoundManager, AudioClip[] audioClip, AudioSource audioSource, ParticleSystem particleSystem, Player player, AnimationController animationController)
     {
         _data = playerBaseSO;
-        _name = name;
         _maxHealth = _data.maxHealth;
         _currentHealth = _maxHealth;
-        _attackPower = _data.attackPower;
+        _attackDamage = _data.attackDamage;
+        _attackSpeed = _data.attackSpeed;
+        _movementSpeed = _data.movementSpeed;
+        _immuneTime = _data.immuneTime;
+
+        _player = player;
+        _name = name;
         _keysCollected = keysCollected;
         _playerSoundManager = playerSoundManager;
         _audioClip = audioClip;
         _audioSource = audioSource;
         _particleSystem = particleSystem;
-        _player = player;
         _animationController = animationController;
     }
 
-    public void onDamage(float damage)
+    /*public void onDamage(float damage)
     {
+        //
         if (!_isImmune)
         {
             if(!_isBlocking)
@@ -64,7 +74,6 @@ public class PlayerBase : CharacterBase, IDamage
                 isImmune = true;
                 _playerSoundManager.playOnHit();
                 _player.StartCoroutine(_player.TimeOfImmune());
-            
 
                 if (_currentHealth <= 0)
                 {
@@ -74,7 +83,7 @@ public class PlayerBase : CharacterBase, IDamage
                 }
             }
         }
-    }
+    }*/
 
     public override void onAttack(Collision other){}
 
@@ -101,19 +110,19 @@ public class PlayerBase : CharacterBase, IDamage
         _keysCollected += add;
     }
 
-    public void AttackSpeedUp(float add)
+    public void AddAttackSpeed(float add)
     {
-        _player.AttackSpeedUp();
+        _player.myAnimator.SetFloat("attackSpeed", _attackSpeed + add);
     }
 
     public void SetForceJump(float forceJump)
     {
-        _forceJump = forceJump;
-        _player._movement.forceJump = _forceJump;
+        _jumpForce = forceJump;
+        _player._movement.jumpForce = _jumpForce;
     }
 
     public void SpeedUp(float add)
     {
-        _player._movement.SetSpeedBonus(add);
+        _player._movement.AddSpeed(add);
     }
 }

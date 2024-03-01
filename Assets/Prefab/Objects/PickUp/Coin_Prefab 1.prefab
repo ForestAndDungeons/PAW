@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 1306724733087520933}
   - component: {fileID: -2421282447907877450}
   - component: {fileID: 5620590683362213653}
+  - component: {fileID: 1446686280}
+  - component: {fileID: 1446686290}
   m_Layer: 13
   m_Name: Coin_Prefab 1
   m_TagString: Untagged
@@ -100,12 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0714fd303ed85e4893b6a106812be7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _value: 0
   _title: 
   _description: 
   _isConsumable: 1
   _isPurchasable: 0
-  _number: 1
-  _price: 0
+  _shopPrice: 0
   _audioClip: {fileID: 8300000, guid: 629bb848575255b4c9bebd50c817ce8f, type: 3}
 --- !u!65 &-3789100914974163831
 BoxCollider:
@@ -5016,6 +5018,35 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!54 &1446686280
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916985028585331380}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1446686290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916985028585331380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7202132581814705280
 GameObject:
   m_ObjectHideFlags: 0

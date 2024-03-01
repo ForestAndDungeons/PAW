@@ -6,9 +6,15 @@ using TMPro;
 
 public class Player : MonoBehaviour, IDamage
 {
+    //Control Variables.
+    [Header("Control Variables")]
+    [SerializeField] ControlSO _controlSO;
+    bool _isDead;
+    public delegate void ControlDelegate(bool isGrounded);
+    public ControlDelegate _controlDelegate;
+
     [SerializeField] bool _isPlayer1;
     public bool isPlayer1 { get { return _isPlayer1; } }
-    //[SerializeField] GameObject _model;
     Collider _collider;
 
     Player _otherPlayer;
@@ -21,7 +27,7 @@ public class Player : MonoBehaviour, IDamage
     public Rect minimapRect { set { _minimap.rect = value; } }
 
     [SerializeField] float _timeOfImmune;
-    [SerializeField] TMP_Text _moneyUI;
+    [SerializeField] TMP_Text _coinsUI;
     [SerializeField] TMP_Text _keyUI;
     public TMP_Text _infoUI;
 
@@ -31,19 +37,12 @@ public class Player : MonoBehaviour, IDamage
 
     //Movement Variables.
     [Header("Movement Variables")]
-    [SerializeField] MovementSO _dataMovement;
     [SerializeField] float _turnSpeed;
     Rigidbody _myRigidBody;
     Animator _myAnimator;
+    public Animator myAnimator { get { return _myAnimator; } }
     public delegate void MovementDelegate();
     public MovementDelegate _movementDelegate;
-    
-    //Control Variables.
-    [Header("Control Variables")]
-    [SerializeField] ControlSO _controlSO;
-    [SerializeField] bool _isDead;
-    public delegate void ControlDelegate(bool isGrounded);
-    public ControlDelegate _controlDelegate;
 
     //GroundSensor Variables.
     [Header("GroundSensor Variables")]
@@ -60,7 +59,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] float _attackPower;
     [SerializeField] float _armor;
     [SerializeField] float _forceJump;
-    [SerializeField] float _money;
+    [SerializeField] float _coins;
     [SerializeField] float _keysCollected;
     [SerializeField] ParticleSystem _particleOnDamage;
     [SerializeField] ParticleSystem _particleWalk;
@@ -112,17 +111,17 @@ public class Player : MonoBehaviour, IDamage
         _myAnimator = this.GetComponentInChildren<Animator>();
         _isDead = false;
 
+        _playerBase = new PlayerBase(_playerBaseSO, _name, _keysCollected, _playerSoundManager, _audioClip, _audioSource, _particleOnDamage, this, _animationController);
+
         _playerSoundManager = new PlayerSoundManager(_audioSource, _audioClip);
 
-        _movement = new Movement(_dataMovement, _myRigidBody, transform);
+        _movement = new Movement(_playerBase.movementSpeed, _playerBase.jumpForce, _myRigidBody, transform);
 
         _animationController = new AnimationController(_myAnimator);
 
         _control = new Control(_controlSO, _movement, transform, _sKeyCode, _playerSoundManager);
 
         _groundSensor = new GroundSensor(_radius, _groundLayer, transform);
-
-        _playerBase = new PlayerBase(_playerBaseSO, _name, _keysCollected, _playerSoundManager, _audioClip, _audioSource, _particleOnDamage, this, _animationController);
 
         _uiPlayer = new UIPlayer(_imageUIHearts, _spriteHeart, _imageUIArmor, _spriteArmor);
 
@@ -163,13 +162,10 @@ public class Player : MonoBehaviour, IDamage
         _armor = _playerBase.armor;
         _keysCollected = _playerBase.keysCollected;
         _isGrounded = _groundSensor.GroundSensorUpdate();
-        _forceJump = _movement.forceJump;
-
-        _moneyUI.text = System.Convert.ToString(_money);
+        _forceJump = _movement.jumpForce;
+        _coins = _playerBase.coins;
+        _coinsUI.text = System.Convert.ToString(_coins);
         _keyUI.text = System.Convert.ToString(_keysCollected);
-
-        //TEMP para ver
-        _money = _playerBase.money;
 
         if (Input.GetKeyDown(_sKeyCode[0].key))
         {
@@ -197,9 +193,27 @@ public class Player : MonoBehaviour, IDamage
         _movementDelegate();
     }
 
-    public void onDamage(float damage)
+    public void onDamage(float value)
     {
-        _playerBase.onDamage(damage);
+        var health = _currentHealth;
+        var armor = _armor;
+
+        _playerBase.onDamage(value);
+
+        if (health > _playerBase.currentHealth || armor > _playerBase.armor)
+        {
+            _animationController.onHit();
+            _playerSoundManager.playOnCollision(_audioSource, _audioClip[0]);
+            _particleOnDamage.Play();
+            _playerSoundManager.playOnHit();
+        }
+        if (_playerBase.currentHealth <= 0)
+        {        
+            _playerSoundManager.playOnDeath();
+            _animationController.onDeath();
+            DisableThisObject();
+        }
+        _uiPlayer.UIUpdate(_maxHealth, _currentHealth, _armor);
     }
 
     public void onAttack(Collision other)
@@ -210,11 +224,6 @@ public class Player : MonoBehaviour, IDamage
     public void HealthUp(float add)
     {
         _playerBase.HealthUp(add);
-    }
-
-    public void AttackSpeedUp()
-    {
-        _myAnimator.SetBool("AttackSpeedUp", true);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -247,11 +256,6 @@ public class Player : MonoBehaviour, IDamage
             _pauseManager.TogglePermanentPause();
             _resumeButton.SetActive(false);
         }
-    }
-    public IEnumerator TimeOfImmune()
-    {
-        yield return new WaitForSeconds(_timeOfImmune);
-        _playerBase.isImmune = false;
     }
 
     //PlayerSoundManager Methods
