@@ -7,13 +7,14 @@ public class PlayerBase : CharacterBase
 {
     PlayerBaseSO _data;
     Player _player;
+    public Player player { get { return _player; } }
 
-    //
+    /*
     AudioSource _audioSource;
     AudioClip[] _audioClip;
     PlayerSoundManager _playerSoundManager;
     ParticleSystem _particleSystem;
-    AnimationController _animationController;
+    AnimationController _animationController;*/
 
     protected float _keysCollected;
     public float keysCollected
@@ -35,11 +36,11 @@ public class PlayerBase : CharacterBase
         _player = player;
         _name = name;
         _keysCollected = keysCollected;
-        _playerSoundManager = playerSoundManager;
+       /* _playerSoundManager = playerSoundManager;
         _audioClip = audioClip;
         _audioSource = audioSource;
         _particleSystem = particleSystem;
-        _animationController = animationController;
+        _animationController = animationController;*/
     }
 
     /*public void onDamage(float damage)

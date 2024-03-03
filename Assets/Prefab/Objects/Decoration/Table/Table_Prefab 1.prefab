@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4222335811965461460}
   - component: {fileID: 2124633894653024030}
   - component: {fileID: 4293119650243409127}
+  - component: {fileID: 4890741200602184463}
   m_Layer: 0
   m_Name: Table_Prefab 1
   m_TagString: Untagged
@@ -93,5 +94,25 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.058179, y: 1.55246, z: 2.0678077}
-  m_Center: {x: 0, y: 0, z: 0.00000017881393}
+  m_Size: {x: 5, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4890741200602184463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467471890070632139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcc5c0f0f3533c49b49ed56d4ba7db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshFilter: {fileID: 4222335811965461460}
+  _meshRenderer: {fileID: 2124633894653024030}
+  _mesh:
+  - {fileID: 379010558040167564, guid: ed712dc8e970a3349ade143fab81f295, type: 3}
+  - {fileID: -832606143848720121, guid: 138201e261db3634fb22882ff5dffa83, type: 3}
+  _material:
+  - {fileID: 2100000, guid: 0cea9f4661ac9d44bbe96ed4d96bd6c2, type: 2}
+  - {fileID: 2100000, guid: 384c2f1491ddb9142aa28ea3a6080fb5, type: 2}

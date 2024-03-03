@@ -7,13 +7,19 @@ public abstract class PickUp : MonoBehaviour
     [Header("Text")]
     protected ItemUI _itemUI;
     [SerializeField] protected float _value;
+
     [SerializeField] protected string _title;
+    public string title { get { return _title; } }
+
     [SerializeField] protected string _description;
 
-    [SerializeField] protected bool _isConsumable;
-    [SerializeField] protected bool _isPurchasable;
-
     [SerializeField] protected float _shopPrice;
+    public float shopPrice { get { return _shopPrice; } }
+
+    [SerializeField] protected bool _isConsumable;
+
+    [SerializeField] protected bool _isPurchasable;
+    public bool isPurchasable { get { return _isPurchasable; } }
 
     AudioSource _audioSource;
     [SerializeField] AudioClip _audioClip;
@@ -21,17 +27,36 @@ public abstract class PickUp : MonoBehaviour
     protected delegate void PickUpDelegate(float number);
     protected PickUpDelegate _pickUpDelegate;
 
+    [SerializeField] protected GameObject _model;
+    [SerializeField] protected Collider _collider;
+    [SerializeField] protected Collider _colliderTrigger;
+    protected Rigidbody _rigidBody;
+    protected Animator _animator;
     protected Renderer _renderer;
-    protected Collider _collider;
     protected ParticleSystem _particleSystem;
 
     public abstract void Pick(PlayerBase playerBase);
 
     private void Awake()
     {
-        _itemUI = FindObjectOfType<ItemUI>();
+        _rigidBody = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
+
+        _renderer = GetComponentInChildren<MeshRenderer>();
+        _animator = GetComponentInChildren<Animator>();
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
+
+        _itemUI = FindObjectOfType<ItemUI>();
+        
         _pickUpDelegate = null;
+    }
+
+    void Start()
+    {
+        if(!_isPurchasable)
+        {
+            _rigidBody.AddForce(new Vector3(Random.Range(-2f, 2f), Random.Range(4f, 6f), Random.Range(-2f, 2f)), ForceMode.Impulse);
+        }
     }
 
     public void OnPickUp(PlayerBase playerBase)
@@ -45,6 +70,7 @@ public abstract class PickUp : MonoBehaviour
                 playerBase.coins -= _shopPrice;
                 _audioSource.PlayOneShot(_audioClip);
                 _pickUpDelegate(_value);
+                playerBase.player._infoUI.text = null;
                 Activate();
             }
         }
@@ -58,14 +84,10 @@ public abstract class PickUp : MonoBehaviour
 
     public void Activate()
     {
-        _renderer = this.GetComponent<MeshRenderer>();
-        _collider = this.GetComponent<Collider>();
-        _particleSystem = this.GetComponent<ParticleSystem>();
-
-        _particleSystem.Play();
-
-        _renderer.enabled = false;
         _collider.enabled = false;
+        _colliderTrigger.enabled = false;
+        _model.SetActive(false);
+        _particleSystem.Play();
 
         if (!_isConsumable)
         {
@@ -75,16 +97,12 @@ public abstract class PickUp : MonoBehaviour
         Destroy(this.gameObject, 1f);
     }
 
-    public string GetTitle()
+    void OnCollisionEnter(Collision collision)
     {
-        return _title;
-    }
-    public float GetPrice()
-    {
-        return _shopPrice;
-    }
-    public bool GetIsPurchasable()
-    {
-        return _isPurchasable;
+        if (collision.gameObject.layer == 6)
+        {
+            _rigidBody.isKinematic = true;
+            _collider.enabled = false;
+        }        
     }
 }
