@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 696379525583366347}
   - component: {fileID: 3336883876463156225}
   - component: {fileID: 7857234401301105632}
+  - component: {fileID: 3848773081763292679}
   m_Layer: 0
   m_Name: Barrel_Prefab 1
   m_TagString: Untagged
@@ -92,7 +93,27 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.834058
-  m_Height: 2.1159942
+  m_Radius: 1
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.000000059604645}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3848773081763292679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841010027435343316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bcc5c0f0f3533c49b49ed56d4ba7db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshFilter: {fileID: 696379525583366347}
+  _meshRenderer: {fileID: 3336883876463156225}
+  _mesh:
+  - {fileID: -5076798556035486163, guid: aec7f70b3f34f8549a5434f5f01e9294, type: 3}
+  - {fileID: 6099800089077584851, guid: f95708f7b30a0e74faf756128218a40b, type: 3}
+  _material:
+  - {fileID: 2100000, guid: 4d866a7fc6a56c0448c7ee862e4c8525, type: 2}
+  - {fileID: 2100000, guid: 8a9eb87394ded034ca31dc5d0ffd9ae6, type: 2}
