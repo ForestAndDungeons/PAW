@@ -76,9 +76,9 @@ public class Tile : MonoBehaviour
         ChangeHole();
         
         _door[0].SetActive(_door1);
-        _door[0].GetComponent<DoorScript>().OnValidate(_isSecret1);
+        //_door[0].GetComponent<DoorScript>().OnValidate(_isSecret1);
         _door[1].SetActive(_door2);
-        _door[1].GetComponent<DoorScript>().OnValidate(_isSecret2);
+        //_door[1].GetComponent<DoorScript>().OnValidate(_isSecret2);
     }
 
     void ChangeWallPosition(GameObject obj, int slider, float Y)

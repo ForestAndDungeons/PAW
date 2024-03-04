@@ -23,16 +23,17 @@ public class DoorScript : MonoBehaviour
     [SerializeField] AudioClip _audioUnlocking;
     [SerializeField] AudioClip _audioLocked;
 
-    public void OnValidate(bool value)
-    {
-        IsSecretDoor(value);
-    }
-
     void Awake()
     {
+        IsSecretDoor(_isSecretDoor);
         //Iniciamos la funcion Ienumerator en el awake
         StartCoroutine(Wait());
     }
+
+    /*public void OnValidate(bool value)
+    {
+        IsSecretDoor(value);
+    }*/
 
     void OnCollisionEnter(Collision collision)
     {
