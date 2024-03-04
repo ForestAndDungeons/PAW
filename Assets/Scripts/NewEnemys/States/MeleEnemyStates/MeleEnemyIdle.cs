@@ -9,13 +9,18 @@ public class MeleEnemyIdle : IState
     Transform _enemyTransform;
     float _viewRadius;
     float _viewAngle;
+    EnemySM _enemySM;
+    EnemyAnimController _enemyAnimController;
+    float _wait;
     #endregion
-    public MeleEnemyIdle(EnemieBase enemieBase,Transform enemyTransform,float viewRadius,float viewAngle)
+    public MeleEnemyIdle(EnemieBase enemieBase,EnemySM enemySM,Transform enemyTransform,float viewRadius,float viewAngle, EnemyAnimController enemyAnimController)
     {
         _enemieBase = enemieBase;
         _enemyTransform = enemyTransform;
         _viewRadius = viewRadius;
         _viewAngle = viewAngle;
+        _enemySM = enemySM;
+        _enemyAnimController = enemyAnimController;
     }
 
     public void OnExit()
@@ -25,14 +30,30 @@ public class MeleEnemyIdle : IState
 
     public void OnStart()
     {
-        Debug.Log("Estoy en MeleIdle");
+        _enemyAnimController.SetIsWalk(0f);
+        _wait = Time.time;
     }
 
     public void OnUpdate()
     {
-        if (Vector3.Distance(_enemyTransform.position,_enemieBase.target.transform.position)<= _viewRadius)
+        if (!_enemieBase.isDamaged)
         {
-            Debug.Log("veo al player 1 sin fov");
+                if (_enemieBase.target!=null)
+                {
+                    if (_enemieBase.InFOV(_enemyTransform, _enemieBase.target, _viewRadius, _viewAngle))
+                    {
+                        _enemySM.EnemyChangeStates(EnemyStates.MeleEnemyPersuit);
+                    }
+                    else
+                    {
+                        if (Time.time - _wait >= 1.5f)
+                        {
+                            _wait = Time.time;
+                            _enemySM.EnemyChangeStates(EnemyStates.EnemyPatrol);
+                        }
+                    }
+                }  
         }
+        else { _enemySM.EnemyChangeStates(EnemyStates.EnemyKnockBack); }
     }
 }

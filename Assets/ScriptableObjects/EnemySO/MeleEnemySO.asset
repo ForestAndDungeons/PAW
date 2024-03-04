@@ -12,12 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144fac4d3b9a13e489901af299a1c674, type: 3}
   m_Name: MeleEnemySO
   m_EditorClassIdentifier: 
-  maxLife: 0
-  maxSpeed: 0
-  knockBackSpeed: 0
-  knockBackDuration: 0
-  knockBackColor: {r: 1, g: 0, b: 0, a: 0.72156864}
-  attackPower: 0
+  maxLife: 5
+  maxSpeed: 15
+  attackPower: 1
   walls:
     serializedVersion: 2
     m_Bits: 128
